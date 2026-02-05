@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andy Zhu | Computer Science & Data Science</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a0e27;
+            --secondary: #1a2456;
+            --accent: #00d4ff;
+            --accent-warm: #ff6b35;
+            --basketball: #ff8c42;
+            --text-light: #e8edf5;
+            --text-muted: #8b9dc3;
+            --bg-dark: #050714;
+            --card-bg: rgba(26, 36, 86, 0.4);
+            --border: rgba(0, 212, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(26, 36, 86, 0.4) 0%, transparent 50%);
+            animation: gradientShift 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, -5%) rotate(5deg); }
+        }
+
+        /* Floating decorative elements */
+        .floating-icon {
+            position: fixed;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .icon-1 { top: 15%; left: 10%; animation-delay: 0s; }
+        .icon-2 { top: 60%; right: 15%; animation-delay: 3s; }
+        .icon-3 { bottom: 20%; left: 20%; animation-delay: 6s; }
+        .icon-4 { top: 40%; right: 25%; animation-delay: 9s; }
+
+        /* Basketball decoration */
+        .basketball {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            right: 5%;
+            top: 20%;
+            opacity: 0.15;
+            animation: bounce 3s ease-in-out infinite, rotate 10s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .basketball svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Code/terminal decoration */
+        .terminal-decoration {
+            position: fixed;
+            left: 5%;
+            bottom: 15%;
+            opacity: 0.08;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+            z-index: -1;
+            max-width: 300px;
+            animation: typing 4s steps(40) infinite;
+        }
+
+        @keyframes typing {
+            0%, 100% { opacity: 0.08; }
+            50% { opacity: 0.15; }
+        }
+
+        /* Header */
+        header {
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+            position: relative;
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.03em;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3)); }
+            50% { filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.4)); }
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-links a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(0, 212, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .contact-links a:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .contact-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Summary section with data visualization decoration */
+        .summary {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .summary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+        }
+
+        /* Data visualization bars decoration */
+        .summary::after {
+            content: '';
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            width: 100px;
+            height: 60px;
+            background: 
+                linear-gradient(to top, var(--accent) 0%, var(--accent) 40%, transparent 40%),
+                linear-gradient(to top, var(--accent) 0%, var(--accent) 60%, transparent 60%) 25px 0,
+                linear-gradient(to top, var(--accent) 0%, var(--accent) 80%, transparent 80%) 50px 0,
+                linear-gradient(to top, var(--accent) 0%, var(--accent) 50%, transparent 50%) 75px 0;
+            background-repeat: no-repeat;
+            background-size: 20px 100%;
+            opacity: 0.1;
+            animation: barGrow 2s ease-in-out infinite;
+        }
+
+        @keyframes barGrow {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.2); }
+        }
+
+        .summary h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .summary p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        /* Section styling */
+        section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        section:nth-child(2) { animation-delay: 0.3s; }
+        section:nth-child(3) { animation-delay: 0.4s; }
+        section:nth-child(4) { animation-delay: 0.5s; }
+        section:nth-child(5) { animation-delay: 0.6s; }
+
+        h2.section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            animation: slideRight 1s ease-out;
+        }
+
+        @keyframes slideRight {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 60%;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+
+        .card .company {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .card .date {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            color: var(--text-muted);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .card li:hover {
+            color: var(--text-light);
+            padding-left: 2rem;
+        }
+
+        .card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .card li:hover::before {
+            color: var(--accent-warm);
+            transform: translateX(5px);
+        }
+
+        /* Skills grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-category:hover::before {
+            opacity: 1;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--text-light);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: var(--accent);
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Education */
+        .education-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .education-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-details {
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .honors {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--accent-warm);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            margin-top: 0.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-warm);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            opacity: 0.5;
+            animation: fadeOut 1s ease 3s forwards;
+            z-index: 10;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: scrollDown 2s ease infinite;
+        }
+
+        @keyframes scrollDown {
+            0% { top: 8px; opacity: 1; }
+            100% { top: 30px; opacity: 0; }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; pointer-events: none; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .summary, .card, .skill-category {
+                padding: 1.5rem;
+            }
+
+            h2.section-title {
+                font-size: 2rem;
+            }
+
+            .basketball {
+                width: 80px;
+                height: 80px;
+                right: 10px;
+                top: 10%;
+            }
+
+            .terminal-decoration {
+                font-size: 0.6rem;
+                max-width: 150px;
+            }
+
+            .floating-icon {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .card {
+                opacity: 0;
+                animation: fadeInUp 0.6s ease forwards;
+            }
+            
+            .card:nth-child(1) { animation-delay: 0.1s; }
+            .card:nth-child(2) { animation-delay: 0.2s; }
+            .card:nth-child(3) { animation-delay: 0.3s; }
+            .card:nth-child(4) { animation-delay: 0.4s; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating decorative icons -->
+    <div class="floating-icon icon-1">💻</div>
+    <div class="floating-icon icon-2">📊</div>
+    <div class="floating-icon icon-3">🤖</div>
+    <div class="floating-icon icon-4">⚡</div>
+
+    <!-- Basketball decoration -->
+    <div class="basketball">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="#ff8c42" stroke-width="2" opacity="0.6"/>
+            <path d="M 50 2 Q 50 50 50 98" stroke="#ff8c42" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M 2 50 Q 50 50 98 50" stroke="#ff8c42" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M 15 15 Q 50 50 85 85" stroke="#ff8c42" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M 85 15 Q 50 50 15 85" stroke="#ff8c42" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#ff8c42" stroke-width="1" opacity="0.4"/>
+        </svg>
+    </div>
+
+    <!-- Terminal decoration -->
+    <div class="terminal-decoration">
+        <div>$ python analyze.py</div>
+        <div>Processing data...</div>
+        <div>Model accuracy: 91%</div>
+        <div>>>> import success</div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator"></div>
+
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>Andy Zhu</h1>
+                <p class="subtitle">Computer Science & Data Science • Class of 2026</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:andy.zhu915@rutgers.edu">Email</a>
+                <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener">GitHub</a>
+                <a href="tel:+19082191973">908-219-1973</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Summary -->
+        <div class="summary">
+            <h2>About Me</h2>
+            <p>
+                I'm a Computer Science and Data Science student at Rutgers University passionate about developing scalable, data-driven solutions that transform complex technical challenges into impactful real-world results. My experience spans software engineering, bioinformatics, and full-stack development, with a strong foundation in machine learning, computer vision, and ETL pipeline design.
+            </p>
+            <p style="margin-top: 1rem;">
+                Previously, I worked as a Software & Data Engineering Intern at Simcere of America, where I engineered internal ETL pipelines processing 50,000+ clinical trial records and developed computer vision systems achieving 91% accuracy. I'm motivated by opportunities to collaborate across disciplines, write clean and maintainable code, and create software that delivers measurable impact.
+            </p>
+        </div>
+
+        <!-- Experience -->
+        <section>
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3>Software & Data Engineering Intern</h3>
+                        <p class="company">Simcere of America Inc.</p>
+                    </div>
+                    <span class="date">June 2025 – Sept. 2025</span>
+                </div>
+                <ul>
+                    <li>Engineered internal ETL pipelines in Python and R processing 50,000+ clinical trial records from 15+ heterogeneous data sources, reducing processing time by 40% through parallelized workflows and optimized data transformations</li>
+                    <li>Developed computer vision pipeline using TensorFlow, OpenCV, and ResNet-50 CNNs achieving 91% cell detection accuracy across 10,000+ microscopy images, reducing manual analysis from 10+ hours to approximately 12 minutes per batch</li>
+                    <li>Built and deployed internal R Shiny web application on AWS with REST APIs and JWT authentication, enabling research teams to automate data processing workflows and eliminate 20+ hours of recurring monthly manual work</li>
+                    <li>Implemented CI/CD pipelines for automated testing and deployment using pytest, improving code reliability and reducing regression risk across internal data pipelines</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3>Barista</h3>
+                        <p class="company">AKIHI Bubble Tea</p>
+                    </div>
+                    <span class="date">Jan. 2026 – Present</span>
+                </div>
+                <ul>
+                    <li>Deliver exceptional customer service in fast-paced environment while managing inventory and cash handling</li>
+                    <li>Maintain quality standards and operational efficiency during peak hours</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3>Front End/Cashier & Pharmacy Assistant</h3>
+                        <p class="company">ShopRite</p>
+                    </div>
+                    <span class="date">June 2023 – Sept. 2024</span>
+                </div>
+                <ul>
+                    <li>Processed 100+ daily transactions in high-volume environment, maintaining 100% accuracy in financial reconciliation</li>
+                    <li>Managed prescription data entry and inventory tracking systems in HIPAA-compliant pharmacy environment</li>
+                    <li>Collaborated with licensed pharmacists on medication dispensing workflows and quality assurance processes</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section>
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3>Cell Imaging Analysis Platform</h3>
+                        <p class="company">Python, TensorFlow, OpenCV, PyQt5, SQLite</p>
+                    </div>
+                    <span class="date">June – Aug. 2025</span>
+                </div>
+                <ul>
+                    <li>Developed ML-powered desktop application using ResNet-50 CNNs achieving 91% accuracy on 10,000+ microscopy images, outperforming baseline models by 23% through transfer learning and data augmentation</li>
+                    <li>Built PyQt5 GUI with multi-threaded batch processing handling 100+ images per minute, improving analysis throughput by 15x</li>
+                    <li>Designed SQLite schema for experiment metadata to support reproducible analysis workflows</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3>NBA Game Prediction System 🏀</h3>
+                        <p class="company">Python, scikit-learn, XGBoost, pandas, Matplotlib</p>
+                    </div>
+                    <span class="date">Sept. – Dec. 2024</span>
+                </div>
+                <ul>
+                    <li>Built predictive analytics platform using ensemble ML models (Random Forest, XGBoost) achieving 73% accuracy on 2,000+ NBA games</li>
+                    <li>Engineered 25+ features from historical sports statistics using time-series cross-validation and hyperparameter tuning</li>
+                    <li>Created visualization pipeline with Matplotlib for exploratory analysis and performance dashboards</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section>
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">XGBoost</span>
+                        <span class="skill-tag">ResNet-50</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data & Systems</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">ETL Pipelines</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">SQLite</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Web & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">R Shiny</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section>
+            <h2 class="section-title">Education</h2>
+            <div class="card">
+                <div class="education-card">
+                    <div class="education-info">
+                        <h3>Rutgers University – New Brunswick</h3>
+                        <p class="education-details">Bachelor of Science in Computer Science & Data Science</p>
+                        <p class="education-details">Minor in Statistics</p>
+                        <p class="education-details"><strong>GPA:</strong> 3.53/4.0</p>
+                        <span class="honors">🏆 5× Dean's List</span>
+                    </div>
+                    <div>
+                        <span class="date">Expected May 2026</span>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <strong style="color: var(--accent);">Relevant Coursework:</strong>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem;">
+                        Algorithms, Data Structures, Database Systems, Software Methodology, Deep Learning, Statistical Learning, Information Visualization, Data Management
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership -->
+        <section>
+            <h2 class="section-title">Leadership</h2>
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3>Vice President & Programs Coordinator</h3>
+                        <p class="company">Chinese Student Organization, Rutgers University</p>
+                    </div>
+                    <span class="date">Nov. 2022 – May 2025</span>
+                </div>
+                <ul>
+                    <li>Led planning and execution of 10+ campus events with 300+ attendees and $20,000+ budgets, achieving 95% satisfaction</li>
+                    <li>Managed teams of 25+ members using project management tools, delivering initiatives on schedule and 15% under budget</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Andy Zhu. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Livingston, NJ | <a href="mailto:andy.zhu915@rutgers.edu">andy.zhu915@rutgers.edu</a></p>
+    </footer>
+</body>
+</html>
