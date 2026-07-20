@@ -1,1164 +1,611 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andy Zhu — CS & Data Science</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0c0c0f;
-            --surface: #131318;
-            --surface-2: #1a1a22;
-            --border: rgba(255,255,255,0.07);
-            --border-hover: rgba(255,255,255,0.15);
-            --text: #f0eeea;
-            --text-muted: #7a7888;
-            --text-dim: #3e3d4e;
-            --lime: #c8f53e;
-            --lime-dim: rgba(200, 245, 62, 0.12);
-            --lime-glow: rgba(200, 245, 62, 0.25);
-            --orange: #ff6b35;
-            --orange-dim: rgba(255, 107, 53, 0.1);
-            --blue: #4fc3f7;
-            --mono: 'JetBrains Mono', monospace;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Syne', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            cursor: default;
-        }
-
-        /* ── NOISE TEXTURE ── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        /* ── AMBIENT GLOW ── */
-        .glow-orb {
-            position: fixed;
-            border-radius: 50%;
-            pointer-events: none;
-            filter: blur(80px);
-            z-index: 0;
-        }
-        .glow-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(200,245,62,0.06) 0%, transparent 70%); top: -100px; right: -100px; }
-        .glow-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,107,53,0.05) 0%, transparent 70%); bottom: 20%; left: -100px; }
-
-        /* ── NAV ── */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 1.5rem 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid transparent;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(0px);
-        }
-
-        nav.scrolled {
-            border-bottom-color: var(--border);
-            backdrop-filter: blur(20px);
-            background: rgba(12,12,15,0.8);
-        }
-
-        .nav-logo {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.4rem;
-            letter-spacing: -0.02em;
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .nav-logo span { color: var(--lime); font-style: italic; }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover { color: var(--lime); }
-
-        /* ── HERO ── */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 0 3rem 5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-label {
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            color: var(--lime);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .hero-label::before {
-            content: '';
-            display: inline-block;
-            width: 30px;
-            height: 1px;
-            background: var(--lime);
-        }
-
-        h1.hero-name {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(4rem, 10vw, 9rem);
-            font-weight: 800;
-            line-height: 0.92;
-            letter-spacing: -0.04em;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-        }
-
-        h1.hero-name .italic-line {
-            font-family: 'Instrument Serif', serif;
-            font-style: italic;
-            font-weight: 400;
-            color: var(--lime);
-        }
-
-        .hero-bio {
-            max-width: 560px;
-            font-size: 1.05rem;
-            line-height: 1.75;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.9rem 2rem;
-            background: var(--lime);
-            color: #0c0c0f;
-            font-family: 'Syne', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-primary:hover {
-            background: #d4ff44;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px var(--lime-glow);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.9rem 2rem;
-            border: 1px solid var(--border-hover);
-            color: var(--text-muted);
-            font-family: 'Syne', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--lime);
-            color: var(--lime);
-            transform: translateY(-2px);
-        }
-
-        /* ── STATS BAR ── */
-        .stats-bar {
-            position: relative;
-            z-index: 1;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            background: var(--surface);
-        }
-
-        .stat {
-            padding: 2rem 3rem;
-            border-right: 1px solid var(--border);
-            transition: background 0.3s;
-        }
-
-        .stat:last-child { border-right: none; }
-        .stat:hover { background: var(--surface-2); }
-
-        .stat-value {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2.8rem;
-            line-height: 1;
-            color: var(--lime);
-            margin-bottom: 0.3rem;
-        }
-
-        .stat-label {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        /* ── LAYOUT ── */
-        main {
-            position: relative;
-            z-index: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 3rem;
-        }
-
-        /* ── SECTION HEADER ── */
-        .section-header {
-            display: flex;
-            align-items: baseline;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-            padding-top: 7rem;
-        }
-
-        .section-num {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            letter-spacing: 0.1em;
-            padding-top: 0.3rem;
-        }
-
-        h2.section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1;
-            color: var(--text);
-        }
-
-        h2.section-title em {
-            font-family: 'Instrument Serif', serif;
-            font-style: italic;
-            font-weight: 400;
-            color: var(--lime);
-        }
-
-        /* ── EXPERIENCE ── */
-        .exp-list { display: flex; flex-direction: column; }
-
-        .exp-item {
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 3rem;
-            padding: 2.5rem 0;
-            border-top: 1px solid var(--border);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .exp-item::before {
-            content: '';
-            position: absolute;
-            left: -3rem; right: -3rem; top: 0; bottom: 0;
-            background: var(--surface);
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            border-radius: 4px;
-        }
-
-        .exp-item:hover::before { opacity: 1; }
-
-        .exp-item:last-child { border-bottom: 1px solid var(--border); }
-
-        .exp-meta { position: relative; z-index: 1; }
-
-        .exp-date {
-            font-family: var(--mono);
-            font-size: 0.78rem;
-            color: var(--text-dim);
-            letter-spacing: 0.06em;
-            margin-bottom: 0.5rem;
-        }
-
-        .exp-company {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--lime);
-            margin-bottom: 0.3rem;
-        }
-
-        .exp-loc {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            color: var(--text-dim);
-        }
-
-        .exp-content { position: relative; z-index: 1; }
-
-        .exp-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--text);
-            margin-bottom: 1.2rem;
-        }
-
-        .exp-points { list-style: none; }
-
-        .exp-points li {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--text-muted);
-            margin-bottom: 0.7rem;
-            padding-left: 1.2rem;
-            position: relative;
-        }
-
-        .exp-points li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--text-dim);
-            font-size: 0.8rem;
-        }
-
-        .exp-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1.2rem;
-        }
-
-        .exp-tag {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.05em;
-            padding: 0.3rem 0.7rem;
-            border: 1px solid var(--border);
-            border-radius: 3px;
-            color: var(--text-dim);
-            transition: all 0.2s;
-        }
-
-        .exp-tag:hover {
-            border-color: var(--lime);
-            color: var(--lime);
-        }
-
-        /* ── PROJECTS ── */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--lime), transparent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover::after { transform: scaleX(1); }
-
-        .project-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .project-card.featured {
-            grid-column: span 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .project-num {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            color: var(--text-dim);
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--text);
-            margin-bottom: 0.8rem;
-            line-height: 1.2;
-        }
-
-        .project-desc {
-            font-size: 0.92rem;
-            line-height: 1.7;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-metric {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: var(--lime-dim);
-            border: 1px solid rgba(200,245,62,0.2);
-            color: var(--lime);
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 3px;
-            margin-bottom: 0.4rem;
-            margin-right: 0.4rem;
-            display: inline-flex;
-        }
-
-        .project-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1.2rem;
-        }
-
-        .stack-pill {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            padding: 0.25rem 0.6rem;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 3px;
-            color: var(--text-muted);
-        }
-
-        /* ── SKILLS ── */
-        .skills-layout {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .skill-block {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .skill-block:hover {
-            border-color: var(--border-hover);
-            background: var(--surface-2);
-        }
-
-        .skill-block-title {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--lime);
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .skill-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .skill-item {
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
-
-        .skill-item:hover { color: var(--text); }
-
-        /* ── EDUCATION ── */
-        .education-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 3rem;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 2rem;
-            align-items: start;
-            transition: all 0.3s;
-        }
-
-        .education-card:hover {
-            border-color: var(--border-hover);
-        }
-
-        .edu-degree {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2rem;
-            font-style: italic;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .edu-school {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--lime);
-            margin-bottom: 1rem;
-        }
-
-        .edu-gpa {
-            font-family: var(--mono);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .edu-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: var(--orange-dim);
-            border: 1px solid rgba(255,107,53,0.25);
-            color: var(--orange);
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-            padding: 0.4rem 0.9rem;
-            border-radius: 3px;
-        }
-
-        .edu-courses {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .courses-label {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-bottom: 0.8rem;
-        }
-
-        .courses-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .course-tag {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            padding: 0.3rem 0.8rem;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 3px;
-        }
-
-        .edu-date {
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            text-align: right;
-            white-space: nowrap;
-        }
-
-        /* ── LEADERSHIP ── */
-        .leadership-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 2.5rem 3rem;
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 3rem;
-            transition: all 0.3s;
-        }
-
-        .leadership-card:hover { border-color: var(--border-hover); }
-
-        /* ── CONTACT STRIP ── */
-        .contact-strip {
-            margin-top: 7rem;
-            margin-bottom: 7rem;
-            padding: 4rem 3rem;
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-headline {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2.5rem;
-            font-style: italic;
-            color: var(--text);
-            line-height: 1.2;
-        }
-
-        .contact-headline strong {
-            font-style: normal;
-            font-family: 'Syne', sans-serif;
-            color: var(--lime);
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            border: 1px solid var(--border-hover);
-            border-radius: 4px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.2s;
-            font-family: 'Syne', sans-serif;
-        }
-
-        .contact-link:hover {
-            border-color: var(--lime);
-            color: var(--lime);
-            transform: translateY(-2px);
-        }
-
-        /* ── FOOTER ── */
-        footer {
-            position: relative;
-            z-index: 1;
-            padding: 2rem 3rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        footer p {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            color: var(--text-dim);
-        }
-
-        /* ── FADE-IN ANIMATIONS ── */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ── RESPONSIVE ── */
-        @media (max-width: 900px) {
-            nav { padding: 1.5rem 1.5rem; }
-            .nav-links { display: none; }
-            .hero { padding: 0 1.5rem 4rem; }
-            main { padding: 0 1.5rem; }
-            .stats-bar { grid-template-columns: repeat(2, 1fr); }
-            .stat { border-right: none; border-bottom: 1px solid var(--border); }
-            .exp-item { grid-template-columns: 1fr; gap: 1rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; gap: 1.5rem; }
-            .skills-layout { grid-template-columns: repeat(2, 1fr); }
-            .education-card { grid-template-columns: 1fr; }
-            .leadership-card { grid-template-columns: 1fr; gap: 1rem; }
-            .contact-strip { flex-direction: column; align-items: flex-start; padding: 3rem 1.5rem; }
-            footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
-        }
-
-        /* ── SCROLLBAR ── */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--lime); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andy Zhu — Data & Cloud Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F4;
+    --paper-2:#F1EEE6;
+    --ink:#1C1B19;
+    --ink-soft:#4A473F;
+    --meta:#8A8578;
+    --line:rgba(28,27,25,0.12);
+    --line-strong:rgba(28,27,25,0.22);
+    --slate:#3D5A80;
+    --slate-soft:rgba(61,90,128,0.08);
+    --slate-line:rgba(61,90,128,0.35);
+    --amber:#B5720F;
+    --amber-soft:rgba(181,114,15,0.1);
+    --serif:'Fraunces', serif;
+    --sans:'Inter', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{background:var(--slate-soft);color:var(--ink);}
+
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--slate);outline-offset:3px;}
+
+  /* ── NAV ── */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.4rem 3rem;
+    background:rgba(250,248,244,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease;
+  }
+  nav.scrolled{border-bottom-color:var(--line);}
+  .nav-logo{
+    font-family:var(--serif); font-weight:600; font-size:1.25rem;
+    text-decoration:none; letter-spacing:-0.01em;
+  }
+  .nav-links{display:flex; gap:2.2rem; list-style:none;}
+  .nav-links a{
+    font-family:var(--mono); font-size:0.78rem; text-decoration:none;
+    color:var(--ink-soft); letter-spacing:0.02em;
+    padding-bottom:2px; border-bottom:1px solid transparent;
+    transition:border-color .2s, color .2s;
+  }
+  .nav-links a:hover{color:var(--slate); border-color:var(--slate-line);}
+
+  /* ── HERO ── */
+  .hero{
+    padding:5.5rem 3rem 4rem;
+    max-width:1080px;
+  }
+  .hero-eyebrow{
+    font-family:var(--mono); font-size:0.8rem; color:var(--slate);
+    letter-spacing:0.02em; margin-bottom:1.3rem;
+  }
+  h1.hero-name{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(2.6rem, 6vw, 4.4rem);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    max-width:15ch;
+    margin-bottom:1.6rem;
+  }
+  h1.hero-name em{
+    font-style:italic; font-weight:400; color:var(--slate);
+  }
+  .hero-bio{
+    max-width:56ch;
+    font-size:1.08rem; line-height:1.7;
+    color:var(--ink-soft);
+    margin-bottom:2.4rem;
+  }
+  .hero-actions{display:flex; gap:1rem; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    padding:0.75rem 1.5rem;
+    font-family:var(--sans); font-size:0.9rem; font-weight:600;
+    text-decoration:none; border-radius:3px;
+    transition:all .18s ease;
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{background:var(--slate);}
+  .btn-secondary{border:1px solid var(--line-strong); color:var(--ink);}
+  .btn-secondary:hover{border-color:var(--slate); color:var(--slate);}
+
+  /* ── MAIN LAYOUT ── */
+  main{max-width:1080px; margin:0 auto; padding:0 3rem;}
+
+  .section-head{
+    display:flex; align-items:baseline; gap:1rem;
+    margin:5.5rem 0 2.6rem;
+  }
+  .section-head .eyebrow{
+    font-family:var(--mono); font-size:0.78rem; color:var(--meta);
+    letter-spacing:0.03em;
+  }
+  h2.section-title{
+    font-family:var(--serif); font-weight:600;
+    font-size:clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing:-0.01em;
+  }
+  .section-rule{
+    flex:1; height:1px; background:var(--line);
+    margin-left:0.5rem;
+  }
+
+  /* ── PIPELINE RAIL (signature element) ── */
+  .rail{ position:relative; }
+  .rail::before{
+    content:'';
+    position:absolute; left:7px; top:10px; bottom:10px;
+    width:1px;
+    background:repeating-linear-gradient(to bottom, var(--line-strong) 0 4px, transparent 4px 8px);
+  }
+  .rail-item{
+    position:relative;
+    padding-left:2.6rem;
+    padding-bottom:3rem;
+  }
+  .rail-item:last-child{padding-bottom:0;}
+  .rail-node{
+    position:absolute; left:0; top:6px;
+    width:15px; height:15px; border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--ink-soft);
+  }
+  .rail-item.current .rail-node{
+    border-color:var(--slate); background:var(--slate-soft);
+  }
+  .rail-item.current .rail-node::after{
+    content:''; position:absolute; inset:3px; border-radius:50%;
+    background:var(--slate);
+  }
+
+  .role-meta{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:0.6rem 1rem;
+    margin-bottom:0.35rem;
+  }
+  .role-title{
+    font-family:var(--serif); font-weight:600; font-size:1.3rem;
+  }
+  .role-org{ color:var(--slate); font-weight:600; font-size:1rem;}
+  .role-date{
+    font-family:var(--mono); font-size:0.78rem; color:var(--meta);
+    margin-left:auto;
+  }
+  .role-loc{
+    font-family:var(--mono); font-size:0.78rem; color:var(--meta);
+    margin-bottom:1rem;
+  }
+  .role-points{list-style:none; max-width:70ch;}
+  .role-points li{
+    font-size:0.98rem; line-height:1.68; color:var(--ink-soft);
+    margin-bottom:0.6rem; padding-left:1.1rem; position:relative;
+  }
+  .role-points li::before{
+    content:'·'; position:absolute; left:0; color:var(--slate);
+    font-size:1.3rem; line-height:1; top:-0.05rem;
+  }
+  .role-tags{display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1rem;}
+  .role-tag{
+    font-family:var(--mono); font-size:0.72rem; color:var(--ink-soft);
+    padding:0.25rem 0.6rem; border:1px solid var(--line); border-radius:3px;
+  }
+
+  /* minor role variant (part-time jobs) */
+  .rail-item.minor .role-title{font-size:1.05rem;}
+  .rail-item.minor .role-points li{font-size:0.92rem;}
+
+  /* ── PROJECTS ── */
+  .projects-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:1.4rem;
+  }
+  .project-card{
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:1.9rem;
+    background:var(--paper-2);
+    transition:border-color .2s ease;
+  }
+  .project-card:hover{ border-color:var(--line-strong); }
+  .project-title{
+    font-family:var(--serif); font-weight:600; font-size:1.2rem;
+    margin-bottom:0.3rem;
+  }
+  .project-date{
+    font-family:var(--mono); font-size:0.72rem; color:var(--meta);
+    margin-bottom:0.9rem;
+  }
+  .project-desc{
+    font-size:0.92rem; line-height:1.65; color:var(--ink-soft);
+    margin-bottom:1rem;
+  }
+  .project-stack{display:flex; flex-wrap:wrap; gap:0.4rem;}
+  .stack-pill{
+    font-family:var(--mono); font-size:0.7rem; color:var(--ink-soft);
+    padding:0.2rem 0.55rem; background:var(--paper);
+    border:1px solid var(--line); border-radius:3px;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:0;
+    border-top:1px solid var(--line); border-left:1px solid var(--line);
+  }
+  .skill-col{
+    border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:1.5rem 1.4rem;
+  }
+  .skill-col-title{
+    font-family:var(--mono); font-size:0.72rem; color:var(--slate);
+    letter-spacing:0.02em; margin-bottom:0.9rem;
+  }
+  .skill-col-list{font-size:0.88rem; line-height:1.9; color:var(--ink-soft);}
+
+  /* ── EDUCATION ── */
+  .edu-block{
+    display:flex; justify-content:space-between; gap:2rem;
+    flex-wrap:wrap; padding-bottom:2rem;
+  }
+  .edu-degree{
+    font-family:var(--serif); font-weight:600; font-size:1.5rem;
+    margin-bottom:0.3rem;
+  }
+  .edu-school{color:var(--slate); font-weight:600; margin-bottom:0.6rem;}
+  .edu-detail{font-family:var(--mono); font-size:0.82rem; color:var(--ink-soft);}
+  .edu-badge{
+    display:inline-block; margin-top:0.7rem;
+    font-family:var(--mono); font-size:0.74rem; color:var(--amber);
+    background:var(--amber-soft); border:1px solid rgba(181,114,15,0.25);
+    padding:0.3rem 0.7rem; border-radius:3px;
+  }
+  .edu-date{font-family:var(--mono); font-size:0.82rem; color:var(--meta); white-space:nowrap;}
+  .edu-courses{border-top:1px solid var(--line); padding-top:1.4rem;}
+  .courses-label{font-family:var(--mono); font-size:0.72rem; color:var(--meta); margin-bottom:0.7rem;}
+  .courses-list{display:flex; flex-wrap:wrap; gap:0.5rem;}
+  .course-tag{
+    font-size:0.85rem; color:var(--ink-soft);
+    padding:0.25rem 0.7rem; background:var(--paper-2);
+    border:1px solid var(--line); border-radius:3px;
+  }
+
+  /* ── LEADERSHIP ── */
+  .leadership .role-points{max-width:none;}
+
+  /* ── CONTACT ── */
+  .contact-strip{
+    margin-top:6rem;
+    padding:3.5rem 3rem;
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .contact-inner{
+    max-width:1080px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:2rem; flex-wrap:wrap;
+  }
+  .contact-headline{
+    font-family:var(--serif); font-weight:500; font-style:italic;
+    font-size:1.9rem; max-width:20ch; line-height:1.25;
+  }
+  .contact-links{display:flex; gap:0.8rem; flex-wrap:wrap;}
+  .contact-link{
+    font-family:var(--mono); font-size:0.82rem;
+    padding:0.65rem 1.1rem; border:1px solid rgba(250,248,244,0.25);
+    border-radius:3px; text-decoration:none; color:var(--paper);
+    transition:border-color .2s, background .2s;
+  }
+  .contact-link:hover{border-color:var(--paper); background:rgba(250,248,244,0.06);}
+
+  footer{
+    max-width:1080px; margin:0 auto;
+    padding:1.6rem 3rem 3rem;
+    display:flex; justify-content:space-between;
+    font-family:var(--mono); font-size:0.72rem; color:var(--meta);
+  }
+
+  @media (max-width:860px){
+    nav{padding:1.2rem 1.4rem;}
+    .nav-links{display:none;}
+    .hero{padding:3.5rem 1.4rem 3rem;}
+    main{padding:0 1.4rem;}
+    .projects-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:1fr 1fr;}
+    .role-date{margin-left:0;}
+    .edu-block{flex-direction:column; gap:0.5rem;}
+    .contact-strip{padding:2.6rem 1.4rem;}
+    footer{padding:1.4rem 1.4rem 2.4rem; flex-direction:column; gap:0.4rem;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
 </head>
 <body>
 
-    <div class="glow-orb glow-1"></div>
-    <div class="glow-orb glow-2"></div>
+<nav id="nav">
+  <a href="#" class="nav-logo">Andy Zhu</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <!-- ── NAV ── -->
-    <nav id="nav">
-        <a href="#" class="nav-logo">Andy <span>Zhu</span></a>
-        <ul class="nav-links">
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
+<section class="hero">
+  <div class="hero-eyebrow">Data & Cloud Engineering — Rutgers '26</div>
+  <h1 class="hero-name">Andy Zhu builds <em>pipelines people can trust.</em></h1>
+  <p class="hero-bio">
+    Computer Science & Data Science student at Rutgers, currently building data pipelines at the Federal Reserve Bank of Philadelphia
+    with Airflow, AWS, and Spark. Previously shipped a computer vision pipeline and internal tooling at a biotech research lab.
+    Looking for software, data, or cloud engineering roles for after graduation.
+  </p>
+  <div class="hero-actions">
+    <a href="mailto:andy.zhu915@rutgers.edu" class="btn btn-primary">Email me</a>
+    <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+    <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+  </div>
+</section>
+
+<main>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head">
+      <span class="eyebrow">Experience</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="rail">
+
+      <div class="rail-item current">
+        <div class="rail-node"></div>
+        <div class="role-meta">
+          <span class="role-title">Research IT Intern</span>
+          <span class="role-org">Federal Reserve Bank of Philadelphia</span>
+          <span class="role-date">Jun 2026 — Present</span>
+        </div>
+        <div class="role-loc">Philadelphia, PA · Data & Cloud Engineering Focus</div>
+        <ul class="role-points">
+          <li>Engineer a data pipeline using Apache Airflow, AWS, and Apache Spark covering start confirmation emails, automated data cleaning, QA analysis, and final reporting across 6+ Fed data intake workflows.</li>
+          <li>Conduct QA analysis across 6+ production data intake pipelines, identifying and documenting data quality issues before they reach downstream reporting.</li>
+          <li>Maintain IT operations across the research division, including workstation setup, imaging, and hardware troubleshooting for 20+ staff.</li>
         </ul>
-    </nav>
+        <div class="role-tags">
+          <span class="role-tag">Apache Airflow</span>
+          <span class="role-tag">AWS</span>
+          <span class="role-tag">Apache Spark</span>
+          <span class="role-tag">QA / Data Quality</span>
+        </div>
+      </div>
 
-    <!-- ── HERO ── -->
-    <section class="hero">
-        <div class="hero-label">Available — May 2026</div>
-        <h1 class="hero-name">
-            Andy<br>
-            <span class="italic-line">Zhu.</span>
-        </h1>
-        <p class="hero-bio">
-            CS & Data Science student at Rutgers University building scalable data pipelines, 
-            ML systems, and full-stack applications. Passionate about turning complex data 
-            into real-world impact.
+      <div class="rail-item">
+        <div class="rail-node"></div>
+        <div class="role-meta">
+          <span class="role-title">Software & Data Engineering Intern</span>
+          <span class="role-org">Simcere of America Inc.</span>
+          <span class="role-date">Jun 2025 — Sep 2025</span>
+        </div>
+        <div class="role-loc">Cambridge, MA</div>
+        <ul class="role-points">
+          <li>Designed and deployed Python/R ETL pipelines consolidating 15+ clinical data sources, processing 50,000+ records with modular OOP components and cutting manual processing time by 40%.</li>
+          <li>Implemented a ResNet-50 computer vision model (TensorFlow + OpenCV) for microscopy image classification, achieving 91% accuracy on 10,000+ images and reducing per-batch analysis time from 10+ hours to 12 minutes; validated via pytest.</li>
+          <li>Launched a full-stack R Shiny dashboard on AWS with JWT authentication, enabling 20+ researchers to automate bioassay plate QC workflows (kill rate analysis, cytokine profiling, data normalization) and saving 20+ hours/month.</li>
+          <li>Streamlined CI/CD pipelines with automated integration testing across two-week Agile sprints, cutting release cycle time by 60%.</li>
+        </ul>
+        <div class="role-tags">
+          <span class="role-tag">Python</span>
+          <span class="role-tag">R</span>
+          <span class="role-tag">TensorFlow</span>
+          <span class="role-tag">OpenCV</span>
+          <span class="role-tag">AWS</span>
+          <span class="role-tag">R Shiny</span>
+          <span class="role-tag">CI/CD</span>
+        </div>
+      </div>
+
+      <div class="rail-item minor">
+        <div class="rail-node"></div>
+        <div class="role-meta">
+          <span class="role-title">Cashier & Pharmacy Assistant</span>
+          <span class="role-org">ShopRite</span>
+          <span class="role-date">Jun 2023 — Sep 2024</span>
+        </div>
+        <div class="role-loc">Livingston, NJ</div>
+        <ul class="role-points">
+          <li>Processed 100+ daily transactions with accurate financial reconciliation in a high-volume retail environment.</li>
+          <li>Handled prescription data entry and inventory tracking in a HIPAA-compliant pharmacy, working with pharmacists on dispensing and quality checks.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head">
+      <span class="eyebrow">Projects</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-title">Algorithmic Trading Backtester</div>
+        <div class="project-date">Jan 2026 — Present</div>
+        <p class="project-desc">
+          Backtests 5 strategies (MA Crossover, RSI, MACD, Bollinger Bands, Mean Reversion) across 1,000+ trading days
+          with a modular OOP architecture. SQLite caching plus yfinance integration cut API calls by 90%.
+          A risk analytics module computes 10+ metrics — Sharpe ratio, max drawdown, win rate, profit factor —
+          with commission and slippage modeling; 62.5% of strategies outperformed buy-and-hold.
         </p>
-        <div class="hero-actions">
-            <a href="mailto:andy.zhu915@rutgers.edu" class="btn-primary">
-                Get in touch ↗
-            </a>
-            <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener" class="btn-secondary">
-                GitHub
-            </a>
-            <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener" class="btn-secondary">
-                LinkedIn
-            </a>
+        <div class="project-stack">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">Streamlit</span>
+          <span class="stack-pill">pandas</span>
+          <span class="stack-pill">NumPy</span>
+          <span class="stack-pill">Plotly</span>
+          <span class="stack-pill">SQLite</span>
+          <span class="stack-pill">Docker</span>
         </div>
-    </section>
+      </div>
 
-    <!-- ── STATS ── -->
-    <div class="stats-bar">
-        <div class="stat">
-            <div class="stat-value">3.53</div>
-            <div class="stat-label">GPA / 4.0</div>
+      <div class="project-card">
+        <div class="project-title">NBA Game Prediction Platform</div>
+        <div class="project-date">Sep 2024 — Dec 2024</div>
+        <p class="project-desc">
+          Built for Rutgers' data management course (CS210). Designed a normalized 3-table SQLite schema and wrote
+          SQL queries with multi-table joins, window functions, and CTEs to aggregate 2,000+ NBA season records.
+          Engineered 20+ features across a temporal train/validation/test split to avoid data leakage; a Random Forest
+          classifier reached 73% test accuracy identifying breakout candidates.
+        </p>
+        <div class="project-stack">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">SQL</span>
+          <span class="stack-pill">SQLite</span>
+          <span class="stack-pill">scikit-learn</span>
+          <span class="stack-pill">pandas</span>
+          <span class="stack-pill">Matplotlib</span>
+          <span class="stack-pill">seaborn</span>
         </div>
-        <div class="stat">
-            <div class="stat-value">5×</div>
-            <div class="stat-label">Dean's List</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">System Monitoring Dashboard</div>
+        <div class="project-date">Nov 2025 — Jan 2026</div>
+        <p class="project-desc">
+          A Flask/PostgreSQL backend collecting CPU, memory, disk, and network metrics every 30 seconds via APScheduler
+          and psutil, streamed to 20+ concurrent clients over Flask-SocketIO with 30-day rolling retention.
+          Threshold-based email alerting with cooldown logic and a persistent audit log lets on-call engineers catch
+          infrastructure issues in under 5 minutes.
+        </p>
+        <div class="project-stack">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">Flask</span>
+          <span class="stack-pill">PostgreSQL</span>
+          <span class="stack-pill">Chart.js</span>
+          <span class="stack-pill">WebSockets</span>
         </div>
-        <div class="stat">
-            <div class="stat-value">91%</div>
-            <div class="stat-label">CV Model Accuracy</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">Cell Imaging Analysis Pipeline</div>
+        <div class="project-date">Summer 2025 · Simcere</div>
+        <p class="project-desc">
+          A ResNet-50 transfer learning model for microscopy image classification, paired with an OpenCV preprocessing
+          stage and a multi-threaded desktop interface. Reached 91% cell-detection accuracy on 10,000+ images and cut
+          batch analysis from over 10 hours to about 12 minutes.
+        </p>
+        <div class="project-stack">
+          <span class="stack-pill">TensorFlow</span>
+          <span class="stack-pill">OpenCV</span>
+          <span class="stack-pill">ResNet-50</span>
+          <span class="stack-pill">Python</span>
         </div>
-        <div class="stat">
-            <div class="stat-value">50k+</div>
-            <div class="stat-label">Records Processed</div>
-        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head">
+      <span class="eyebrow">Skills</span>
+      <div class="section-rule"></div>
     </div>
 
-    <!-- ── MAIN ── -->
-    <main>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <div class="skill-col-title">Languages</div>
+        <div class="skill-col-list">Python<br>R<br>SQL<br>JavaScript</div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-title">ML & Data</div>
+        <div class="skill-col-list">TensorFlow<br>scikit-learn<br>OpenCV<br>pandas<br>NumPy</div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-title">Web & Backend</div>
+        <div class="skill-col-list">Flask<br>REST APIs<br>WebSockets<br>pytest<br>Unit / Integration testing</div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-title">Cloud & DevOps</div>
+        <div class="skill-col-list">AWS<br>Azure<br>Apache Airflow<br>Apache Spark<br>Docker · Git · CI/CD</div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-title">Data & Viz</div>
+        <div class="skill-col-list">PostgreSQL<br>SQLite<br>Tableau<br>Plotly · Chart.js<br>Streamlit · R Shiny</div>
+      </div>
+    </div>
+  </section>
 
-        <!-- EXPERIENCE -->
-        <section id="experience">
-            <div class="section-header fade-up">
-                <span class="section-num">01 /</span>
-                <h2 class="section-title">Work <em>Experience</em></h2>
-            </div>
-
-            <div class="exp-list">
-                <div class="exp-item fade-up">
-                    <div class="exp-meta">
-                        <div class="exp-date">Jun 2025 — Sep 2025</div>
-                        <div class="exp-company">Simcere of America</div>
-                        <div class="exp-loc">Cambridge, MA</div>
-                    </div>
-                    <div class="exp-content">
-                        <div class="exp-title">Software & Data Engineering Intern</div>
-                        <ul class="exp-points">
-                            <li>Engineered ETL pipelines in Python and R processing 50,000+ clinical trial records from 15+ heterogeneous sources — cutting processing time by 40% via parallelized workflows</li>
-                            <li>Built computer vision pipeline using TensorFlow, OpenCV, and ResNet-50 CNNs achieving 91% cell detection accuracy on 10,000+ microscopy images — reducing analysis from 10+ hours to ~12 minutes per batch</li>
-                            <li>Deployed full-stack R Shiny web app on AWS with REST APIs and JWT authentication, eliminating 20+ hours of recurring monthly manual work for research teams</li>
-                            <li>Implemented CI/CD pipelines with pytest, cutting deployment time by 60% and improving code reliability across internal data systems</li>
-                        </ul>
-                        <div class="exp-tags">
-                            <span class="exp-tag">Python</span>
-                            <span class="exp-tag">R</span>
-                            <span class="exp-tag">TensorFlow</span>
-                            <span class="exp-tag">OpenCV</span>
-                            <span class="exp-tag">AWS</span>
-                            <span class="exp-tag">R Shiny</span>
-                            <span class="exp-tag">CI/CD</span>
-                            <span class="exp-tag">Docker</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="exp-item fade-up">
-                    <div class="exp-meta">
-                        <div class="exp-date">Jan 2026 — Present</div>
-                        <div class="exp-company">AKIHI Bubble Tea</div>
-                        <div class="exp-loc">Piscataway, NJ</div>
-                    </div>
-                    <div class="exp-content">
-                        <div class="exp-title">Barista</div>
-                        <ul class="exp-points">
-                            <li>Part-time role during senior year coursework — delivering customer service, managing inventory and cash handling in fast-paced environment</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="exp-item fade-up">
-                    <div class="exp-meta">
-                        <div class="exp-date">Jun 2023 — Sep 2024</div>
-                        <div class="exp-company">ShopRite</div>
-                        <div class="exp-loc">Livingston, NJ</div>
-                    </div>
-                    <div class="exp-content">
-                        <div class="exp-title">Cashier & Pharmacy Assistant</div>
-                        <ul class="exp-points">
-                            <li>Processed 100+ daily transactions with 100% accuracy in financial reconciliation across high-volume retail environment</li>
-                            <li>Managed prescription data entry and inventory tracking in HIPAA-compliant pharmacy — collaborating with pharmacists on dispensing workflows and quality assurance</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section id="projects">
-            <div class="section-header fade-up">
-                <span class="section-num">02 /</span>
-                <h2 class="section-title">Selected <em>Projects</em></h2>
-            </div>
-
-            <div class="projects-grid">
-                <!-- Featured: Cell Imaging -->
-                <div class="project-card featured fade-up">
-                    <div>
-                        <div class="project-num">PROJECT — 01</div>
-                        <div class="project-title">Cell Imaging Analysis Platform</div>
-                        <p class="project-desc">
-                            ML-powered desktop application for microscopy image analysis. Transfer learning with ResNet-50 CNNs and data augmentation techniques surpassed baseline models by 23%. Multi-threaded PyQt5 interface handles 100+ images/minute with SQLite-backed experiment metadata for reproducible workflows.
-                        </p>
-                        <div>
-                            <span class="project-metric">91% accuracy</span>
-                            <span class="project-metric">10k+ images</span>
-                            <span class="project-metric">15× throughput boost</span>
-                        </div>
-                        <div class="project-stack">
-                            <span class="stack-pill">Python</span>
-                            <span class="stack-pill">TensorFlow</span>
-                            <span class="stack-pill">OpenCV</span>
-                            <span class="stack-pill">ResNet-50</span>
-                            <span class="stack-pill">PyQt5</span>
-                            <span class="stack-pill">SQLite</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 2rem; height: 100%; min-height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem;">
-                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="40" cy="40" r="36" stroke="rgba(200,245,62,0.15)" stroke-width="1.5"/>
-                                <circle cx="40" cy="40" r="24" stroke="rgba(200,245,62,0.25)" stroke-width="1.5"/>
-                                <circle cx="40" cy="40" r="12" fill="rgba(200,245,62,0.08)" stroke="rgba(200,245,62,0.4)" stroke-width="1.5"/>
-                                <circle cx="40" cy="40" r="3" fill="#c8f53e"/>
-                                <circle cx="26" cy="30" r="4" fill="rgba(200,245,62,0.15)" stroke="rgba(200,245,62,0.3)" stroke-width="1"/>
-                                <circle cx="54" cy="28" r="3" fill="rgba(200,245,62,0.15)" stroke="rgba(200,245,62,0.3)" stroke-width="1"/>
-                                <circle cx="52" cy="52" r="5" fill="rgba(200,245,62,0.15)" stroke="rgba(200,245,62,0.3)" stroke-width="1"/>
-                                <circle cx="28" cy="55" r="3" fill="rgba(200,245,62,0.1)" stroke="rgba(200,245,62,0.2)" stroke-width="1"/>
-                            </svg>
-                            <p style="font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); text-align: center; letter-spacing: 0.06em;">CELL DETECTION / JUNE–AUG 2025</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <div class="project-num">PROJECT — 02</div>
-                    <div class="project-title">Algorithmic Trading Backtester</div>
-                    <p class="project-desc">
-                        Production-ready web app with 23+ module codebase testing 5 trading strategies on 1,000+ days of S&P 500 data. Risk engine calculates 15+ metrics including Sharpe ratio, max drawdown, alpha/beta. SQLite caching reduces API calls by 90%.
-                    </p>
-                    <div>
-                        <span class="project-metric">Sharpe 1.85</span>
-                        <span class="project-metric">62.5% win rate</span>
-                    </div>
-                    <div class="project-stack">
-                        <span class="stack-pill">Python</span>
-                        <span class="stack-pill">Streamlit</span>
-                        <span class="stack-pill">pandas</span>
-                        <span class="stack-pill">Plotly</span>
-                        <span class="stack-pill">SQLite</span>
-                        <span class="stack-pill">Docker</span>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <div class="project-num">PROJECT — 03</div>
-                    <div class="project-title">System Monitoring Dashboard</div>
-                    <p class="project-desc">
-                        Full-stack real-time monitoring app collecting CPU, memory, disk, and network metrics every 30 seconds. WebSocket-based Chart.js dashboard supports 20+ concurrent connections with configurable threshold-based email alerting.
-                    </p>
-                    <div>
-                        <span class="project-metric">30s refresh</span>
-                        <span class="project-metric">30-day history</span>
-                    </div>
-                    <div class="project-stack">
-                        <span class="stack-pill">Flask</span>
-                        <span class="stack-pill">PostgreSQL</span>
-                        <span class="stack-pill">WebSockets</span>
-                        <span class="stack-pill">Chart.js</span>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <div class="project-num">PROJECT — 04</div>
-                    <div class="project-title">NBA Game Prediction Platform 🏀</div>
-                    <p class="project-desc">
-                        Ensemble ML model (Random Forest + XGBoost) achieving 73% accuracy on 2,000+ NBA games. Engineered 25+ features from historical stats with time-series cross-validation. Flask app delivers real-time predictions with confidence intervals.
-                    </p>
-                    <div>
-                        <span class="project-metric">73% accuracy</span>
-                        <span class="project-metric">2,000+ games</span>
-                    </div>
-                    <div class="project-stack">
-                        <span class="stack-pill">scikit-learn</span>
-                        <span class="stack-pill">XGBoost</span>
-                        <span class="stack-pill">Flask</span>
-                        <span class="stack-pill">pandas</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SKILLS -->
-        <section id="skills">
-            <div class="section-header fade-up">
-                <span class="section-num">03 /</span>
-                <h2 class="section-title">Technical <em>Skills</em></h2>
-            </div>
-
-            <div class="skills-layout fade-up">
-                <div class="skill-block">
-                    <div class="skill-block-title">Languages</div>
-                    <div class="skill-list">
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">Java</span>
-                        <span class="skill-item">R</span>
-                        <span class="skill-item">SQL</span>
-                        <span class="skill-item">JavaScript</span>
-                        <span class="skill-item">C</span>
-                        <span class="skill-item">HTML / CSS</span>
-                    </div>
-                </div>
-                <div class="skill-block">
-                    <div class="skill-block-title">Machine Learning</div>
-                    <div class="skill-list">
-                        <span class="skill-item">TensorFlow</span>
-                        <span class="skill-item">PyTorch</span>
-                        <span class="skill-item">scikit-learn</span>
-                        <span class="skill-item">OpenCV</span>
-                        <span class="skill-item">XGBoost</span>
-                        <span class="skill-item">ResNet-50 / CNNs</span>
-                        <span class="skill-item">pandas · NumPy</span>
-                    </div>
-                </div>
-                <div class="skill-block">
-                    <div class="skill-block-title">Data & Systems</div>
-                    <div class="skill-list">
-                        <span class="skill-item">ETL Pipelines</span>
-                        <span class="skill-item">PostgreSQL</span>
-                        <span class="skill-item">MySQL</span>
-                        <span class="skill-item">SQLite</span>
-                        <span class="skill-item">REST APIs</span>
-                        <span class="skill-item">WebSockets</span>
-                        <span class="skill-item">Tableau</span>
-                    </div>
-                </div>
-                <div class="skill-block">
-                    <div class="skill-block-title">Tools & Infra</div>
-                    <div class="skill-list">
-                        <span class="skill-item">AWS</span>
-                        <span class="skill-item">Docker</span>
-                        <span class="skill-item">Git / GitHub</span>
-                        <span class="skill-item">CI/CD · pytest</span>
-                        <span class="skill-item">Flask · Streamlit</span>
-                        <span class="skill-item">R Shiny</span>
-                        <span class="skill-item">Linux</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- EDUCATION -->
-        <section id="education">
-            <div class="section-header fade-up">
-                <span class="section-num">04 /</span>
-                <h2 class="section-title"><em>Education</em></h2>
-            </div>
-
-            <div class="education-card fade-up">
-                <div>
-                    <div class="edu-degree">Computer Science<br>& Data Science</div>
-                    <div class="edu-school">Rutgers University — New Brunswick</div>
-                    <div class="edu-gpa">GPA: 3.53 / 4.0 &nbsp;·&nbsp; Minor in Statistics</div>
-                    <div>
-                        <span class="edu-badge">🏆 5× Dean's List</span>
-                    </div>
-                    <div class="edu-courses">
-                        <div class="courses-label">Relevant Coursework</div>
-                        <div class="courses-list">
-                            <span class="course-tag">Algorithms</span>
-                            <span class="course-tag">Data Structures</span>
-                            <span class="course-tag">Database Systems</span>
-                            <span class="course-tag">Deep Learning</span>
-                            <span class="course-tag">Statistical Learning</span>
-                            <span class="course-tag">Information Visualization</span>
-                            <span class="course-tag">Software Methodology</span>
-                            <span class="course-tag">Bayesian Analysis</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="edu-date">
-                    Sep 2022 —<br>Expected<br>May 2026
-                </div>
-            </div>
-        </section>
-
-        <!-- LEADERSHIP -->
-        <section id="leadership">
-            <div class="section-header fade-up">
-                <span class="section-num">05 /</span>
-                <h2 class="section-title"><em>Leadership</em></h2>
-            </div>
-
-            <div class="leadership-card fade-up">
-                <div class="exp-meta">
-                    <div class="exp-date">Nov 2022 — May 2025</div>
-                    <div class="exp-company">Chinese Student Org.</div>
-                    <div class="exp-loc">Rutgers University</div>
-                </div>
-                <div class="exp-content">
-                    <div class="exp-title">Vice President & Programs Coordinator</div>
-                    <ul class="exp-points">
-                        <li>Led planning and execution of 10+ campus events with 300+ attendees and $20,000+ budgets — achieving 95% satisfaction through smart vendor coordination and cross-team collaboration</li>
-                        <li>Managed teams of 25+ members using structured project plans, consistently delivering initiatives on time and 15% under budget</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ── CONTACT ── -->
-    <div class="contact-strip" id="contact">
-        <div class="contact-headline">
-            Let's build<br>something <strong>together.</strong>
-        </div>
-        <div class="contact-links">
-            <a href="mailto:andy.zhu915@rutgers.edu" class="contact-link">
-                ✉ andy.zhu915@rutgers.edu
-            </a>
-            <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener" class="contact-link">
-                LinkedIn ↗
-            </a>
-            <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener" class="contact-link">
-                GitHub ↗
-            </a>
-            <a href="tel:+19082191973" class="contact-link">
-                908-219-1973
-            </a>
-        </div>
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-head">
+      <span class="eyebrow">Education</span>
+      <div class="section-rule"></div>
     </div>
 
-    <!-- ── FOOTER ── -->
-    <footer>
-        <p>© 2026 Andy Zhu — Livingston, NJ</p>
-        <p>CS & Data Science @ Rutgers '26</p>
-    </footer>
+    <div class="edu-block">
+      <div>
+        <div class="edu-degree">B.S. Computer Science & Data Science</div>
+        <div class="edu-school">Rutgers University — New Brunswick, NJ</div>
+        <div class="edu-detail">Minor in Statistics · GPA 3.5 / 4.0</div>
+        <span class="edu-badge">5× Dean's List</span>
+      </div>
+      <div class="edu-date">Sep 2022 — May 2026</div>
+    </div>
 
-    <script>
-        // Nav scroll effect
-        const nav = document.getElementById('nav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 60);
-        });
+    <div class="edu-courses">
+      <div class="courses-label">Relevant coursework</div>
+      <div class="courses-list">
+        <span class="course-tag">Algorithms</span>
+        <span class="course-tag">Data Structures</span>
+        <span class="course-tag">Database Systems</span>
+        <span class="course-tag">Deep Learning</span>
+        <span class="course-tag">Statistical Learning</span>
+        <span class="course-tag">Information Visualization</span>
+        <span class="course-tag">Software Methodology</span>
+        <span class="course-tag">Bayesian Analysis</span>
+      </div>
+    </div>
+  </section>
 
-        // Fade-up on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  <!-- LEADERSHIP -->
+  <section id="leadership" class="leadership">
+    <div class="section-head">
+      <span class="eyebrow">Leadership</span>
+      <div class="section-rule"></div>
+    </div>
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    </script>
+    <div class="role-meta">
+      <span class="role-title">Vice President</span>
+      <span class="role-org">Chinese Student Organization, Rutgers University</span>
+      <span class="role-date">Nov 2022 — May 2025</span>
+    </div>
+    <ul class="role-points" style="margin-top:1rem;">
+      <li>Scaled annual event attendance to 300+ across 10+ events while managing a $20K+ budget, finishing 15% under target.</li>
+      <li>Led a 25-member executive board, overseeing logistics and sponsorship coordination for the organization's annual event calendar.</li>
+    </ul>
+  </section>
+
+</main>
+
+<div class="contact-strip" id="contact">
+  <div class="contact-inner">
+    <div class="contact-headline">Open to software, data, and cloud engineering roles.</div>
+    <div class="contact-links">
+      <a href="mailto:andy.zhu915@rutgers.edu" class="contact-link">andy.zhu915@rutgers.edu</a>
+      <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+      <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener" class="contact-link">GitHub</a>
+      <a href="tel:+19082191973" class="contact-link">(908) 219-1973</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Andy Zhu · Livingston, NJ</p>
+  <p>B.S. Computer Science & Data Science, Rutgers '26</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
 
 </body>
 </html>
