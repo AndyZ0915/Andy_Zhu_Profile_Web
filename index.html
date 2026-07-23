@@ -196,9 +196,9 @@
     border-radius:6px;
     padding:1.9rem;
     background:var(--paper-2);
-    transition:border-color .2s ease;
+    transition:border-color .2s ease, transform .2s ease;
   }
-  .project-card:hover{ border-color:var(--line-strong); }
+  .project-card:hover{ border-color:var(--line-strong); transform:translateY(-2px); }
   .project-title{
     font-family:var(--serif); font-weight:600; font-size:1.2rem;
     margin-bottom:0.3rem;
@@ -331,13 +331,13 @@
   <div class="hero-eyebrow">Data & Cloud Engineering — Rutgers '26</div>
   <h1 class="hero-name">Andy Zhu builds <em>pipelines people can trust.</em></h1>
   <p class="hero-bio">
-    Computer Science & Data Science student at Rutgers, currently building data pipelines at the Federal Reserve Bank of Philadelphia
-    with Airflow, AWS, and Spark. Previously shipped a computer vision pipeline and internal tooling at a biotech research lab.
-    Looking for software, data, or cloud engineering roles for after graduation.
+    Rutgers grad in Computer Science & Data Science, currently building data pipeline infrastructure at the
+    Federal Reserve Bank of Philadelphia with Airflow, AWS, and Spark. Previously shipped a computer vision
+    pipeline and internal tooling at a biotech research company. Looking for full-time software, data, or
+    cloud engineering roles.
   </p>
   <div class="hero-actions">
     <a href="mailto:andy.zhu915@rutgers.edu" class="btn btn-primary">Email me</a>
-    <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
     <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
   </div>
 </section>
@@ -356,36 +356,36 @@
       <div class="rail-item current">
         <div class="rail-node"></div>
         <div class="role-meta">
-          <span class="role-title">Research IT Intern</span>
+          <span class="role-title">Economic IT Research Intern — HPC & Data Engineering</span>
           <span class="role-org">Federal Reserve Bank of Philadelphia</span>
           <span class="role-date">Jun 2026 — Present</span>
         </div>
-        <div class="role-loc">Philadelphia, PA · Data & Cloud Engineering Focus</div>
+        <div class="role-loc">Philadelphia, PA</div>
         <ul class="role-points">
-          <li>Engineer a data pipeline using Apache Airflow, AWS, and Apache Spark covering start confirmation emails, automated data cleaning, QA analysis, and final reporting across 6+ Fed data intake workflows.</li>
-          <li>Conduct QA analysis across 6+ production data intake pipelines, identifying and documenting data quality issues before they reach downstream reporting.</li>
-          <li>Maintain IT operations across the research division, including workstation setup, imaging, and hardware troubleshooting for 20+ staff.</li>
+          <li>Building a reusable data pipeline framework (AWS, Apache Airflow) architected to scale across 5+ data sources — one of 12+ intake workflows on the team — currently deployed for Mintel with Equifax planned; includes automated notifications, QA validation, and version comparison per federal data policy.</li>
+          <li>Designed and built an end-to-end pipeline (R Markdown, Python) transforming the Kaggle Titanic dataset into an interactive analysis and visualization tool, then extended it with AWS Airflow orchestration and QA checks to mirror team pipeline standards — reviewed and guided by senior data engineers as an onboarding exercise.</li>
+          <li>Support IT operations for a 4-person data engineering team and research economists, including device provisioning, ticketing, and hardware troubleshooting.</li>
         </ul>
         <div class="role-tags">
           <span class="role-tag">Apache Airflow</span>
           <span class="role-tag">AWS</span>
-          <span class="role-tag">Apache Spark</span>
-          <span class="role-tag">QA / Data Quality</span>
+          <span class="role-tag">R Markdown</span>
+          <span class="role-tag">QA / Data Validation</span>
         </div>
       </div>
 
       <div class="rail-item">
         <div class="rail-node"></div>
         <div class="role-meta">
-          <span class="role-title">Software & Data Engineering Intern</span>
+          <span class="role-title">Software and Data Engineering Intern</span>
           <span class="role-org">Simcere of America Inc.</span>
           <span class="role-date">Jun 2025 — Sep 2025</span>
         </div>
         <div class="role-loc">Cambridge, MA</div>
         <ul class="role-points">
-          <li>Designed and deployed Python/R ETL pipelines consolidating 15+ clinical data sources, processing 50,000+ records with modular OOP components and cutting manual processing time by 40%.</li>
+          <li>Designed and deployed Python/R ETL pipelines consolidating 15+ clinical data sources, processing 50,000+ records with modular OOP components and reducing manual processing time by 40%.</li>
           <li>Implemented a ResNet-50 computer vision model (TensorFlow + OpenCV) for microscopy image classification, achieving 91% accuracy on 10,000+ images and reducing per-batch analysis time from 10+ hours to 12 minutes; validated via pytest.</li>
-          <li>Launched a full-stack R Shiny dashboard on AWS with JWT authentication, enabling 20+ researchers to automate bioassay plate QC workflows (kill rate analysis, cytokine profiling, data normalization) and saving 20+ hours/month.</li>
+          <li>Launched a full-stack R Shiny dashboard on AWS with authenticated login and role-based (admin/user) access control, enabling 20+ researchers to automate bioassay QC workflows (kill rate analysis, cytokine profiling, data normalization) and saving 20+ hours/month.</li>
           <li>Streamlined CI/CD pipelines with automated integration testing across two-week Agile sprints, cutting release cycle time by 60%.</li>
         </ul>
         <div class="role-tags">
@@ -397,20 +397,6 @@
           <span class="role-tag">R Shiny</span>
           <span class="role-tag">CI/CD</span>
         </div>
-      </div>
-
-      <div class="rail-item minor">
-        <div class="rail-node"></div>
-        <div class="role-meta">
-          <span class="role-title">Cashier & Pharmacy Assistant</span>
-          <span class="role-org">ShopRite</span>
-          <span class="role-date">Jun 2023 — Sep 2024</span>
-        </div>
-        <div class="role-loc">Livingston, NJ</div>
-        <ul class="role-points">
-          <li>Processed 100+ daily transactions with accurate financial reconciliation in a high-volume retail environment.</li>
-          <li>Handled prescription data entry and inventory tracking in a HIPAA-compliant pharmacy, working with pharmacists on dispensing and quality checks.</li>
-        </ul>
       </div>
 
     </div>
@@ -428,10 +414,10 @@
         <div class="project-title">Algorithmic Trading Backtester</div>
         <div class="project-date">Jan 2026 — Present</div>
         <p class="project-desc">
-          Backtests 5 strategies (MA Crossover, RSI, MACD, Bollinger Bands, Mean Reversion) across 1,000+ trading days
-          with a modular OOP architecture. SQLite caching plus yfinance integration cut API calls by 90%.
-          A risk analytics module computes 10+ metrics — Sharpe ratio, max drawdown, win rate, profit factor —
-          with commission and slippage modeling; 62.5% of strategies outperformed buy-and-hold.
+          Built and backtested 5 strategies (MA Crossover, RSI, MACD, Bollinger Bands, Mean Reversion) across
+          1,000+ trading days with a modular OOP architecture; reduced API calls by 90% via SQLite caching and
+          yfinance integration. A risk analytics module computes 10+ metrics — Sharpe ratio, max drawdown,
+          win rate, profit factor — with commission and slippage modeling across all 5 strategies.
         </p>
         <div class="project-stack">
           <span class="stack-pill">Python</span>
@@ -448,10 +434,10 @@
         <div class="project-title">NBA Game Prediction Platform</div>
         <div class="project-date">Sep 2024 — Dec 2024</div>
         <p class="project-desc">
-          Built for Rutgers' data management course (CS210). Designed a normalized 3-table SQLite schema and wrote
-          SQL queries with multi-table joins, window functions, and CTEs to aggregate 2,000+ NBA season records.
-          Engineered 20+ features across a temporal train/validation/test split to avoid data leakage; a Random Forest
-          classifier reached 73% test accuracy identifying breakout candidates.
+          Modeled a normalized 3-table SQLite schema and wrote complex SQL queries — multi-table joins,
+          window functions, CTEs — aggregating 2,000+ NBA season records. Engineered 20+ features across a
+          temporal train/validation/test split to prevent data leakage, training a Random Forest classifier
+          that achieved 73% test accuracy identifying high-scoring breakout candidates.
         </p>
         <div class="project-stack">
           <span class="stack-pill">Python</span>
@@ -468,10 +454,11 @@
         <div class="project-title">System Monitoring Dashboard</div>
         <div class="project-date">Nov 2025 — Jan 2026</div>
         <p class="project-desc">
-          A Flask/PostgreSQL backend collecting CPU, memory, disk, and network metrics every 30 seconds via APScheduler
-          and psutil, streamed to 20+ concurrent clients over Flask-SocketIO with 30-day rolling retention.
-          Threshold-based email alerting with cooldown logic and a persistent audit log lets on-call engineers catch
-          infrastructure issues in under 5 minutes.
+          Developed a Flask/PostgreSQL backend collecting CPU, memory, disk, and network metrics every 30s
+          via APScheduler and psutil; streamed live data to 20+ concurrent clients via Flask-SocketIO with
+          30-day rolling retention, eliminating manual review. Implemented threshold-based email alerting
+          with cooldown logic and a persistent audit log, enabling on-call engineers to detect and respond
+          to infrastructure breaches in under 5 minutes.
         </p>
         <div class="project-stack">
           <span class="stack-pill">Python</span>
@@ -479,22 +466,6 @@
           <span class="stack-pill">PostgreSQL</span>
           <span class="stack-pill">Chart.js</span>
           <span class="stack-pill">WebSockets</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-title">Cell Imaging Analysis Pipeline</div>
-        <div class="project-date">Summer 2025 · Simcere</div>
-        <p class="project-desc">
-          A ResNet-50 transfer learning model for microscopy image classification, paired with an OpenCV preprocessing
-          stage and a multi-threaded desktop interface. Reached 91% cell-detection accuracy on 10,000+ images and cut
-          batch analysis from over 10 hours to about 12 minutes.
-        </p>
-        <div class="project-stack">
-          <span class="stack-pill">TensorFlow</span>
-          <span class="stack-pill">OpenCV</span>
-          <span class="stack-pill">ResNet-50</span>
-          <span class="stack-pill">Python</span>
         </div>
       </div>
     </div>
@@ -522,7 +493,7 @@
       </div>
       <div class="skill-col">
         <div class="skill-col-title">Cloud & DevOps</div>
-        <div class="skill-col-list">AWS<br>Azure<br>Apache Airflow<br>Apache Spark<br>Docker · Git · CI/CD</div>
+        <div class="skill-col-list">AWS<br>Apache Airflow<br>Apache Spark<br>Docker · Git · CI/CD</div>
       </div>
       <div class="skill-col">
         <div class="skill-col-title">Data & Viz</div>
@@ -542,10 +513,10 @@
       <div>
         <div class="edu-degree">B.S. Computer Science & Data Science</div>
         <div class="edu-school">Rutgers University — New Brunswick, NJ</div>
-        <div class="edu-detail">Minor in Statistics · GPA 3.5 / 4.0</div>
+        <div class="edu-detail">Minor in Statistics · GPA 3.49 / 4.0</div>
         <span class="edu-badge">5× Dean's List</span>
       </div>
-      <div class="edu-date">Sep 2022 — May 2026</div>
+      <div class="edu-date">Graduated May 2026</div>
     </div>
 
     <div class="edu-courses">
@@ -553,12 +524,14 @@
       <div class="courses-list">
         <span class="course-tag">Algorithms</span>
         <span class="course-tag">Data Structures</span>
-        <span class="course-tag">Database Systems</span>
+        <span class="course-tag">Principles of Information & Data Management</span>
+        <span class="course-tag">Data Management for Data Science</span>
         <span class="course-tag">Deep Learning</span>
         <span class="course-tag">Statistical Learning</span>
+        <span class="course-tag">Bayesian Data Analysis</span>
         <span class="course-tag">Information Visualization</span>
         <span class="course-tag">Software Methodology</span>
-        <span class="course-tag">Bayesian Analysis</span>
+        <span class="course-tag">Computer Architecture</span>
       </div>
     </div>
   </section>
@@ -575,6 +548,7 @@
       <span class="role-org">Chinese Student Organization, Rutgers University</span>
       <span class="role-date">Nov 2022 — May 2025</span>
     </div>
+    <div class="role-loc">New Brunswick, NJ</div>
     <ul class="role-points" style="margin-top:1rem;">
       <li>Scaled annual event attendance to 300+ across 10+ events while managing a $20K+ budget, finishing 15% under target.</li>
       <li>Led a 25-member executive board, overseeing logistics and sponsorship coordination for the organization's annual event calendar.</li>
@@ -589,7 +563,6 @@
     <div class="contact-links">
       <a href="mailto:andy.zhu915@rutgers.edu" class="contact-link">andy.zhu915@rutgers.edu</a>
       <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
-      <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener" class="contact-link">GitHub</a>
       <a href="tel:+19082191973" class="contact-link">(908) 219-1973</a>
     </div>
   </div>
@@ -597,7 +570,7 @@
 
 <footer>
   <p>Andy Zhu · Livingston, NJ</p>
-  <p>B.S. Computer Science & Data Science, Rutgers '26</p>
+  <p>B.S. Computer Science & Data Science, Rutgers '26 (Graduated)</p>
 </footer>
 
 <script>
