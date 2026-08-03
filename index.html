@@ -361,14 +361,15 @@
       <div class="rail-item current">
         <div class="rail-node"></div>
         <div class="role-meta">
-          <span class="role-title">Economic IT Research Intern — HPC & Data Engineering</span>
+          <span class="role-title">Data Engineering Intern, Economic Research</span>
           <span class="role-org">Federal Reserve Bank of Philadelphia</span>
           <span class="role-date">Jun 2026 — Present</span>
         </div>
         <div class="role-loc">Philadelphia, PA</div>
         <ul class="role-points">
-          <li>Building a reusable data pipeline framework (AWS, Apache Airflow) architected to scale across 5+ data sources — one of 12+ intake workflows on the team — currently deployed for Mintel with Equifax planned; includes automated notifications, QA validation, and version comparison per federal data policy.</li>
-          <li>Designed and built an end-to-end pipeline (R Markdown, Python) transforming the Kaggle Titanic dataset into an interactive analysis and visualization tool, then extended it with AWS Airflow orchestration and QA checks to mirror team pipeline standards — reviewed and guided by senior data engineers as an onboarding exercise.</li>
+          <li>Building a reusable data pipeline framework (AWS, Apache Airflow) that scales across 5+ data sources, one of 12+ intake workflows the team maintains.</li>
+          <li>Deployed a consumer data intake workflow with automated notifications, QA validation, and version comparison for compliance; next expanding to jobs and payroll data, with access to 5+ additional financial and business sources.</li>
+          <li>As an onboarding project guided by senior data engineers, built an end-to-end pipeline (R Markdown, Python) turning a standardized public benchmark dataset into an interactive analysis and visualization tool, then extended it with AWS Airflow orchestration and QA checks to match full team pipeline standards.</li>
           <li>Support IT operations for a 4-person data engineering team and research economists, including device provisioning, ticketing, and hardware troubleshooting.</li>
         </ul>
         <div class="role-tags">
@@ -436,41 +437,42 @@
       </div>
 
       <div class="project-card">
-        <div class="project-title">NBA Game Prediction Platform</div>
-        <div class="project-date">Sep 2024 — Dec 2024</div>
+        <div class="project-title">Servin — Food Recommendation App</div>
+        <div class="project-date">Feb 2026 — Present</div>
         <p class="project-desc">
-          Modeled a normalized 3-table SQLite schema and wrote complex SQL queries — multi-table joins,
-          window functions, CTEs — aggregating 2,000+ NBA season records. Engineered 20+ features across a
-          temporal train/validation/test split to prevent data leakage, training a Random Forest classifier
-          that achieved 73% test accuracy identifying high-scoring breakout candidates.
+          Built and deployed a full-stack food recommendation app (React/TypeScript, FastAPI on AWS Lambda
+          via API Gateway) using AWS CDK to provision all infrastructure (DynamoDB, S3, CloudFront) as code.
+          A weighted multi-attribute recommendation engine scores dishes across cuisine, spice level, dietary
+          tags, and meal type, with normalized-entropy confidence scoring and human-readable explanations
+          returned alongside each recommendation.
         </p>
         <div class="project-stack">
-          <span class="stack-pill">Python</span>
-          <span class="stack-pill">SQL</span>
-          <span class="stack-pill">SQLite</span>
-          <span class="stack-pill">scikit-learn</span>
-          <span class="stack-pill">pandas</span>
-          <span class="stack-pill">Matplotlib</span>
-          <span class="stack-pill">seaborn</span>
+          <span class="stack-pill">React</span>
+          <span class="stack-pill">TypeScript</span>
+          <span class="stack-pill">FastAPI</span>
+          <span class="stack-pill">AWS Lambda</span>
+          <span class="stack-pill">DynamoDB</span>
+          <span class="stack-pill">AWS CDK</span>
         </div>
       </div>
 
       <div class="project-card">
-        <div class="project-title">System Monitoring Dashboard</div>
-        <div class="project-date">Nov 2025 — Jan 2026</div>
+        <div class="project-title">Credit Risk and Loan Default Prediction</div>
+        <div class="project-date">Dec 2025</div>
         <p class="project-desc">
-          Developed a Flask/PostgreSQL backend collecting CPU, memory, disk, and network metrics every 30s
-          via APScheduler and psutil; streamed live data to 20+ concurrent clients via Flask-SocketIO with
-          30-day rolling retention, eliminating manual review. Implemented threshold-based email alerting
-          with cooldown logic and a persistent audit log, enabling on-call engineers to detect and respond
-          to infrastructure breaches in under 5 minutes.
+          Collaborated with a partner to build a credit risk classification pipeline (Python, scikit-learn)
+          comparing Logistic Regression, Random Forest, and Gradient Boosting across two real-world financial
+          datasets (1,600+ samples); Random Forest reached 0.818 AUC. Applied feature engineering (interaction
+          terms, encoding, normalization) with 5-fold cross-validation evaluated across 5 metrics (accuracy,
+          precision, recall, F1, ROC-AUC).
         </p>
         <div class="project-stack">
           <span class="stack-pill">Python</span>
-          <span class="stack-pill">Flask</span>
-          <span class="stack-pill">PostgreSQL</span>
-          <span class="stack-pill">Chart.js</span>
-          <span class="stack-pill">WebSockets</span>
+          <span class="stack-pill">scikit-learn</span>
+          <span class="stack-pill">pandas</span>
+          <span class="stack-pill">NumPy</span>
+          <span class="stack-pill">matplotlib</span>
+          <span class="stack-pill">seaborn</span>
         </div>
       </div>
     </div>
@@ -486,23 +488,23 @@
     <div class="skills-grid">
       <div class="skill-col">
         <div class="skill-col-title">Languages</div>
-        <div class="skill-col-list">Python<br>R<br>SQL<br>JavaScript</div>
+        <div class="skill-col-list">Python<br>R<br>SQL<br>JavaScript<br>TypeScript</div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title">ML & Data</div>
-        <div class="skill-col-list">TensorFlow<br>scikit-learn<br>OpenCV<br>pandas<br>NumPy</div>
+        <div class="skill-col-title">Data Engineering & Cloud</div>
+        <div class="skill-col-list">AWS (Lambda, CDK)<br>Apache Airflow<br>Apache Spark<br>Docker<br>CI/CD · Git · Linux</div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title">Web & Backend</div>
-        <div class="skill-col-list">Flask<br>REST APIs<br>WebSockets<br>pytest<br>Unit / Integration testing</div>
+        <div class="skill-col-title">Machine Learning & Testing</div>
+        <div class="skill-col-list">TensorFlow<br>scikit-learn<br>OpenCV<br>pandas · NumPy<br>pytest, Unit/Integration Testing</div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title">Cloud & DevOps</div>
-        <div class="skill-col-list">AWS<br>Apache Airflow<br>Apache Spark<br>Docker · Git · CI/CD</div>
+        <div class="skill-col-title">Web Development & APIs</div>
+        <div class="skill-col-list">React<br>FastAPI<br>Flask<br>REST APIs<br>WebSockets · API Design</div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title">Data & Viz</div>
-        <div class="skill-col-list">PostgreSQL<br>SQLite<br>Tableau<br>Plotly · Chart.js<br>Streamlit · R Shiny</div>
+        <div class="skill-col-title">Databases & Visualization</div>
+        <div class="skill-col-list">PostgreSQL · SQLite<br>DynamoDB<br>Tableau<br>Matplotlib · seaborn · Plotly<br>Streamlit · R Shiny</div>
       </div>
     </div>
   </section>
@@ -527,16 +529,15 @@
     <div class="edu-courses">
       <div class="courses-label">Relevant coursework</div>
       <div class="courses-list">
-        <span class="course-tag">Algorithms</span>
         <span class="course-tag">Data Structures</span>
-        <span class="course-tag">Principles of Information & Data Management</span>
-        <span class="course-tag">Data Management for Data Science</span>
-        <span class="course-tag">Deep Learning</span>
-        <span class="course-tag">Statistical Learning</span>
-        <span class="course-tag">Bayesian Data Analysis</span>
-        <span class="course-tag">Information Visualization</span>
-        <span class="course-tag">Software Methodology</span>
+        <span class="course-tag">Discrete Structures I</span>
+        <span class="course-tag">Discrete Structures II</span>
         <span class="course-tag">Computer Architecture</span>
+        <span class="course-tag">Software Methodology</span>
+        <span class="course-tag">Design and Analysis of Algorithms</span>
+        <span class="course-tag">Data Management for Data Science</span>
+        <span class="course-tag">Statistical Learning</span>
+        <span class="course-tag">Deep Learning</span>
       </div>
     </div>
   </section>
