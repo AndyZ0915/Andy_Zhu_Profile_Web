@@ -475,6 +475,101 @@
           <span class="stack-pill">seaborn</span>
         </div>
       </div>
+
+      <div class="project-card">
+        <div class="project-title">System Monitoring Dashboard</div>
+        <div class="project-date">Nov 2025 — Jan 2026</div>
+        <p class="project-desc">
+          Developed a Flask/PostgreSQL backend collecting CPU, memory, disk, and network metrics every 30
+          seconds via APScheduler and psutil, streaming live data to 20+ concurrent clients through a
+          Flask-SocketIO pub/sub room model. Designed a 4-table schema with composite time-series indexing
+          and 30-day rolling retention, a 9-endpoint REST API, and threshold-based email alerting with a
+          15-minute cooldown.
+        </p>
+        <div class="project-stack">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">Flask</span>
+          <span class="stack-pill">PostgreSQL</span>
+          <span class="stack-pill">Flask-SocketIO</span>
+          <span class="stack-pill">APScheduler</span>
+          <span class="stack-pill">Chart.js</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">NBA Analytics Platform</div>
+        <div class="project-date">Sep 2024 — Dec 2024</div>
+        <p class="project-desc">
+          Designed a normalized 3-table SQLite schema and wrote complex SQL queries, multi-table joins,
+          window functions, and CTEs, aggregating 2,000+ NBA season records. Engineered 22 features across
+          a strict chronological train/validation/test split to prevent data leakage, training a class-balanced
+          Random Forest classifier that reached 73% test accuracy identifying high-scoring breakout candidates,
+          alongside a fantasy-points regressor.
+        </p>
+        <div class="project-stack">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">SQL</span>
+          <span class="stack-pill">SQLite</span>
+          <span class="stack-pill">scikit-learn</span>
+          <span class="stack-pill">pandas</span>
+          <span class="stack-pill">seaborn</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">R&D Lab Data Automation Tool</div>
+        <div class="project-date">Summer 2025 · Built at Simcere of America Inc.</div>
+        <p class="project-desc">
+          Built an 11-tab R Shiny dashboard replacing manual bioassay QC workflows for a pharmaceutical
+          research team, with bcrypt-authenticated login (sodium) and role-based access control. Implemented
+          a plate-data normalization pipeline with dual-criteria outlier detection (z-score and MAD), automated
+          kill-rate and cytokine standard-curve calculations, and 6-strategy file merging with one-click
+          Excel/CSV export. Saved 20+ hours per month for a team of 20+ researchers.
+        </p>
+        <div class="project-stack">
+          <span class="stack-pill">R</span>
+          <span class="stack-pill">Shiny</span>
+          <span class="stack-pill">shinyauthr</span>
+          <span class="stack-pill">sodium</span>
+          <span class="stack-pill">ggplot2</span>
+          <span class="stack-pill">plotly</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">Cell Imaging Analysis Tool</div>
+        <div class="project-date">Jul 2026 · Personal extension of Simcere internship work</div>
+        <p class="project-desc">
+          Built a PyQt5 desktop application for automated microscopy analysis, integrating Cellpose-based
+          cell segmentation, gap-tolerant nearest-centroid tracking across video frames, and per-cell
+          multi-channel fluorescence statistics. Dispatched Cellpose inference to a background thread pool
+          with memory-capped frame caching to keep the GUI responsive on large videos, with automatic CUDA
+          detection and CPU fallback.
+        </p>
+        <div class="project-stack">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">PyQt5</span>
+          <span class="stack-pill">Cellpose</span>
+          <span class="stack-pill">OpenCV</span>
+          <span class="stack-pill">CUDA</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">This Portfolio Website</div>
+        <div class="project-date">Jul 2026</div>
+        <p class="project-desc">
+          Designed and built this single-page portfolio from scratch in vanilla HTML, CSS, and JavaScript
+          with zero build tooling or frameworks. Features a pipeline-rail timeline for experience, a
+          responsive project grid, scroll-based nav styling, and CSS custom properties for consistent
+          theming across sections.
+        </p>
+        <div class="project-stack">
+          <span class="stack-pill">HTML5</span>
+          <span class="stack-pill">CSS3</span>
+          <span class="stack-pill">JavaScript</span>
+        </div>
+      </div>
     </div>
   </section>
 
