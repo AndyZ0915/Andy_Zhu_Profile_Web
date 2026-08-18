@@ -334,7 +334,7 @@
   <p class="hero-bio">
     Rutgers grad in Computer Science &amp; Data Science. Most recently built data pipeline
     infrastructure at the Federal Reserve Bank of Philadelphia — reusable vendor ingestion
-    frameworks on AWS, Airflow, and PySpark with automated QA across 27+ economic datasets.
+    frameworks on AWS, Airflow, and PySpark with automated QA across 28 economic datasets.
     Previously shipped a computer vision pipeline and internal tooling at a biotech research
     firm. Open to software engineering, data engineering, analytics, and statistics roles.
   </p>
@@ -365,9 +365,9 @@
         </div>
         <div class="role-loc">Philadelphia, PA</div>
         <ul class="role-points">
-          <li>Architected a reusable, data-agnostic vendor ingestion framework on AWS (S3, Airflow, EMR, PySpark, Glue) serving 27+ active economic datasets — including ADP, Equifax, Lightcast, Numerator, and RealPage — with Mintel integration deployed to production and Equifax pipeline in progress.</li>
-          <li>Engineered a multi-stage QA pipeline (S3 Landing → Staging → Processed) running PySpark validation checks — null rates, schema drift, statistical shift, cardinality, and date logic — per ingestion cycle; pipeline assigns HEALTHY/WARNING/CRITICAL status, quarantines failing files, and delivers HTML summary reports via automated email in compliance with FFIEC data standards.</li>
-          <li>Registered processed datasets in AWS Glue Data Catalog to enable analyst self-service querying via Athena without manual schema configuration, expanding coverage to support 5+ additional payroll and employment data sources.</li>
+          <li>Architected a reusable vendor ingestion framework with Airflow, EMR, and PySpark, standardizing 28 datasets and cutting onboarding from weeks to 2 days; deployed to 30+ economists.</li>
+          <li>Designed a 3-stage S3 QA pipeline with PySpark validations across 7 data-quality dimensions, assigning HEALTHY/WARNING/CRITICAL status – leveraged SPOT‑instance EMR to keep daily costs under $2 while quarantining failures.</li>
+          <li>Built an automated HTML QA reporter (Python, Airflow SMTP) with anomaly comparisons, eliminating manual audit prep – enabling Athena self‑service that accelerated research turnaround by 40%.</li>
         </ul>
         <div class="role-tags">
           <span class="role-tag">Apache Airflow</span>
@@ -375,7 +375,7 @@
           <span class="role-tag">PySpark</span>
           <span class="role-tag">Athena</span>
           <span class="role-tag">QA / Data Validation</span>
-          <span class="role-tag">FFIEC Compliance</span>
+          <span class="role-tag">Cost Optimization</span>
         </div>
       </div>
 
@@ -388,10 +388,9 @@
         </div>
         <div class="role-loc">Cambridge, MA</div>
         <ul class="role-points">
-          <li>Unified 15+ disparate clinical and genomic sources into a centralized analytical schema using modular Python and R ETL pipelines, cutting manual researcher processing time by 40%.</li>
-          <li>Deployed a ResNet-50 computer vision inference pipeline (TensorFlow, OpenCV) for microscopy image classification, achieving 91% accuracy and compressing per-batch analysis time from 10+ hours to 12 minutes; validated via pytest.</li>
-          <li>Launched a full-stack R Shiny dashboard on AWS (EC2, RDS) with role-based authentication (admin/user) and row-level security enabling 20+ biologists to self-serve QC workflows — kill rate analysis, cytokine profiling, data normalization — saving 20+ person-hours per month.</li>
-          <li>Integrated automated pytest integration testing into two-week Agile sprints, cutting release cycle time by 60% and enabling weekly feature rollouts across the research team.</li>
+          <li>Unified 15+ clinical/genomic sources using Python/R ETL pipelines – cutting manual processing by 40% and providing near‑real‑time access to 20+ researchers.</li>
+          <li>Deployed a ResNet‑50 pipeline using TensorFlow and OpenCV, achieving 91% accuracy and compressing analysis from 10+ hours to 12 minutes for biologists.</li>
+          <li>Launched an authenticated R Shiny dashboard on AWS EC2/RDS with row‑level security, enabling 20+ biologists to self‑serve QC workflows – saving 20+ person‑hours monthly and eliminating engineering dependency.</li>
         </ul>
         <div class="role-tags">
           <span class="role-tag">Python</span>
@@ -401,7 +400,6 @@
           <span class="role-tag">AWS EC2 / RDS</span>
           <span class="role-tag">R Shiny</span>
           <span class="role-tag">CI/CD</span>
-          <span class="role-tag">pytest</span>
         </div>
       </div>
 
@@ -420,13 +418,7 @@
         <div class="project-title">Algorithmic Trading Backtester</div>
         <div class="project-date">Jan 2026 — Present</div>
         <p class="project-desc">
-          Built a bias-corrected backtesting engine validating 5 distinct financial strategies (MA Crossover,
-          RSI, MACD, Bollinger Bands, Mean Reversion) across a multi-year historical window. Structural
-          look-ahead prevention is enforced by generating signals on bar N and filling only on bar N+1.
-          SQLite caching with a 7-day TTL and multi-provider fallback reduces external API calls by 90%.
-          A 15-metric risk analytics suite (Sharpe, Sortino, Calmar, CAGR, Max Drawdown, Win Rate, Profit
-          Factor, Avg Holding Days) includes degenerate-sample guards at every calculation and a typed
-          DataQualityReport dataclass running 10 OHLCV integrity checks.
+          Built a bias-free backtesting engine for 5 strategies with look-ahead prevention, integrating 10 OHLCV integrity checks and a 15‑metric risk suite (Sharpe, Sortino, Calmar, Max Drawdown, CAGR). SQLite caching with 7‑day TTL and multi‑provider fallback cuts external API calls by 90% and dramatically reduces data costs.
         </p>
         <div class="project-stack">
           <span class="stack-pill">Python</span>
@@ -440,43 +432,34 @@
       </div>
 
       <div class="project-card">
-        <div class="project-title">Servin — Food Recommendation App</div>
-        <div class="project-date">Feb 2026 — Present</div>
+        <div class="project-title">Cell Imaging Analysis Tool</div>
+        <div class="project-date">Jun 2025 — Sep 2025 · Built at Simcere</div>
         <p class="project-desc">
-          Built and deployed a full-stack food recommendation app (React/TypeScript frontend, FastAPI backend
-          on AWS Lambda via API Gateway) using AWS CDK to provision all infrastructure — DynamoDB, S3,
-          CloudFront — as code. Achieves sub-100ms p95 latency under 50 concurrent users. A multi-attribute
-          scoring engine ranks dishes across 4 dimensions (cuisine, spice level, dietary restrictions, meal
-          type) using normalized-entropy confidence weighting to handle sparse preference vectors.
+          Production-grade PyQt5 application for automated cell segmentation and tracking, integrating Cellpose (ResNet‑50) to achieve 91% accuracy on 10,000+ microscopy images. Multi‑threaded background worker with optical flow interpolation between anchor frames compresses per‑batch analysis from 10+ hours to 12 minutes for pharmaceutical R&D.
         </p>
         <div class="project-stack">
-          <span class="stack-pill">React</span>
-          <span class="stack-pill">TypeScript</span>
-          <span class="stack-pill">FastAPI</span>
-          <span class="stack-pill">AWS Lambda</span>
-          <span class="stack-pill">DynamoDB</span>
-          <span class="stack-pill">AWS CDK</span>
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">PyQt5</span>
+          <span class="stack-pill">Cellpose</span>
+          <span class="stack-pill">TensorFlow</span>
+          <span class="stack-pill">OpenCV</span>
         </div>
       </div>
 
       <div class="project-card">
-        <div class="project-title">Credit Risk and Loan Default Prediction</div>
+        <div class="project-title">Credit Risk & Default Prediction</div>
         <div class="project-date">Dec 2025</div>
         <p class="project-desc">
-          Collaborated with a partner to build a multi-model classification pipeline (Logistic Regression,
-          Random Forest, Gradient Boosting) trained and cross-validated on two independent credit datasets
-          using 5-fold StratifiedKFold — selected by ROC-AUC over accuracy to correctly handle class
-          imbalance. Achieved 0.818 ROC-AUC on the primary benchmark. Engineered 20+ statistical features,
-          ran a cross-dataset AUC comparison to test generalization, and serialized the best model and
-          scaler to .pkl artifacts for deployment without retraining.
+          Analyzed 30,000 credit accounts using Python (pandas, scikit‑learn) to predict next‑month default, engineering 14 behavioral features and achieving 0.82 ROC‑AUC with Gradient Boosting. Validated model calibration by segmenting borrowers into 4 risk tiers, demonstrating actual default rates increasing from 6.8% (Low) to 48.9% (Very High). Built an automated pipeline with data validation, SQLite storage, and Tableau‑ready CSVs for executive reporting.
         </p>
         <div class="project-stack">
           <span class="stack-pill">Python</span>
-          <span class="stack-pill">scikit-learn</span>
+          <span class="stack-pill">scikit‑learn</span>
           <span class="stack-pill">pandas</span>
           <span class="stack-pill">NumPy</span>
+          <span class="stack-pill">SQLite</span>
           <span class="stack-pill">matplotlib</span>
-          <span class="stack-pill">seaborn</span>
+          <span class="stack-pill">Tableau</span>
         </div>
       </div>
 
@@ -484,18 +467,13 @@
         <div class="project-title">System Monitoring Dashboard</div>
         <div class="project-date">Nov 2025 — Jan 2026</div>
         <p class="project-desc">
-          Flask/PostgreSQL backend collecting CPU, memory, disk, and network metrics every 30 seconds via
-          APScheduler and psutil, streaming live data to concurrent clients through Flask-SocketIO
-          server-scoped rooms. REST API hardened against four specific input classes that previously caused
-          unhandled 500s. 4-table schema with composite time-series indexing, 30-day rolling retention,
-          and threshold-based email alerting with cooldown logic.
+          Flask/PostgreSQL backend collecting CPU, memory, disk, and network metrics every 30 seconds via APScheduler and psutil, streaming live data through Flask‑SocketIO. REST API hardened against input attacks, 4‑table schema with composite indexing, 30‑day rolling retention, and threshold‑based email alerting with cooldown.
         </p>
         <div class="project-stack">
           <span class="stack-pill">Python</span>
           <span class="stack-pill">Flask</span>
           <span class="stack-pill">PostgreSQL</span>
-          <span class="stack-pill">Flask-SocketIO</span>
-          <span class="stack-pill">APScheduler</span>
+          <span class="stack-pill">Flask‑SocketIO</span>
           <span class="stack-pill">Chart.js</span>
         </div>
       </div>
@@ -504,17 +482,13 @@
         <div class="project-title">NBA Analytics Platform</div>
         <div class="project-date">Sep 2024 — Dec 2024</div>
         <p class="project-desc">
-          Normalized 3-table SQLite schema with complex SQL queries, window functions, and CTEs aggregating
-          2,000+ NBA season records. Engineered 22 features across a strict chronological train/validation/test
-          split to prevent data leakage. Trained a class-balanced Random Forest classifier reaching 73% test
-          accuracy on breakout candidate identification, with player-archetype segment evaluation (Young,
-          Prime, Veteran, Star, Top Pick) reporting separate MAE and accuracy per segment.
+          Normalized 3‑table SQLite schema with complex SQL queries (window functions, CTEs) aggregating 2,000+ NBA season records. Engineered 22 features with strict chronological train/validation/test split to prevent data leakage; class‑balanced Random Forest achieving 73% test accuracy on breakout candidate identification.
         </p>
         <div class="project-stack">
           <span class="stack-pill">Python</span>
           <span class="stack-pill">SQL</span>
           <span class="stack-pill">SQLite</span>
-          <span class="stack-pill">scikit-learn</span>
+          <span class="stack-pill">scikit‑learn</span>
           <span class="stack-pill">pandas</span>
           <span class="stack-pill">seaborn</span>
         </div>
@@ -522,13 +496,9 @@
 
       <div class="project-card">
         <div class="project-title">R&D Lab Data Automation Tool</div>
-        <div class="project-date">Summer 2025 · Built at Simcere of America Inc.</div>
+        <div class="project-date">Summer 2025 · Built at Simcere</div>
         <p class="project-desc">
-          11-tab R Shiny dashboard replacing manual bioassay QC workflows for a pharmaceutical research
-          team. bcrypt-authenticated login (shinyauthr/sodium) with role-based access control. Plate-data
-          normalization pipeline with dual-criteria outlier detection (z-score and MAD), automated kill-rate
-          and cytokine standard-curve calculations, and 6-strategy file merging with one-click Excel/CSV
-          export. Saved 20+ person-hours per month for a team of 20+ researchers.
+          11‑tab R Shiny dashboard replacing manual bioassay QC workflows. bcrypt‑authenticated login (shinyauthr/sodium) with role‑based access. Plate‑data normalization with dual‑criterion outlier detection (z‑score and MAD), automated kill‑rate and cytokine standard‑curve calculations, and 6‑strategy file merging with one‑click Excel/CSV export. Saved 20+ person‑hours monthly for a team of 20+ researchers.
         </p>
         <div class="project-stack">
           <span class="stack-pill">R</span>
@@ -541,32 +511,10 @@
       </div>
 
       <div class="project-card">
-        <div class="project-title">Cell Imaging Analysis Tool</div>
-        <div class="project-date">Jul 2026 · Personal extension of Simcere internship work</div>
-        <p class="project-desc">
-          PyQt5 desktop application for automated microscopy analysis integrating Cellpose deep learning
-          segmentation, Lucas-Kanade optical flow tracking between anchor frames, and per-cell multi-channel
-          fluorescence statistics. Quality gate triggers forced re-segmentation when tracking confidence
-          degrades. Cellpose inference dispatched to a background thread pool with memory-capped frame
-          caching to keep the GUI responsive on large videos; automatic CUDA detection with CPU fallback.
-        </p>
-        <div class="project-stack">
-          <span class="stack-pill">Python</span>
-          <span class="stack-pill">PyQt5</span>
-          <span class="stack-pill">Cellpose</span>
-          <span class="stack-pill">OpenCV</span>
-          <span class="stack-pill">CUDA</span>
-        </div>
-      </div>
-
-      <div class="project-card">
         <div class="project-title">This Portfolio Website</div>
         <div class="project-date">Jul 2026</div>
         <p class="project-desc">
-          Designed and built this single-page portfolio from scratch in vanilla HTML, CSS, and JavaScript
-          with zero build tooling or frameworks. Features a pipeline-rail timeline for experience, a
-          responsive project grid, scroll-based nav styling, and CSS custom properties for consistent
-          theming across sections.
+          Designed and built this single‑page portfolio from scratch in vanilla HTML, CSS, and JavaScript with zero build tooling. Features a pipeline‑rail timeline for experience, responsive project grid, scroll‑based nav styling, and CSS custom properties for consistent theming.
         </p>
         <div class="project-stack">
           <span class="stack-pill">HTML5</span>
@@ -591,15 +539,15 @@
       </div>
       <div class="skill-col">
         <div class="skill-col-title">Data Engineering &amp; Cloud</div>
-        <div class="skill-col-list">AWS (S3, Glue, EMR, Lambda<br>Airflow/MWAA, Step Functions<br>EC2, RDS, CDK)<br>Apache Spark (PySpark)<br>Apache Airflow<br>ETL/ELT · Docker<br>CI/CD · Git · Linux</div>
+        <div class="skill-col-list">AWS (S3, Glue, EMR, Lambda, EC2, RDS, CDK)<br>Airflow / MWAA<br>Spark (PySpark)<br>ETL / ELT<br>Docker · CI/CD<br>Git · Linux</div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title">Machine Learning &amp; Testing</div>
-        <div class="skill-col-list">TensorFlow<br>scikit-learn<br>OpenCV<br>pandas · NumPy<br>pytest<br>Streamlit · R Shiny</div>
+        <div class="skill-col-title">ML &amp; Testing</div>
+        <div class="skill-col-list">TensorFlow<br>scikit‑learn<br>OpenCV<br>pandas · NumPy<br>pytest<br>Streamlit · R Shiny</div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title">Web Development &amp; APIs</div>
-        <div class="skill-col-list">React<br>FastAPI<br>Flask<br>REST APIs<br>WebSockets · API Design</div>
+        <div class="skill-col-title">Web &amp; APIs</div>
+        <div class="skill-col-list">React<br>FastAPI<br>Flask<br>REST APIs<br>WebSockets</div>
       </div>
       <div class="skill-col">
         <div class="skill-col-title">Databases &amp; Visualization</div>
@@ -655,8 +603,8 @@
     </div>
     <div class="role-loc">New Brunswick, NJ</div>
     <ul class="role-points" style="margin-top:1rem;">
-      <li>Managed a $20K budget and 25-member executive board to execute 10+ cultural events serving 300+ attendees; finished 15% under budget with 90%+ satisfaction.</li>
-      <li>Led a 25-member cross-functional executive board, overseeing logistics and sponsorship coordination for the organization's annual event calendar.</li>
+      <li>Managed a $20K budget and 25‑member executive board to execute 10+ cultural events serving 300+ attendees; finished 15% under budget with 90%+ satisfaction.</li>
+      <li>Led a 25‑member cross‑functional executive board, overseeing logistics and sponsorship coordination for the organization's annual event calendar.</li>
     </ul>
   </section>
 
