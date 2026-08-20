@@ -1,1311 +1,3558 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Andy Zhu — Data, software, analytics and cloud engineering portfolio.">
-<title>Andy Zhu — Data & Cloud Engineering</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Andy Zhu — Data engineering, software, and analytics portfolio.">
+  <meta name="author" content="Andy Zhu">
+  <meta name="theme-color" content="#f7f7f4">
+  <title>Andy Zhu | Data & Software Engineering</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f7f4;
+      --surface: #ffffff;
+      --text: #171717;
+      --muted: #6d6d68;
+      --border: #deded7;
+      --soft: #efefe9;
+      --dark: #191919;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-<style>
-:root{
-  --paper:#FAF8F4;
-  --paper-2:#F1EEE6;
-  --ink:#1C1B19;
-  --ink-soft:#4A473F;
-  --meta:#8A8578;
-  --line:rgba(28,27,25,.12);
-  --line-strong:rgba(28,27,25,.22);
-  --slate:#3D5A80;
-  --slate-soft:rgba(61,90,128,.08);
-  --slate-line:rgba(61,90,128,.35);
-  --amber:#B5720F;
-  --amber-soft:rgba(181,114,15,.10);
-  --serif:'Fraunces',serif;
-  --sans:'Inter',sans-serif;
-  --mono:'IBM Plex Mono',monospace;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--sans);
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-::selection{background:var(--slate-soft);color:var(--ink)}
-a{color:inherit}
-button{font:inherit}
-:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
 
-#progress{
-  position:fixed;
-  top:0;
-  left:0;
-  width:0;
-  height:3px;
-  background:var(--slate);
-  z-index:100;
-  transition:width .08s linear;
-}
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.55;
+    }
 
-nav{
-  position:sticky;
-  top:0;
-  z-index:50;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:1.15rem 3rem;
-  background:rgba(250,248,244,.92);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s ease,box-shadow .3s ease;
-}
-nav.scrolled{
-  border-bottom-color:var(--line);
-  box-shadow:0 8px 30px rgba(28,27,25,.035);
-}
-.nav-logo{
-  font-family:var(--serif);
-  font-weight:600;
-  font-size:1.25rem;
-  text-decoration:none;
-}
-.nav-links{
-  display:flex;
-  gap:2rem;
-  list-style:none;
-}
-.nav-links a{
-  font-family:var(--mono);
-  font-size:.75rem;
-  text-decoration:none;
-  color:var(--ink-soft);
-  padding-bottom:3px;
-  border-bottom:1px solid transparent;
-  transition:color .2s,border-color .2s;
-}
-.nav-links a:hover,.nav-links a.active{
-  color:var(--slate);
-  border-color:var(--slate-line);
-}
-.nav-status{
-  display:flex;
-  align-items:center;
-  gap:.5rem;
-  font-family:var(--mono);
-  font-size:.68rem;
-  color:var(--meta);
-}
-.status-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:var(--slate);
-  box-shadow:0 0 0 4px var(--slate-soft);
-  animation:pulse 2.5s ease-in-out infinite;
-}
-@keyframes pulse{
-  0%,100%{box-shadow:0 0 0 3px var(--slate-soft)}
-  50%{box-shadow:0 0 0 6px rgba(61,90,128,.04)}
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.hero{
-  max-width:1080px;
-  margin:0 auto;
-  padding:5.5rem 3rem 4.5rem;
-}
-.hero-eyebrow{
-  display:flex;
-  align-items:center;
-  gap:.7rem;
-  font-family:var(--mono);
-  font-size:.76rem;
-  color:var(--slate);
-  margin-bottom:1.3rem;
-}
-.eyebrow-mark{
-  width:25px;
-  height:1px;
-  background:var(--slate);
-}
-h1.hero-name{
-  font-family:var(--serif);
-  font-weight:600;
-  font-size:clamp(3rem,7vw,5.2rem);
-  line-height:.98;
-  letter-spacing:-.025em;
-  max-width:10ch;
-  margin-bottom:1.5rem;
-}
-.hero-name em{
-  font-style:italic;
-  font-weight:400;
-  color:var(--slate);
-}
-.hero-role{
-  font-family:var(--mono);
-  font-size:.95rem;
-  color:var(--slate);
-  margin-bottom:1.7rem;
-}
-.hero-bio{
-  max-width:59ch;
-  font-size:1.05rem;
-  line-height:1.75;
-  color:var(--ink-soft);
-  margin-bottom:2.2rem;
-}
-.hero-actions{
-  display:flex;
-  gap:.8rem;
-  flex-wrap:wrap;
-}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  gap:.5rem;
-  padding:.72rem 1.25rem;
-  font-size:.85rem;
-  font-weight:600;
-  text-decoration:none;
-  border-radius:4px;
-  transition:transform .18s,background .18s,border-color .18s,color .18s;
-}
-.btn:hover{transform:translateY(-2px)}
-.btn-primary{background:var(--ink);color:var(--paper)}
-.btn-primary:hover{background:var(--slate)}
-.btn-secondary{border:1px solid var(--line-strong);color:var(--ink)}
-.btn-secondary:hover{border-color:var(--slate);color:var(--slate)}
+    button,
+    input {
+      font: inherit;
+    }
 
-.hero-stats{
-  display:flex;
-  gap:0;
-  margin-top:4rem;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-}
-.hero-stat{
-  padding:1.15rem 2rem 1.15rem 0;
-  margin-right:2rem;
-  border-right:1px solid var(--line);
-}
-.hero-stat:last-child{border-right:0}
-.hero-stat-value{
-  font-family:var(--serif);
-  font-size:1.45rem;
-  font-weight:600;
-}
-.hero-stat-label{
-  font-family:var(--mono);
-  font-size:.64rem;
-  color:var(--meta);
-  margin-top:.2rem;
-}
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
 
-main{max-width:1080px;margin:0 auto;padding:0 3rem}
-section{scroll-margin-top:90px}
-.section-head{
-  display:flex;
-  align-items:baseline;
-  gap:1rem;
-  margin:5rem 0 2.5rem;
-}
-.section-head .eyebrow{
-  font-family:var(--mono);
-  font-size:.72rem;
-  color:var(--meta);
-  letter-spacing:.04em;
-}
-h2.section-title{
-  font-family:var(--serif);
-  font-weight:600;
-  font-size:clamp(1.6rem,3vw,2.15rem);
-}
-.section-rule{flex:1;height:1px;background:var(--line)}
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+    }
 
-.rail{position:relative}
-.rail::before{
-  content:'';
-  position:absolute;
-  left:7px;top:10px;bottom:10px;
-  width:1px;
-  background:repeating-linear-gradient(
-    to bottom,var(--line-strong) 0 4px,transparent 4px 8px
-  );
-}
-.rail-item{
-  position:relative;
-  padding-left:2.6rem;
-  padding-bottom:3rem;
-  cursor:pointer;
-}
-.rail-item:last-child{padding-bottom:0}
-.rail-node{
-  position:absolute;
-  left:0;top:6px;
-  width:15px;height:15px;
-  border-radius:50%;
-  background:var(--paper);
-  border:2px solid var(--ink-soft);
-  transition:background .2s,border-color .2s,transform .2s;
-}
-.rail-item:hover .rail-node,
-.rail-item.active .rail-node{
-  border-color:var(--slate);
-  background:var(--slate-soft);
-  transform:scale(1.15);
-}
-.rail-item.active .rail-node::after{
-  content:'';
-  position:absolute;
-  inset:3px;
-  border-radius:50%;
-  background:var(--slate);
-}
-.role-meta{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:baseline;
-  gap:.5rem 1rem;
-  margin-bottom:.35rem;
-}
-.role-title{
-  font-family:var(--serif);
-  font-weight:600;
-  font-size:1.28rem;
-}
-.role-org{color:var(--slate);font-weight:600;font-size:.98rem}
-.role-date{
-  font-family:var(--mono);
-  font-size:.72rem;
-  color:var(--meta);
-  margin-left:auto;
-}
-.role-loc{
-  font-family:var(--mono);
-  font-size:.72rem;
-  color:var(--meta);
-  margin-bottom:1rem;
-}
-.role-points{list-style:none;max-width:72ch}
-.role-points li{
-  font-size:.94rem;
-  line-height:1.68;
-  color:var(--ink-soft);
-  margin-bottom:.55rem;
-  padding-left:1.1rem;
-  position:relative;
-}
-.role-points li::before{
-  content:'·';
-  position:absolute;
-  left:0;
-  color:var(--slate);
-  font-size:1.3rem;
-  line-height:1;
-}
-.role-tags,.project-stack{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.45rem;
-  margin-top:1rem;
-}
-.role-tag,.stack-pill{
-  font-family:var(--mono);
-  font-size:.67rem;
-  color:var(--ink-soft);
-  padding:.25rem .55rem;
-  border:1px solid var(--line);
-  border-radius:3px;
-}
-.rail-hint{
-  font-family:var(--mono);
-  font-size:.64rem;
-  color:var(--meta);
-  margin-top:.8rem;
-  opacity:0;
-  transition:opacity .2s;
-}
-.rail-item:hover .rail-hint{opacity:1}
+    .mono,
+    .eyebrow,
+    .section-label,
+    .project-number,
+    .complexity,
+    .tag,
+    .filter,
+    .skill,
+    .path-button,
+    .timeline-role,
+    .terminal,
+    .hire-timer,
+    footer {
+      font-family: var(--mono);
+    }
 
-.project-controls{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:1rem;
-  margin:-1rem 0 1.5rem;
-  flex-wrap:wrap;
-}
-.filters{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.45rem;
-}
-.filter-btn{
-  border:1px solid var(--line);
-  background:transparent;
-  color:var(--ink-soft);
-  border-radius:3px;
-  padding:.38rem .65rem;
-  font-family:var(--mono);
-  font-size:.65rem;
-  cursor:pointer;
-  transition:.18s;
-}
-.filter-btn:hover,.filter-btn.active{
-  color:var(--paper);
-  background:var(--ink);
-  border-color:var(--ink);
-}
-.project-count{
-  font-family:var(--mono);
-  font-size:.66rem;
-  color:var(--meta);
-}
-.projects-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1rem;
-}
-.project-card{
-  position:relative;
-  border:1px solid var(--line);
-  border-radius:6px;
-  padding:1.65rem;
-  background:var(--paper-2);
-  transition:border-color .2s,transform .2s,box-shadow .2s;
-}
-.project-card:hover{
-  border-color:var(--line-strong);
-  transform:translateY(-3px);
-  box-shadow:0 12px 30px rgba(28,27,25,.05);
-}
-.project-card.hidden{display:none}
-.project-title{
-  font-family:var(--serif);
-  font-weight:600;
-  font-size:1.17rem;
-  margin-bottom:.25rem;
-}
-.project-date{
-  font-family:var(--mono);
-  font-size:.66rem;
-  color:var(--meta);
-  margin-bottom:.85rem;
-}
-.project-desc{
-  font-size:.88rem;
-  line-height:1.65;
-  color:var(--ink-soft);
-}
-.project-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.35rem;
-  margin-top:1rem;
-}
-.project-type{
-  position:absolute;
-  top:1.45rem;
-  right:1.45rem;
-  font-family:var(--mono);
-  font-size:.6rem;
-  color:var(--slate);
-  text-transform:uppercase;
-  letter-spacing:.06em;
-}
-.explore-btn{
-  margin-top:1.15rem;
-  padding:0;
-  border:0;
-  background:none;
-  color:var(--slate);
-  font-family:var(--mono);
-  font-size:.68rem;
-  cursor:pointer;
-}
-.explore-btn span{display:inline-block;transition:transform .18s}
-.explore-btn:hover span{transform:translateX(4px)}
-.project-detail{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .35s ease,margin-top .35s ease;
-}
-.project-card.open .project-detail{
-  max-height:220px;
-  margin-top:1.1rem;
-  padding-top:1rem;
-  border-top:1px solid var(--line);
-}
-.detail-title{
-  font-family:var(--mono);
-  font-size:.62rem;
-  color:var(--meta);
-  margin-bottom:.55rem;
-}
-.detail-list{
-  list-style:none;
-  display:grid;
-  gap:.35rem;
-}
-.detail-list li{
-  font-size:.77rem;
-  color:var(--ink-soft);
-}
-.detail-list li::before{
-  content:'✓';
-  color:var(--slate);
-  margin-right:.5rem;
-}
+    /* Navigation */
 
-.skills-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  border-top:1px solid var(--line);
-  border-left:1px solid var(--line);
-}
-.skill-col{
-  border-right:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding:1.4rem 1.2rem;
-}
-.skill-col-title{
-  font-family:var(--mono);
-  font-size:.68rem;
-  color:var(--slate);
-  margin-bottom:.8rem;
-}
-.skill-list{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.35rem;
-}
-.skill{
-  font-family:var(--mono);
-  font-size:.65rem;
-  color:var(--ink-soft);
-  padding:.28rem .42rem;
-  background:var(--paper-2);
-  border:1px solid var(--line);
-  border-radius:3px;
-  cursor:pointer;
-  transition:.18s;
-}
-.skill:hover,.skill.selected{
-  color:var(--slate);
-  border-color:var(--slate-line);
-  background:var(--slate-soft);
-}
-.skill-note{
-  margin-top:1rem;
-  min-height:1rem;
-  font-family:var(--mono);
-  font-size:.62rem;
-  color:var(--meta);
-}
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(222, 222, 215, 0.9);
+      background: rgba(247, 247, 244, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
 
-.meter-wrap{
-  margin-top:2rem;
-  padding:1.4rem;
-  background:var(--paper-2);
-  border:1px solid var(--line);
-}
-.meter-head{
-  display:flex;
-  justify-content:space-between;
-  gap:1rem;
-  margin-bottom:1rem;
-}
-.meter-label{
-  font-family:var(--mono);
-  font-size:.68rem;
-  color:var(--meta);
-}
-.meter-value{
-  font-family:var(--mono);
-  font-size:.68rem;
-  color:var(--slate);
-}
-.meter{
-  display:grid;
-  gap:.55rem;
-}
-.meter-row{
-  display:grid;
-  grid-template-columns:110px 1fr;
-  align-items:center;
-  gap:.8rem;
-}
-.meter-name{
-  font-family:var(--mono);
-  font-size:.62rem;
-  color:var(--ink-soft);
-}
-.meter-track{
-  height:5px;
-  background:var(--paper);
-  border:1px solid var(--line);
-}
-.meter-fill{
-  height:100%;
-  width:0;
-  background:var(--slate);
-  transition:width .7s ease;
-}
+    .nav-inner {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-.edu-block{
-  display:flex;
-  justify-content:space-between;
-  gap:2rem;
-  flex-wrap:wrap;
-  padding-bottom:2rem;
-}
-.edu-degree{
-  font-family:var(--serif);
-  font-weight:600;
-  font-size:1.45rem;
-  margin-bottom:.3rem;
-}
-.edu-school{color:var(--slate);font-weight:600;margin-bottom:.55rem}
-.edu-detail{font-family:var(--mono);font-size:.76rem;color:var(--ink-soft)}
-.edu-badge{
-  display:inline-block;
-  margin-top:.7rem;
-  font-family:var(--mono);
-  font-size:.67rem;
-  color:var(--amber);
-  background:var(--amber-soft);
-  border:1px solid rgba(181,114,15,.25);
-  padding:.3rem .65rem;
-  border-radius:3px;
-}
-.edu-date{font-family:var(--mono);font-size:.76rem;color:var(--meta)}
-.edu-courses{border-top:1px solid var(--line);padding-top:1.3rem}
-.courses-label{font-family:var(--mono);font-size:.67rem;color:var(--meta);margin-bottom:.65rem}
-.courses-list{display:flex;flex-wrap:wrap;gap:.45rem}
-.course-tag{
-  font-size:.78rem;
-  color:var(--ink-soft);
-  padding:.25rem .62rem;
-  background:var(--paper-2);
-  border:1px solid var(--line);
-  border-radius:3px;
-}
+    .logo {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: -0.02em;
+    }
 
-.terminal{
-  margin-top:5rem;
-  background:var(--ink);
-  color:var(--paper);
-  border-radius:5px;
-  overflow:hidden;
-  box-shadow:0 15px 45px rgba(28,27,25,.12);
-}
-.terminal-bar{
-  display:flex;
-  align-items:center;
-  gap:.45rem;
-  padding:.7rem 1rem;
-  border-bottom:1px solid rgba(250,248,244,.1);
-}
-.term-dot{width:7px;height:7px;border-radius:50%;background:rgba(250,248,244,.3)}
-.term-title{margin-left:.5rem;font-family:var(--mono);font-size:.62rem;color:rgba(250,248,244,.55)}
-.terminal-body{
-  padding:1.2rem 1.3rem 1.35rem;
-  font-family:var(--mono);
-  font-size:.73rem;
-  line-height:1.75;
-}
-.term-line{color:rgba(250,248,244,.72)}
-.term-prompt{color:#8BA8C9}
-.term-output{color:rgba(250,248,244,.9)}
-.term-input-row{
-  display:flex;
-  gap:.5rem;
-  align-items:center;
-  margin-top:.25rem;
-}
-#terminalInput{
-  flex:1;
-  border:0;
-  outline:0;
-  background:transparent;
-  color:var(--paper);
-  font:inherit;
-  caret-color:var(--paper);
-}
-.term-help{
-  color:rgba(250,248,244,.42);
-  margin-top:.5rem;
-}
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
 
-.contact-strip{
-  margin-top:5rem;
-  padding:3.3rem 3rem;
-  background:var(--ink);
-  color:var(--paper);
-}
-.contact-inner{
-  max-width:1080px;
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:2rem;
-  flex-wrap:wrap;
-}
-.contact-headline{
-  font-family:var(--serif);
-  font-weight:500;
-  font-style:italic;
-  font-size:1.8rem;
-  max-width:20ch;
-  line-height:1.25;
-}
-.contact-links{display:flex;gap:.65rem;flex-wrap:wrap}
-.contact-link{
-  font-family:var(--mono);
-  font-size:.72rem;
-  padding:.62rem .9rem;
-  border:1px solid rgba(250,248,244,.25);
-  border-radius:3px;
-  text-decoration:none;
-  color:var(--paper);
-  transition:.2s;
-}
-.contact-link:hover{
-  border-color:var(--paper);
-  background:rgba(250,248,244,.06);
-  transform:translateY(-2px);
-}
-footer{
-  max-width:1080px;
-  margin:0 auto;
-  padding:1.5rem 3rem 2.5rem;
-  display:flex;
-  justify-content:space-between;
-  font-family:var(--mono);
-  font-size:.64rem;
-  color:var(--meta);
-}
+    .nav-links a {
+      transition: color 0.15s ease;
+    }
 
-.reveal{
-  opacity:0;
-  transform:translateY(18px);
-  transition:opacity .6s ease,transform .6s ease;
-}
-.reveal.visible{opacity:1;transform:none}
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+    }
 
-@media(max-width:900px){
-  nav{padding:1rem 1.4rem}
-  .nav-links{gap:1rem}
-  .nav-status{display:none}
-  .hero{padding:4rem 1.4rem 3.5rem}
-  main{padding:0 1.4rem}
-  .skills-grid{grid-template-columns:1fr 1fr}
-  .projects-grid{grid-template-columns:1fr}
-  .hero-stats{overflow-x:auto}
-  .hero-stat{min-width:120px}
-}
+    /* Hero */
 
-@media(max-width:620px){
-  .nav-links{display:none}
-  .hero{padding-top:3.5rem}
-  h1.hero-name{font-size:3.3rem}
-  .hero-stats{display:grid;grid-template-columns:1fr 1fr}
-  .hero-stat{border-right:0;margin-right:0;padding-right:1rem}
-  .skills-grid{grid-template-columns:1fr}
-  .role-date{margin-left:0}
-  .project-type{position:static;margin-bottom:.5rem}
-  .meter-row{grid-template-columns:85px 1fr}
-  .contact-strip{padding:2.7rem 1.4rem}
-  footer{padding:1.4rem;flex-direction:column;gap:.4rem}
-}
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 0 80px;
+    }
 
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{
-    animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
-  }
-  .reveal{opacity:1;transform:none}
-}
-</style>
+    .eyebrow,
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin: 14px 0 18px;
+      font-size: clamp(3.5rem, 9vw, 7.8rem);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+    }
+
+    .hero-role {
+      min-height: 32px;
+      font-family: var(--mono);
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      color: var(--muted);
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      width: 7px;
+      height: 1em;
+      margin-left: 5px;
+      vertical-align: -2px;
+      background: currentColor;
+      animation: blink 0.9s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 16px;
+      border: 1px solid var(--text);
+      border-radius: 7px;
+      background: var(--text);
+      color: #fff;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-1px);
+    }
+
+    /* Sections */
+
+    section {
+      padding: 95px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin: 12px 0 38px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
+
+    /* Experience */
+
+    .timeline {
+      display: grid;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-date {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .timeline-company {
+      margin: 0 0 4px;
+      font-size: 1.2rem;
+    }
+
+    .timeline-role {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .timeline-item ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .timeline-item li + li {
+      margin-top: 7px;
+    }
+
+    /* Projects */
+
+    .filters,
+    .path-grid,
+    .skill-list {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filters {
+      margin-bottom: 28px;
+    }
+
+    .filter,
+    .skill,
+    .path-button {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 7px;
+      padding: 8px 12px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+    }
+
+    .filter {
+      border-radius: 999px;
+    }
+
+    .filter:hover,
+    .filter:focus-visible,
+    .filter.active,
+    .path-button:hover,
+    .path-button:focus-visible,
+    .path-button.active,
+    .skill:hover,
+    .skill:focus-visible,
+    .skill.active {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      padding: 25px;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: #bcbcb5;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
+    }
+
+    .project-card.hidden {
+      display: none;
+    }
+
+    .project-card.skill-match {
+      border-color: var(--text);
+      box-shadow: 0 0 0 2px rgba(23, 23, 23, 0.06);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .project-number {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .project-card h3 {
+      margin: 10px 0 8px;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .complexity {
+      white-space: nowrap;
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    .pips {
+      letter-spacing: 2px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      padding: 4px 7px;
+      background: var(--soft);
+      border-radius: 4px;
+      font-size: 0.67rem;
+    }
+
+    .project-details {
+      display: none;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .project-card.open .project-details {
+      display: block;
+    }
+
+    .project-toggle {
+      margin-top: 18px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      cursor: pointer;
+    }
+
+    .project-toggle:hover,
+    .project-toggle:focus-visible {
+      text-decoration: underline;
+    }
+
+    /* Side Quest */
+
+    .side-quest {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-shell {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--dark);
+      color: #eee;
+      overflow: hidden;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.1);
+    }
+
+    .game-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: #222;
+      border-bottom: 1px solid #333;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+    }
+
+    .game-title {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .game-status {
+      color: #999;
+    }
+
+    .game-area {
+      position: relative;
+      height: 430px;
+      overflow: hidden;
+      background: #e7e2d6;
+      cursor: crosshair;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .game-sky {
+      position: absolute;
+      inset: 0 0 105px;
+      background: linear-gradient(
+        180deg,
+        #e7e2d6 0%,
+        #f2efe8 100%
+      );
+    }
+
+    .court {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 105px;
+      background: #cfc7b7;
+      border-top: 2px solid #b4ac9e;
+    }
+
+    .court::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 14px;
+      width: 170px;
+      height: 75px;
+      transform: translateX(-50%);
+      border: 2px solid rgba(23, 23, 23, 0.22);
+      border-bottom: 0;
+      border-radius: 90px 90px 0 0;
+    }
+
+    .court::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 42px;
+      border-top: 2px solid rgba(23, 23, 23, 0.12);
+    }
+
+    .hoop {
+      position: absolute;
+      right: 115px;
+      top: 105px;
+      width: 92px;
+      height: 105px;
+    }
+
+    .backboard {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 58px;
+      height: 42px;
+      border: 3px solid #222;
+      background: #eee;
+    }
+
+    .backboard-inner {
+      position: absolute;
+      right: 8px;
+      top: 7px;
+      width: 36px;
+      height: 24px;
+      border: 2px solid #c75a32;
+    }
+
+    .rim {
+      position: absolute;
+      right: 7px;
+      top: 48px;
+      width: 55px;
+      height: 12px;
+      border: 4px solid #c75a32;
+      border-radius: 50%;
+      z-index: 6;
+    }
+
+    .net {
+      position: absolute;
+      right: 11px;
+      top: 56px;
+      width: 47px;
+      height: 40px;
+      overflow: hidden;
+      z-index: 5;
+    }
+
+    .net svg {
+      width: 100%;
+      height: 100%;
+      transform-origin: top center;
+    }
+
+    .ball {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 38% 35%,
+        #e8864a,
+        #c05a20
+      );
+      border: 1.5px solid #7c351a;
+      z-index: 7;
+      will-change: transform, left, top;
+    }
+
+    .ball::before {
+      content: "";
+      position: absolute;
+      width: 1.5px;
+      height: 100%;
+      left: 11px;
+      background: #7c351a;
+      transform: rotate(30deg);
+      border-radius: 2px;
+    }
+
+    .ball::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1.5px;
+      top: 12px;
+      background: #7c351a;
+      transform: rotate(-20deg);
+      border-radius: 2px;
+    }
+
+    .traj-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(23, 23, 23, 0.18);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .aim-reticle {
+      position: absolute;
+      left: 103px;
+      bottom: 70px;
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+      z-index: 8;
+      transform: translate(-50%, -50%);
+    }
+
+    .aim-reticle::before,
+    .aim-reticle::after {
+      content: "";
+      position: absolute;
+      background: rgba(23, 23, 23, 0.4);
+    }
+
+    .aim-reticle::before {
+      width: 1px;
+      height: 100%;
+      left: 50%;
+      top: 0;
+    }
+
+    .aim-reticle::after {
+      width: 100%;
+      height: 1px;
+      top: 50%;
+      left: 0;
+    }
+
+    .game-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(247, 247, 244, 0.88);
+      color: #171717;
+      text-align: center;
+      padding: 25px;
+      z-index: 12;
+    }
+
+    .game-overlay.hidden {
+      display: none;
+    }
+
+    .game-message h3 {
+      margin: 0 0 8px;
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .game-message p {
+      margin: 0 0 18px;
+      color: #555;
+      font-size: 0.84rem;
+      max-width: 320px;
+    }
+
+    .game-button {
+      border: 1px solid #171717;
+      background: #171717;
+      color: #fff;
+      padding: 9px 16px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: transform 0.12s ease;
+    }
+
+    .game-button:hover,
+    .game-button:focus-visible {
+      transform: translateY(-1px);
+    }
+
+    .game-controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 16px;
+      background: #191919;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+    }
+
+    .game-score {
+      display: flex;
+      gap: 18px;
+    }
+
+    .game-help {
+      color: #888;
+    }
+
+    .shot-flash {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 700;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 11;
+      transition: opacity 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .power-bar-wrap {
+      position: absolute;
+      left: 66px;
+      bottom: 55px;
+      width: 8px;
+      height: 80px;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+      z-index: 9;
+      overflow: hidden;
+    }
+
+    .power-bar-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0%;
+      background: linear-gradient(
+        180deg,
+        #c75a32,
+        #f5a623
+      );
+      border-radius: 4px;
+      transition: height 0.05s ease;
+    }
+
+    .unlocks {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .unlock {
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 13px;
+      background: var(--surface);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      transition:
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        opacity 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .unlock strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 4px;
+      font-size: 0.72rem;
+    }
+
+    .unlock.locked {
+      opacity: 0.4;
+      filter: blur(0.4px);
+    }
+
+    .unlock.unlocked {
+      border-color: var(--text);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+    }
+
+    .side-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+    }
+
+    /* Terminal */
+
+    .terminal {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #111;
+      color: #eee;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 14px;
+      background: #1d1d1d;
+      border-bottom: 1px solid #333;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #555;
+    }
+
+    .terminal-title {
+      margin-left: 7px;
+      color: #888;
+      font-size: 0.68rem;
+    }
+
+    .terminal-body {
+      min-height: 300px;
+      padding: 20px;
+      font-size: 0.78rem;
+      line-height: 1.7;
+    }
+
+    .terminal-output {
+      min-height: 100px;
+      max-height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      color: #cfcfcf;
+    }
+
+    .terminal-form {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .prompt {
+      color: #aaa;
+    }
+
+    .terminal-input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #fff;
+      font: inherit;
+    }
+
+    .terminal-hint {
+      margin-top: 10px;
+      color: #666;
+      font-size: 0.68rem;
+    }
+
+    /* Contact */
+
+    .contact {
+      padding-bottom: 55px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .contact h2 {
+      max-width: 750px;
+      margin: 12px 0 0;
+      font-size: clamp(2.5rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      border-bottom: 1px solid var(--text);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
+
+    .hire-timer {
+      margin-top: 35px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .hire-timer strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    footer {
+      padding: 22px 0 35px;
+      color: var(--muted);
+      font-size: 0.68rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    /* Reveal */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Focus */
+
+    :focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 3px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 850px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .unlocks {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 75vh;
+        padding: 80px 0 65px;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.3rem, 18vw, 5rem);
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 12px;
+      }
+
+      .game-area {
+        height: 360px;
+      }
+
+      .hoop {
+        right: 55px;
+        transform: scale(0.88);
+        transform-origin: top right;
+      }
+
+      .game-controls {
+        display: block;
+      }
+
+      .game-help {
+        margin-top: 6px;
+      }
+
+      .unlocks {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact h2 {
+        font-size: 3.4rem;
+      }
+
+      .footer-inner {
+        display: block;
+      }
+
+      .footer-inner span + span {
+        display: block;
+        margin-top: 7px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div id="progress"></div>
 
-<nav id="nav">
-  <a href="#" class="nav-logo">Andy Zhu</a>
-  <ul class="nav-links">
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="nav-status"><span class="status-dot"></span> OPEN TO ROLES</div>
-</nav>
+  <nav class="nav" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a class="logo" href="#" aria-label="Andy Zhu home">AZ/26</a>
 
-<section class="hero reveal">
-  <div class="hero-eyebrow"><span class="eyebrow-mark"></span> RUTGERS '26 · NEW GRAD</div>
-  <h1 class="hero-name">Andy <em>Zhu.</em></h1>
-  <p class="hero-role">Software · Data · Analytics · Statistics</p>
-  <p class="hero-bio">
-    Rutgers grad in Computer Science &amp; Data Science. Most recently built data
-    pipeline infrastructure at the Federal Reserve Bank of Philadelphia using AWS,
-    Airflow, and PySpark across 28 economic datasets. Previously shipped computer
-    vision and research tooling at a biotech firm.
-  </p>
-  <div class="hero-actions">
-    <a href="mailto:andy.zhu915@rutgers.edu" class="btn btn-primary">Email me ↗</a>
-    <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn ↗</a>
-    <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener" class="btn btn-secondary">GitHub ↗</a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-value">28+</div>
-      <div class="hero-stat-label">ECONOMIC DATASETS</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-value">91%</div>
-      <div class="hero-stat-label">CV ACCURACY</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-value">90%</div>
-      <div class="hero-stat-label">API CALL REDUCTION</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-value">20+</div>
-      <div class="hero-stat-label">RESEARCH USERS</div>
-    </div>
-  </div>
-</section>
-
-<main>
-
-<section id="experience" class="reveal">
-  <div class="section-head">
-    <span class="eyebrow">01 / EXPERIENCE</span>
-    <h2 class="section-title">Where I've worked</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="rail">
-    <div class="rail-item active" tabindex="0">
-      <div class="rail-node"></div>
-      <div class="role-meta">
-        <span class="role-title">Data Engineering Intern, Economic Research</span>
-        <span class="role-org">Federal Reserve Bank of Philadelphia</span>
-        <span class="role-date">Jun 2026 — Aug 2026</span>
-      </div>
-      <div class="role-loc">Philadelphia, PA</div>
-      <ul class="role-points">
-        <li>Architected a reusable vendor ingestion framework with Airflow, EMR, and PySpark, standardizing 28 datasets and cutting onboarding from weeks to 2 days; deployed to 30+ economists.</li>
-        <li>Designed a 3-stage S3 QA pipeline with PySpark validations across 7 data-quality dimensions, assigning HEALTHY/WARNING/CRITICAL status; leveraged SPOT-instance EMR to keep daily costs under $2 while quarantining failures.</li>
-        <li>Built an automated HTML QA reporter with Python and Airflow SMTP, eliminating manual audit prep and enabling Athena self-service that accelerated research turnaround by 40%.</li>
-      </ul>
-      <div class="role-tags">
-        <span class="role-tag">Apache Airflow</span>
-        <span class="role-tag">AWS S3 / Glue / EMR</span>
-        <span class="role-tag">PySpark</span>
-        <span class="role-tag">Athena</span>
-        <span class="role-tag">QA / Data Validation</span>
-        <span class="role-tag">Cost Optimization</span>
-      </div>
-      <div class="rail-hint">CLICK TO MARK THIS EXPERIENCE</div>
-    </div>
-
-    <div class="rail-item" tabindex="0">
-      <div class="rail-node"></div>
-      <div class="role-meta">
-        <span class="role-title">Software and Data Engineering Intern</span>
-        <span class="role-org">Simcere of America Inc.</span>
-        <span class="role-date">Jun 2025 — Sep 2025</span>
-      </div>
-      <div class="role-loc">Cambridge, MA</div>
-      <ul class="role-points">
-        <li>Unified 15+ clinical/genomic sources using Python/R ETL pipelines, cutting manual processing by 40% and providing near-real-time access to 20+ researchers.</li>
-        <li>Deployed a ResNet-50 pipeline using TensorFlow and OpenCV, achieving 91% accuracy and compressing analysis from 10+ hours to 12 minutes for biologists.</li>
-        <li>Launched an authenticated R Shiny dashboard on AWS EC2/RDS with row-level security, enabling 20+ biologists to self-serve QC workflows and saving 20+ person-hours monthly.</li>
-      </ul>
-      <div class="role-tags">
-        <span class="role-tag">Python</span>
-        <span class="role-tag">R</span>
-        <span class="role-tag">TensorFlow</span>
-        <span class="role-tag">OpenCV</span>
-        <span class="role-tag">AWS EC2 / RDS</span>
-        <span class="role-tag">R Shiny</span>
-        <span class="role-tag">CI/CD</span>
-      </div>
-      <div class="rail-hint">CLICK TO MARK THIS EXPERIENCE</div>
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="reveal">
-  <div class="section-head">
-    <span class="eyebrow">02 / PROJECTS</span>
-    <h2 class="section-title">Things I've built</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="project-controls">
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all">ALL</button>
-      <button class="filter-btn" data-filter="data">DATA</button>
-      <button class="filter-btn" data-filter="ml">ML</button>
-      <button class="filter-btn" data-filter="web">WEB</button>
-      <button class="filter-btn" data-filter="systems">SYSTEMS</button>
-    </div>
-    <div class="project-count" id="projectCount">7 PROJECTS</div>
-  </div>
-
-  <div class="projects-grid">
-
-    <article class="project-card" data-category="data systems">
-      <span class="project-type">DATA / SYSTEMS</span>
-      <div class="project-title">Algorithmic Trading Backtester</div>
-      <div class="project-date">Jan 2026 — Present</div>
-      <p class="project-desc">Built a bias-free backtesting engine for 5 strategies with look-ahead prevention, 10 OHLCV integrity checks, and a 15-metric risk suite. SQLite caching with 7-day TTL and multi-provider fallback cuts external API calls by 90%.</p>
-      <div class="project-stack">
-        <span class="stack-pill">Python</span><span class="stack-pill">Streamlit</span><span class="stack-pill">pandas</span><span class="stack-pill">NumPy</span><span class="stack-pill">Plotly</span><span class="stack-pill">SQLite</span><span class="stack-pill">Docker</span>
-      </div>
-      <button class="explore-btn" aria-expanded="false">EXPLORE PROJECT <span>→</span></button>
-      <div class="project-detail">
-        <div class="detail-title">ENGINEERING DECISIONS</div>
-        <ul class="detail-list">
-          <li>Signals on bar N, fills on bar N+1 to prevent look-ahead bias</li>
-          <li>10 OHLCV integrity checks before strategy execution</li>
-          <li>15 risk metrics including Sharpe, Sortino, Calmar and drawdown</li>
-          <li>SQLite cache with 7-day TTL and provider fallback</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="project-card" data-category="ml systems">
-      <span class="project-type">ML / IMAGING</span>
-      <div class="project-title">Cell Imaging Analysis Tool</div>
-      <div class="project-date">Jun 2025 — Sep 2025 · Built at Simcere</div>
-      <p class="project-desc">Production-grade PyQt5 application for automated cell segmentation and tracking, integrating Cellpose/ResNet-50 to achieve 91% accuracy on 10,000+ microscopy images. Background processing compressed per-batch analysis from 10+ hours to 12 minutes.</p>
-      <div class="project-stack">
-        <span class="stack-pill">Python</span><span class="stack-pill">PyQt5</span><span class="stack-pill">Cellpose</span><span class="stack-pill">TensorFlow</span><span class="stack-pill">OpenCV</span>
-      </div>
-      <button class="explore-btn" aria-expanded="false">EXPLORE PROJECT <span>→</span></button>
-      <div class="project-detail">
-        <div class="detail-title">ENGINEERING DECISIONS</div>
-        <ul class="detail-list">
-          <li>Background worker prevents UI blocking during analysis</li>
-          <li>Optical-flow interpolation between anchor frames</li>
-          <li>Automated segmentation and tracking workflow</li>
-          <li>Designed around pharmaceutical R&amp;D batch processing</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="project-card" data-category="data ml">
-      <span class="project-type">ML / RISK</span>
-      <div class="project-title">Credit Risk &amp; Default Prediction</div>
-      <div class="project-date">Dec 2025</div>
-      <p class="project-desc">Analyzed 30,000 credit accounts to predict next-month default, engineering 14 behavioral features and achieving 0.82 ROC-AUC with Gradient Boosting. Borrower risk tiers showed actual default rates increasing from 6.8% to 48.9%.</p>
-      <div class="project-stack">
-        <span class="stack-pill">Python</span><span class="stack-pill">scikit-learn</span><span class="stack-pill">pandas</span><span class="stack-pill">NumPy</span><span class="stack-pill">SQLite</span><span class="stack-pill">Tableau</span>
-      </div>
-      <button class="explore-btn" aria-expanded="false">EXPLORE PROJECT <span>→</span></button>
-      <div class="project-detail">
-        <div class="detail-title">ENGINEERING DECISIONS</div>
-        <ul class="detail-list">
-          <li>Behavioral feature engineering across credit accounts</li>
-          <li>Model comparison and ROC-AUC evaluation</li>
-          <li>Four borrower risk tiers for interpretability</li>
-          <li>Automated validation, SQLite storage and CSV reporting</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="project-card" data-category="web systems">
-      <span class="project-type">WEB / SYSTEMS</span>
-      <div class="project-title">System Monitoring Dashboard</div>
-      <div class="project-date">Nov 2025 — Jan 2026</div>
-      <p class="project-desc">Flask/PostgreSQL backend collecting CPU, memory, disk, and network metrics every 30 seconds via APScheduler and psutil, streaming live data through Flask-SocketIO with rolling retention and threshold-based email alerts.</p>
-      <div class="project-stack">
-        <span class="stack-pill">Python</span><span class="stack-pill">Flask</span><span class="stack-pill">PostgreSQL</span><span class="stack-pill">WebSockets</span><span class="stack-pill">Chart.js</span>
-      </div>
-      <button class="explore-btn" aria-expanded="false">EXPLORE PROJECT <span>→</span></button>
-      <div class="project-detail">
-        <div class="detail-title">ENGINEERING DECISIONS</div>
-        <ul class="detail-list">
-          <li>4-table relational schema with composite indexing</li>
-          <li>30-day rolling data retention</li>
-          <li>Live metric streaming through WebSockets</li>
-          <li>Threshold alerts with cooldown handling</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="project-card" data-category="data ml">
-      <span class="project-type">DATA / NBA</span>
-      <div class="project-title">NBA Analytics Platform</div>
-      <div class="project-date">Sep 2024 — Dec 2024</div>
-      <p class="project-desc">Normalized a 3-table SQLite schema with window functions and CTEs across 2,000+ NBA records. Engineered 22 features with chronological train/validation/test splits and achieved 73% test accuracy for breakout candidate identification.</p>
-      <div class="project-stack">
-        <span class="stack-pill">Python</span><span class="stack-pill">SQL</span><span class="stack-pill">SQLite</span><span class="stack-pill">scikit-learn</span><span class="stack-pill">pandas</span>
-      </div>
-      <button class="explore-btn" aria-expanded="false">EXPLORE PROJECT <span>→</span></button>
-      <div class="project-detail">
-        <div class="detail-title">ENGINEERING DECISIONS</div>
-        <ul class="detail-list">
-          <li>Normalized relational schema for season-level data</li>
-          <li>SQL CTEs and window functions for aggregation</li>
-          <li>Chronological splits to reduce leakage risk</li>
-          <li>Class-balanced Random Forest evaluation</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="project-card" data-category="data web">
-      <span class="project-type">R / DATA</span>
-      <div class="project-title">R&amp;D Lab Data Automation Tool</div>
-      <div class="project-date">Summer 2025 · Built at Simcere</div>
-      <p class="project-desc">11-tab R Shiny dashboard replacing manual bioassay QC workflows with authentication, role-based access, plate normalization, dual-criterion outlier detection, automated calculations, and one-click Excel/CSV export.</p>
-      <div class="project-stack">
-        <span class="stack-pill">R</span><span class="stack-pill">Shiny</span><span class="stack-pill">shinyauthr</span><span class="stack-pill">sodium</span><span class="stack-pill">ggplot2</span><span class="stack-pill">plotly</span>
-      </div>
-      <button class="explore-btn" aria-expanded="false">EXPLORE PROJECT <span>→</span></button>
-      <div class="project-detail">
-        <div class="detail-title">ENGINEERING DECISIONS</div>
-        <ul class="detail-list">
-          <li>Role-based access for different research workflows</li>
-          <li>Z-score and MAD outlier detection</li>
-          <li>Six file-merging strategies</li>
-          <li>Direct Excel and CSV export for researchers</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="project-card" data-category="web systems">
-      <span class="project-type">WEB / VANILLA</span>
-      <div class="project-title">This Portfolio Website</div>
-      <div class="project-date">Jul 2026 — Present</div>
-      <p class="project-desc">Designed and built this single-page portfolio from scratch using vanilla HTML, CSS, and JavaScript with zero build tooling. Includes filtering, expandable project cards, interactive experience timeline, scroll progress, and a small terminal interface.</p>
-      <div class="project-stack">
-        <span class="stack-pill">HTML5</span><span class="stack-pill">CSS3</span><span class="stack-pill">JavaScript</span>
-      </div>
-      <button class="explore-btn" aria-expanded="false">EXPLORE PROJECT <span>→</span></button>
-      <div class="project-detail">
-        <div class="detail-title">WHY VANILLA?</div>
-        <ul class="detail-list">
-          <li>No framework or build system required</li>
-          <li>CSS custom properties for consistent theming</li>
-          <li>Plain JavaScript for filtering and interactions</li>
-          <li>Responsive layout with accessibility considerations</li>
-        </ul>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<section id="skills" class="reveal">
-  <div class="section-head">
-    <span class="eyebrow">03 / SKILLS</span>
-    <h2 class="section-title">Tools I use</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="skills-grid">
-    <div class="skill-col">
-      <div class="skill-col-title">LANGUAGES</div>
-      <div class="skill-list">
-        <span class="skill" data-note="Primary language used across data engineering and projects.">Python</span>
-        <span class="skill" data-note="Used for analytics, modeling and research tooling.">R</span>
-        <span class="skill" data-note="Used for relational analytics and data engineering.">SQL</span>
-        <span class="skill" data-note="Used for portfolio and web interactions.">JavaScript</span>
-        <span class="skill" data-note="Used in application development projects.">TypeScript</span>
-        <span class="skill" data-note="Academic and software development experience.">Java</span>
+      <div class="nav-links">
+        <a href="#experience">experience</a>
+        <a href="#projects">projects</a>
+        <a href="#side-quest">side quest</a>
+        <a href="#skills">skills</a>
+        <a href="#contact">contact</a>
       </div>
     </div>
-    <div class="skill-col">
-      <div class="skill-col-title">DATA &amp; CLOUD</div>
-      <div class="skill-list">
-        <span class="skill">AWS</span><span class="skill">S3</span><span class="skill">Glue</span><span class="skill">EMR</span><span class="skill">Lambda</span><span class="skill">EC2</span><span class="skill">RDS</span><span class="skill">Airflow</span><span class="skill">PySpark</span><span class="skill">Docker</span><span class="skill">Linux</span>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+
+    <header class="hero">
+      <div class="container">
+
+        <div class="eyebrow">Rutgers '26 · New Jersey</div>
+
+        <h1>Andy Zhu.</h1>
+
+        <div
+          class="hero-role"
+          id="heroRole"
+          aria-label="Software, Data, Analytics, Statistics"
+        ></div>
+
+        <p class="hero-copy">
+          New graduate building practical data and software systems across
+          economic research, biotech analytics, cloud engineering, and
+          applied machine learning.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button" href="#projects">View projects</a>
+          <a class="button secondary" href="#contact">Get in touch</a>
+        </div>
+
       </div>
-    </div>
-    <div class="skill-col">
-      <div class="skill-col-title">ML &amp; TESTING</div>
-      <div class="skill-list">
-        <span class="skill">TensorFlow</span><span class="skill">scikit-learn</span><span class="skill">OpenCV</span><span class="skill">pandas</span><span class="skill">NumPy</span><span class="skill">pytest</span><span class="skill">Streamlit</span><span class="skill">R Shiny</span>
+    </header>
+
+    <!-- Experience -->
+
+    <section id="experience" class="reveal">
+      <div class="container">
+
+        <div class="section-label">Experience</div>
+
+        <div class="section-heading">
+          <h2>Where I've built things.</h2>
+          <p>2025 — 2026</p>
+        </div>
+
+        <div class="timeline">
+
+          <article class="timeline-item">
+
+            <div class="timeline-date">
+              JUN 2026 — AUG 2026
+            </div>
+
+            <div>
+              <h3 class="timeline-company">
+                Federal Reserve Bank of Philadelphia
+              </h3>
+
+              <p class="timeline-role">
+                Data Engineering Intern · Economic Research
+              </p>
+
+              <ul>
+                <li>
+                  Architected a reusable vendor ingestion framework with
+                  Airflow, EMR, and PySpark, standardizing 28 datasets and
+                  cutting onboarding from weeks to 2 days, deployed to 30+
+                  economists.
+                </li>
+
+                <li>
+                  Designed a 3-stage S3 QA pipeline with
+                  HEALTHY/WARNING/CRITICAL status tiers across 7 data-quality
+                  dimensions, running on SPOT-instance EMR to keep daily
+                  costs under $2.
+                </li>
+
+                <li>
+                  Built an automated HTML QA reporter eliminating manual
+                  audit prep and enabling Athena self-service that
+                  accelerated research turnaround by 40%.
+                </li>
+              </ul>
+            </div>
+
+          </article>
+
+          <article class="timeline-item">
+
+            <div class="timeline-date">
+              JUN 2025 — SEP 2025
+            </div>
+
+            <div>
+              <h3 class="timeline-company">
+                Simcere of America Inc.
+              </h3>
+
+              <p class="timeline-role">
+                Software & Data Engineering Intern
+              </p>
+
+              <ul>
+                <li>
+                  Unified 15+ clinical and genomic sources via Python/R ETL
+                  pipelines, cutting manual processing 40% and giving 20+
+                  researchers near-real-time data access.
+                </li>
+
+                <li>
+                  Deployed a ResNet-50 pipeline achieving 91% accuracy and
+                  compressing microscopy analysis from 10+ hours to 12 minutes.
+                </li>
+
+                <li>
+                  Launched an authenticated R Shiny dashboard on AWS
+                  EC2/RDS with row-level security, saving 20+ person-hours
+                  monthly for a team of 20+ biologists.
+                </li>
+              </ul>
+            </div>
+
+          </article>
+
+        </div>
       </div>
-    </div>
-    <div class="skill-col">
-      <div class="skill-col-title">WEB &amp; APIs</div>
-      <div class="skill-list">
-        <span class="skill">React</span><span class="skill">FastAPI</span><span class="skill">Flask</span><span class="skill">REST APIs</span><span class="skill">WebSockets</span>
+    </section>
+
+    <!-- Projects -->
+
+    <section id="projects" class="reveal">
+      <div class="container">
+
+        <div class="section-label">Projects</div>
+
+        <div class="section-heading">
+          <h2>Things I've built.</h2>
+          <p>click a project to inspect it</p>
+        </div>
+
+        <div class="filters" id="filters">
+          <button class="filter active" data-filter="all">all</button>
+          <button class="filter" data-filter="data">data</button>
+          <button class="filter" data-filter="software">software</button>
+          <button class="filter" data-filter="ml">ml</button>
+          <button class="filter" data-filter="analytics">analytics</button>
+        </div>
+
+        <div class="project-grid">
+
+          <!-- 01 -->
+
+          <article
+            class="project-card"
+            data-category="data analytics"
+            data-skills="python sql pandas numpy sqlite"
+          >
+            <div class="project-top">
+
+              <div>
+                <div class="project-number">01 / 07</div>
+                <h3>Algorithmic Trading Backtester</h3>
+              </div>
+
+              <div class="complexity">
+                COMPLEXITY<br>
+                <span class="pips">●●●●○</span>
+              </div>
+
+            </div>
+
+            <p>
+              Bias-controlled research platform for testing trading
+              strategies and measuring risk.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">pandas</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">Docker</span>
+            </div>
+
+            <div class="project-details">
+              Signals execute on the next bar to eliminate look-ahead bias.
+              Typed DataQualityReport with 10 OHLCV checks and a 15-metric
+              risk suite covering Sharpe, Sortino, Calmar, Max Drawdown,
+              and CAGR. SQLite caching with a 7-day TTL and multi-provider
+              fallback cuts external API calls by 90%.
+            </div>
+
+            <button class="project-toggle" type="button">
+              details
+            </button>
+          </article>
+
+          <!-- 02 -->
+
+          <article
+            class="project-card"
+            data-category="software ml"
+            data-skills="python opencv sklearn"
+          >
+            <div class="project-top">
+
+              <div>
+                <div class="project-number">02 / 07</div>
+                <h3>Cell Imaging Analysis Tool</h3>
+              </div>
+
+              <div class="complexity">
+                COMPLEXITY<br>
+                <span class="pips">●●●●○</span>
+              </div>
+
+            </div>
+
+            <p>
+              Production desktop app for automated cell segmentation and
+              tracking across microscopy sequences.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Cellpose</span>
+              <span class="tag">PyQt5</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">scikit-image</span>
+            </div>
+
+            <div class="project-details">
+              PyQt5 background worker with Cellpose segmentation.
+              Hungarian algorithm tracking via
+              <code>linear_sum_assignment</code>, vectorized geometry via
+              <code>bincount</code> and <code>minimum.at</code>, and
+              multi-threaded optical flow interpolation between anchor
+              frames. Per-batch analysis was compressed from 10+ hours
+              to 12 minutes.
+            </div>
+
+            <button class="project-toggle" type="button">
+              details
+            </button>
+          </article>
+
+          <!-- 03 -->
+
+          <article
+            class="project-card"
+            data-category="data ml analytics"
+            data-skills="python sklearn pandas numpy"
+          >
+            <div class="project-top">
+
+              <div>
+                <div class="project-number">03 / 07</div>
+                <h3>Credit Risk Prediction</h3>
+              </div>
+
+              <div class="complexity">
+                COMPLEXITY<br>
+                <span class="pips">●●●○○</span>
+              </div>
+
+            </div>
+
+            <p>
+              Loan-default modeling pipeline comparing classical ML
+              approaches on 30,000 credit accounts.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">scikit-learn</span>
+              <span class="tag">pandas</span>
+              <span class="tag">SQLite</span>
+            </div>
+
+            <div class="project-details">
+              StratifiedKFold (n=5) with training-set-only imputation to
+              prevent leakage. Fourteen engineered features and 0.82
+              ROC-AUC with Gradient Boosting. Borrowers segmented into
+              four risk tiers with observed default rates from 6.8%
+              (Low) to 48.9% (Very High).
+            </div>
+
+            <button class="project-toggle" type="button">
+              details
+            </button>
+          </article>
+
+          <!-- 04 -->
+
+          <article
+            class="project-card"
+            data-category="software data"
+            data-skills="python flask sqlite"
+          >
+            <div class="project-top">
+
+              <div>
+                <div class="project-number">04 / 07</div>
+                <h3>System Monitoring Dashboard</h3>
+              </div>
+
+              <div class="complexity">
+                COMPLEXITY<br>
+                <span class="pips">●●●○○</span>
+              </div>
+
+            </div>
+
+            <p>
+              Lightweight monitoring interface for system status,
+              metrics, and alerting.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Flask</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">Chart.js</span>
+            </div>
+
+            <div class="project-details">
+              WebSocket room-based broadcasting for real-time multi-client
+              updates. APScheduler background job for 30-day rolling
+              metric purge. SMTP-integrated email alerting with cooldown
+              controls to prevent alert spam.
+            </div>
+
+            <button class="project-toggle" type="button">
+              details
+            </button>
+          </article>
+
+          <!-- 05 -->
+
+          <article
+            class="project-card"
+            data-category="data analytics"
+            data-skills="python pandas sklearn numpy"
+          >
+            <div class="project-top">
+
+              <div>
+                <div class="project-number">05 / 07</div>
+                <h3>NBA Analytics Platform</h3>
+              </div>
+
+              <div class="complexity">
+                COMPLEXITY<br>
+                <span class="pips">●●●○○</span>
+              </div>
+
+            </div>
+
+            <p>
+              Player development and performance analytics with
+              temporally correct modeling.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">pandas</span>
+              <span class="tag">scikit-learn</span>
+            </div>
+
+            <div class="project-details">
+              Three-way temporal train/validation/test split by season
+              year to prevent future-data leakage. Training-set-only
+              median imputation. Player-level metrics and exploratory
+              analysis for development pattern investigation.
+            </div>
+
+            <button class="project-toggle" type="button">
+              details
+            </button>
+          </article>
+
+          <!-- 06 -->
+
+          <article
+            class="project-card"
+            data-category="software analytics"
+            data-skills="r shiny aws"
+          >
+            <div class="project-top">
+
+              <div>
+                <div class="project-number">06 / 07</div>
+                <h3>R&D Lab Data Automation</h3>
+              </div>
+
+              <div class="complexity">
+                COMPLEXITY<br>
+                <span class="pips">●●●○○</span>
+              </div>
+
+            </div>
+
+            <p>
+              Authenticated R Shiny platform for repeatable
+              pharmaceutical laboratory analysis.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">R</span>
+              <span class="tag">Shiny</span>
+              <span class="tag">AWS EC2/RDS</span>
+            </div>
+
+            <div class="project-details">
+              Role-based access control and bcrypt password hashing.
+              Kill-rate analysis, cytokine profiling, 4-parameter logistic
+              dose-response fitting, ANOVA, and Kruskal-Wallis analysis.
+              Deployed on AWS EC2 and RDS.
+            </div>
+
+            <button class="project-toggle" type="button">
+              details
+            </button>
+          </article>
+
+          <!-- 07 -->
+
+          <article
+            class="project-card"
+            data-category="software data"
+            data-skills="react typescript fastapi aws dynamodb"
+          >
+            <div class="project-top">
+
+              <div>
+                <div class="project-number">07 / 07</div>
+                <h3>Servin Food Recommendation</h3>
+              </div>
+
+              <div class="complexity">
+                COMPLEXITY<br>
+                <span class="pips">●●●●○</span>
+              </div>
+
+            </div>
+
+            <p>
+              Serverless recommendation engine with entropy-weighted
+              confidence scoring.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">AWS Lambda</span>
+              <span class="tag">DynamoDB</span>
+              <span class="tag">CDK</span>
+            </div>
+
+            <div class="project-details">
+              Entropy-weighted confidence normalization across four
+              preference dimensions, with graceful degradation when
+              swipe data is sparse. Full CDK infrastructure stack
+              covering Lambda, API Gateway, DynamoDB, CloudFront,
+              and S3. Built with friends for fun.
+            </div>
+
+            <button class="project-toggle" type="button">
+              details
+            </button>
+          </article>
+
+        </div>
       </div>
-    </div>
-    <div class="skill-col">
-      <div class="skill-col-title">DATABASES &amp; VIZ</div>
-      <div class="skill-list">
-        <span class="skill">PostgreSQL</span><span class="skill">SQLite</span><span class="skill">DynamoDB</span><span class="skill">Athena</span><span class="skill">Tableau</span><span class="skill">Matplotlib</span><span class="skill">Plotly</span>
+    </section>
+
+    <!-- Basketball -->
+
+    <section id="side-quest" class="side-quest reveal">
+      <div class="container">
+
+        <div class="section-label">Side Quest</div>
+
+        <div class="section-heading">
+          <h2>Shoot your shot.</h2>
+          <p>basketball · real physics · no leaderboard</p>
+        </div>
+
+        <div class="game-shell">
+
+          <div class="game-head">
+            <span class="game-title">
+              HALF-COURT CHALLENGE
+            </span>
+
+            <span class="game-status" id="gameStatus">
+              Sink 3 to unlock the stats
+            </span>
+          </div>
+
+          <div
+            class="game-area"
+            id="gameArea"
+            aria-label="Basketball shooting game"
+          >
+
+            <div class="game-sky"></div>
+            <div class="court"></div>
+
+            <div class="hoop">
+              <div class="backboard">
+                <div class="backboard-inner"></div>
+              </div>
+
+              <div class="rim"></div>
+
+              <div class="net">
+                <svg
+                  viewBox="0 0 47 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  id="netSvg"
+                  aria-hidden="true"
+                >
+                  <line x1="4" y1="0" x2="2" y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="12" y1="0" x2="11" y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="20" y1="0" x2="20" y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="28" y1="0" x2="29" y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="36" y1="0" x2="38" y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="44" y1="0" x2="46" y2="40" stroke="#666" stroke-width="1"/>
+
+                  <line x1="0" y1="10" x2="47" y2="10" stroke="#666" stroke-width="1"/>
+                  <line x1="0" y1="22" x2="47" y2="22" stroke="#666" stroke-width="1"/>
+                  <line x1="3" y1="34" x2="44" y2="34" stroke="#666" stroke-width="1"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="power-bar-wrap" aria-hidden="true">
+              <div class="power-bar-fill" id="powerFill"></div>
+            </div>
+
+            <div class="aim-reticle" id="aimReticle" aria-hidden="true"></div>
+
+            <div class="ball" id="ball" aria-hidden="true"></div>
+
+            <div class="shot-flash" id="shotFlash" aria-live="polite"></div>
+
+            <div class="game-overlay" id="gameOverlay">
+
+              <div class="game-message">
+
+                <h3 id="overlayTitle">
+                  HALF-COURT CHALLENGE
+                </h3>
+
+                <p id="overlayText">
+                  Sink 3 buckets. Unlock some real numbers from the résumé.
+                  Miss all 10 and we never speak of this.
+                </p>
+
+                <button
+                  class="game-button"
+                  id="startGame"
+                  type="button"
+                >
+                  LET'S RUN IT
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="game-controls">
+
+            <div class="game-score">
+              <span>
+                SCORE <strong id="gameScore">0</strong>
+              </span>
+
+              <span>
+                STREAK <strong id="gameStreak">0</strong>
+              </span>
+
+              <span>
+                SHOTS <strong id="gameShots">0</strong>
+              </span>
+            </div>
+
+            <div class="game-help">
+              aim with mouse · click or SPACE to shoot · don't brick it
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="unlocks">
+
+          <div class="unlock locked" data-unlock="1">
+            <strong>LOCKED · THE FED</strong>
+            <span>28 datasets. Onboarding: weeks → 2 days.</span>
+          </div>
+
+          <div class="unlock locked" data-unlock="2">
+            <strong>LOCKED · COMPUTER VISION</strong>
+            <span>91% accuracy. 10hr → 12min.</span>
+          </div>
+
+          <div class="unlock locked" data-unlock="3">
+            <strong>LOCKED · BIOTECH ETL</strong>
+            <span>15+ sources unified. 40% faster.</span>
+          </div>
+
+          <div class="unlock locked" data-unlock="4">
+            <strong>LOCKED · REAL USERS</strong>
+            <span>20+ biologists. 20+ hrs/mo saved.</span>
+          </div>
+
+        </div>
+
+        <div class="side-note" id="sideNote">
+          The terminal below also has some hidden commands.
+        </div>
+
       </div>
+    </section>
+
+    <!-- Skills -->
+
+    <section id="skills" class="reveal">
+      <div class="container">
+
+        <div class="section-label">Skills</div>
+
+        <div class="section-heading">
+          <h2>Tools I actually use.</h2>
+          <p>click one to trace it through the projects</p>
+        </div>
+
+        <div class="skill-list">
+
+          <button class="skill" data-skill="python">Python</button>
+          <button class="skill" data-skill="sql">SQL</button>
+          <button class="skill" data-skill="aws">AWS</button>
+          <button class="skill" data-skill="pandas">pandas</button>
+          <button class="skill" data-skill="numpy">NumPy</button>
+          <button class="skill" data-skill="sklearn">scikit-learn</button>
+          <button class="skill" data-skill="opencv">OpenCV</button>
+          <button class="skill" data-skill="r">R</button>
+          <button class="skill" data-skill="shiny">R Shiny</button>
+          <button class="skill" data-skill="react">React</button>
+          <button class="skill" data-skill="typescript">TypeScript</button>
+          <button class="skill" data-skill="fastapi">FastAPI</button>
+          <button class="skill" data-skill="flask">Flask</button>
+          <button class="skill" data-skill="dynamodb">DynamoDB</button>
+          <button class="skill" data-skill="sqlite">SQLite</button>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Route -->
+
+    <section class="reveal">
+      <div class="container">
+
+        <div class="section-label">Find your route</div>
+
+        <div class="section-heading">
+          <h2>What are you here for?</h2>
+          <p>filter the work</p>
+        </div>
+
+        <div class="path-grid">
+
+          <button class="path-button active" data-path="all">
+            everything
+          </button>
+
+          <button class="path-button" data-path="data">
+            data engineering
+          </button>
+
+          <button class="path-button" data-path="software">
+            software
+          </button>
+
+          <button class="path-button" data-path="analytics">
+            analytics
+          </button>
+
+          <button class="path-button" data-path="ml">
+            machine learning
+          </button>
+
+        </div>
+
+        <p
+          id="pathMessage"
+          style="font-family:var(--mono);color:var(--muted);font-size:.78rem;margin:14px 0 0"
+        >
+          Showing everything.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Terminal -->
+
+    <section class="reveal">
+      <div class="container">
+
+        <div class="section-label">Terminal</div>
+
+        <div class="section-heading">
+          <h2>Try the terminal.</h2>
+          <p>type help</p>
+        </div>
+
+        <div class="terminal">
+
+          <div class="terminal-bar">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="terminal-title">
+              andy@portfolio:~
+            </span>
+          </div>
+
+          <div class="terminal-body">
+
+            <div
+              id="terminalOutput"
+              class="terminal-output"
+              aria-live="polite"
+            >
+              Welcome. Type "help" to see available commands.
+            </div>
+
+            <div class="terminal-form" id="terminalForm">
+              <span class="prompt">$</span>
+
+              <input
+                id="terminalInput"
+                class="terminal-input"
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Terminal command"
+              >
+            </div>
+
+            <div class="terminal-hint">
+              Try: help · about · projects · skills · contact · hire · joke · clear
+              &nbsp;·&nbsp; there are hidden ones too
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+
+    <section id="contact" class="contact reveal">
+      <div class="container">
+
+        <div class="contact-grid">
+
+          <div>
+
+            <div class="section-label">Contact</div>
+
+            <h2>
+              Let's build something useful.
+            </h2>
+
+          </div>
+
+          <div class="contact-links">
+
+            <a href="mailto:andyzhu0915@gmail.com">
+              email
+            </a>
+
+            <a
+              href="https://github.com/AndyZ0915"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              github
+            </a>
+
+            <a
+              href="https://linkedin.com/in/andyzhu04"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              linkedin
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="hire-timer">
+          You've been here for
+          <strong id="hireTimer">00:00</strong>.
+          <span id="timerMessage">Still deciding?</span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <span>
+        Andy Zhu · 2026
+      </span>
+
+      <span>
+        No frameworks were harmed in the making of this portfolio.
+      </span>
+
     </div>
-  </div>
 
-  <div class="skill-note" id="skillNote">SELECT A TECHNOLOGY TO SEE HOW IT FITS INTO THE WORK.</div>
+  </footer>
 
-  <div class="meter-wrap">
-    <div class="meter-head">
-      <span class="meter-label">PORTFOLIO TECHNICAL PROFILE</span>
-      <span class="meter-value">BASED ON PROJECT / EXPERIENCE COVERAGE</span>
-    </div>
-    <div class="meter">
-      <div class="meter-row"><span class="meter-name">DATA</span><div class="meter-track"><div class="meter-fill" data-width="92%"></div></div></div>
-      <div class="meter-row"><span class="meter-name">PYTHON</span><div class="meter-track"><div class="meter-fill" data-width="90%"></div></div></div>
-      <div class="meter-row"><span class="meter-name">CLOUD</span><div class="meter-track"><div class="meter-fill" data-width="82%"></div></div></div>
-      <div class="meter-row"><span class="meter-name">ANALYTICS</span><div class="meter-track"><div class="meter-fill" data-width="88%"></div></div></div>
-      <div class="meter-row"><span class="meter-name">WEB</span><div class="meter-track"><div class="meter-fill" data-width="65%"></div></div></div>
-    </div>
-  </div>
-</section>
+  <script>
 
-<section id="education" class="reveal">
-  <div class="section-head">
-    <span class="eyebrow">04 / EDUCATION</span>
-    <h2 class="section-title">Where I learned</h2>
-    <div class="section-rule"></div>
-  </div>
+    /* =========================================================
+       TYPEWRITER
+       ========================================================= */
 
-  <div class="edu-block">
-    <div>
-      <div class="edu-degree">B.S. Computer Science &amp; Data Science</div>
-      <div class="edu-school">Rutgers University — New Brunswick, NJ</div>
-      <div class="edu-detail">Double Major · Statistics Minor · GPA 3.5 / 4.0</div>
-      <span class="edu-badge">5× Dean's List</span>
-    </div>
-    <div class="edu-date">Graduated May 2026</div>
-  </div>
+    (() => {
+      const el = document.getElementById("heroRole");
 
-  <div class="edu-courses">
-    <div class="courses-label">RELEVANT COURSEWORK</div>
-    <div class="courses-list">
-      <span class="course-tag">Statistical Learning</span>
-      <span class="course-tag">Bayesian Data Analysis</span>
-      <span class="course-tag">Regression Methods</span>
-      <span class="course-tag">Deep Learning</span>
-      <span class="course-tag">Data Management for Data Science</span>
-      <span class="course-tag">Design and Analysis of Algorithms</span>
-      <span class="course-tag">Software Methodology</span>
-      <span class="course-tag">Data Structures</span>
-      <span class="course-tag">Computer Architecture</span>
-    </div>
-  </div>
-</section>
+      if (!el) return;
 
-<section id="leadership" class="reveal">
-  <div class="section-head">
-    <span class="eyebrow">05 / LEADERSHIP</span>
-    <h2 class="section-title">Outside the code</h2>
-    <div class="section-rule"></div>
-  </div>
+      const text = "Software · Data · Analytics · Statistics";
 
-  <div class="role-meta">
-    <span class="role-title">Vice President</span>
-    <span class="role-org">Chinese Student Organization, Rutgers University</span>
-    <span class="role-date">Nov 2022 — May 2025</span>
-  </div>
-  <div class="role-loc">New Brunswick, NJ</div>
-  <ul class="role-points" style="margin-top:1rem;max-width:none">
-    <li>Managed a $20K budget and 25-member executive board to execute 10+ cultural events serving 300+ attendees; finished 15% under budget with 90%+ satisfaction.</li>
-    <li>Led a 25-member cross-functional executive board, overseeing logistics and sponsorship coordination for the organization's annual event calendar.</li>
-  </ul>
-</section>
+      const node = document.createTextNode("");
 
-<div class="terminal reveal">
-  <div class="terminal-bar">
-    <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
-    <span class="term-title">andy@portfolio:~</span>
-  </div>
-  <div class="terminal-body">
-    <div class="term-line"><span class="term-prompt">$</span> whoami</div>
-    <div class="term-output">andy-zhu · data / software / analytics</div>
-    <div class="term-line"><span class="term-prompt">$</span> status</div>
-    <div class="term-output">open_to_work = true</div>
-    <div class="term-line"><span class="term-prompt">$</span> stack</div>
-    <div class="term-output">python · sql · aws · spark · r · javascript</div>
-    <div class="term-input-row">
-      <span class="term-prompt">$</span>
-      <input id="terminalInput" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal command">
-    </div>
-    <div class="term-help">Try: help · about · projects · skills · contact · clear</div>
-    <div id="terminalOutput"></div>
-  </div>
-</div>
+      const cursor = document.createElement("span");
 
-</main>
+      cursor.className = "typewriter-cursor";
+      cursor.setAttribute("aria-hidden", "true");
 
-<div class="contact-strip" id="contact">
-  <div class="contact-inner">
-    <div class="contact-headline">Open to software, data, analytics, and statistics roles.</div>
-    <div class="contact-links">
-      <a href="mailto:andy.zhu915@rutgers.edu" class="contact-link">Email</a>
-      <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener" class="contact-link">LinkedIn ↗</a>
-      <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener" class="contact-link">GitHub ↗</a>
-      <a href="tel:+19082191973" class="contact-link">(908) 219-1973</a>
-    </div>
-  </div>
-</div>
+      el.append(node, cursor);
 
-<footer>
-  <p>Andy Zhu · Livingston, NJ</p>
-  <p>B.S. Computer Science &amp; Data Science, Rutgers '26</p>
-</footer>
+      if (
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        node.nodeValue = text;
+        return;
+      }
 
-<script>
-const nav = document.getElementById('nav');
-const progress = document.getElementById('progress');
-const sections = document.querySelectorAll('main section, #contact');
-const navLinks = document.querySelectorAll('.nav-links a');
+      let i = 0;
 
-function updateScrollUI(){
-  const scrollTop = window.scrollY;
-  const height = document.documentElement.scrollHeight - window.innerHeight;
-  progress.style.width = `${height > 0 ? (scrollTop / height) * 100 : 0}%`;
-  nav.classList.toggle('scrolled', scrollTop > 40);
+      function type() {
+        if (i >= text.length) return;
 
-  let current = '';
-  sections.forEach(section => {
-    if(scrollTop >= section.offsetTop - 140) current = section.id;
-  });
+        node.nodeValue += text[i];
 
-  navLinks.forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-  });
-}
-window.addEventListener('scroll', updateScrollUI, {passive:true});
-updateScrollUI();
+        i++;
 
-document.querySelectorAll('.rail-item').forEach(item => {
-  const activate = () => {
-    document.querySelectorAll('.rail-item').forEach(x => x.classList.remove('active'));
-    item.classList.add('active');
-  };
-  item.addEventListener('click', activate);
-  item.addEventListener('keydown', e => {
-    if(e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      activate();
-    }
-  });
-});
+        const delay = text[i - 1] === " " ? 75 : 42;
 
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
-const projectCount = document.getElementById('projectCount');
+        setTimeout(type, delay);
+      }
 
-filterButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    filterButtons.forEach(b => b.classList.remove('active'));
-    button.classList.add('active');
+      setTimeout(type, 350);
+    })();
 
-    const filter = button.dataset.filter;
-    let count = 0;
 
-    projectCards.forEach(card => {
-      const categories = card.dataset.category.split(' ');
-      const show = filter === 'all' || categories.includes(filter);
-      card.classList.toggle('hidden', !show);
-      if(show) count++;
-    });
+    /* =========================================================
+       PROJECT DETAILS
+       ========================================================= */
 
-    projectCount.textContent = `${count} PROJECT${count === 1 ? '' : 'S'}`;
-  });
-});
+    document
+      .querySelectorAll(".project-toggle")
+      .forEach((button) => {
 
-document.querySelectorAll('.explore-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    const card = button.closest('.project-card');
-    const open = card.classList.toggle('open');
-    button.setAttribute('aria-expanded', open);
-    button.innerHTML = open
-      ? 'CLOSE PROJECT <span>↑</span>'
-      : 'EXPLORE PROJECT <span>→</span>';
-  });
-});
+        button.addEventListener("click", (event) => {
 
-const skillNote = document.getElementById('skillNote');
-document.querySelectorAll('.skill').forEach(skill => {
-  skill.addEventListener('click', () => {
-    document.querySelectorAll('.skill').forEach(s => s.classList.remove('selected'));
-    skill.classList.add('selected');
-    skillNote.textContent = skill.dataset.note || `${skill.textContent} · PART OF THE CURRENT TECHNICAL STACK.`;
-  });
-});
+          event.stopPropagation();
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
+          const card = button.closest(".project-card");
 
-      entry.target.querySelectorAll('.meter-fill').forEach(fill => {
-        fill.style.width = fill.dataset.width;
+          if (!card) return;
+
+          const open = card.classList.toggle("open");
+
+          button.textContent =
+            open ? "hide details" : "details";
+
+        });
+
       });
+
+
+    /* =========================================================
+       PROJECT FILTERS
+       ========================================================= */
+
+    const projectCards = [
+      ...document.querySelectorAll(".project-card")
+    ];
+
+    function filterProjects(value) {
+
+      projectCards.forEach((card) => {
+
+        const categories =
+          card.dataset.category.split(" ");
+
+        const visible =
+          value === "all" ||
+          categories.includes(value);
+
+        card.classList.toggle(
+          "hidden",
+          !visible
+        );
+
+      });
+
     }
-  });
-}, {threshold:.12});
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document
+      .querySelectorAll(".filter")
+      .forEach((button) => {
 
-const terminalInput = document.getElementById('terminalInput');
-const terminalOutput = document.getElementById('terminalOutput');
+        button.addEventListener("click", () => {
 
-const commands = {
-  help: 'commands: about · projects · skills · contact · clear',
-  about: 'Andy Zhu · Rutgers CS + Data Science · Statistics minor',
-  projects: '7 projects · data engineering · machine learning · web · systems',
-  skills: 'python · sql · aws · pyspark · r · javascript',
-  contact: 'andy.zhu915@rutgers.edu · linkedin.com/in/andyzhu04 · github.com/AndyZ0915'
-};
+          document
+            .querySelectorAll(".filter")
+            .forEach((item) => {
+              item.classList.remove("active");
+            });
 
-terminalInput.addEventListener('keydown', e => {
-  if(e.key !== 'Enter') return;
+          button.classList.add("active");
 
-  const command = terminalInput.value.trim().toLowerCase();
-  terminalInput.value = '';
+          filterProjects(
+            button.dataset.filter
+          );
 
-  if(command === 'clear'){
-    terminalOutput.innerHTML = '';
-    return;
-  }
+        });
 
-  const response = commands[command] || `command not found: ${command || '(empty)'}`;
+      });
 
-  const line = document.createElement('div');
-  line.className = 'term-line';
-  line.innerHTML = `<span class="term-prompt">$</span> ${escapeHtml(command || '')}`;
 
-  const output = document.createElement('div');
-  output.className = 'term-output';
-  output.textContent = response;
+    /* =========================================================
+       SKILL TRACE
+       ========================================================= */
 
-  terminalOutput.appendChild(line);
-  terminalOutput.appendChild(output);
-});
+    document
+      .querySelectorAll(".skill")
+      .forEach((button) => {
 
-function escapeHtml(value){
-  return value.replace(/[&<>"']/g, char => ({
-    '&':'&amp;',
-    '<':'&lt;',
-    '>':'&gt;',
-    '"':'&quot;',
-    "'":'&#039;'
-  }[char]));
-}
-</script>
+        button.addEventListener("click", () => {
+
+          const wasActive =
+            button.classList.contains("active");
+
+          document
+            .querySelectorAll(".skill")
+            .forEach((item) => {
+              item.classList.remove("active");
+            });
+
+          projectCards.forEach((card) => {
+            card.classList.remove("skill-match");
+          });
+
+          if (wasActive) return;
+
+          button.classList.add("active");
+
+          projectCards.forEach((card) => {
+
+            const skills =
+              card.dataset.skills.split(" ");
+
+            if (
+              skills.includes(
+                button.dataset.skill
+              )
+            ) {
+              card.classList.add("skill-match");
+            }
+
+          });
+
+        });
+
+      });
+
+
+    /* =========================================================
+       ROUTE SELECTOR
+       ========================================================= */
+
+    const pathMessage =
+      document.getElementById("pathMessage");
+
+    const pathText = {
+      all: "Showing everything.",
+      data: "Showing data-focused work.",
+      software: "Showing software-focused work.",
+      analytics: "Showing analytics-focused work.",
+      ml: "Showing machine-learning work."
+    };
+
+    document
+      .querySelectorAll(".path-button")
+      .forEach((button) => {
+
+        button.addEventListener("click", () => {
+
+          const value =
+            button.dataset.path;
+
+          document
+            .querySelectorAll(".path-button")
+            .forEach((item) => {
+              item.classList.remove("active");
+            });
+
+          button.classList.add("active");
+
+          filterProjects(value);
+
+          pathMessage.textContent =
+            pathText[value];
+
+          document
+            .getElementById("projects")
+            .scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+        });
+
+      });
+
+
+    /* =========================================================
+       BASKETBALL GAME
+       ========================================================= */
+
+    (() => {
+
+      const area =
+        document.getElementById("gameArea");
+
+      const ballEl =
+        document.getElementById("ball");
+
+      const overlay =
+        document.getElementById("gameOverlay");
+
+      const titleEl =
+        document.getElementById("overlayTitle");
+
+      const textEl =
+        document.getElementById("overlayText");
+
+      const startBtn =
+        document.getElementById("startGame");
+
+      const scoreEl =
+        document.getElementById("gameScore");
+
+      const streakEl =
+        document.getElementById("gameStreak");
+
+      const shotsEl =
+        document.getElementById("gameShots");
+
+      const statusEl =
+        document.getElementById("gameStatus");
+
+      const noteEl =
+        document.getElementById("sideNote");
+
+      const flashEl =
+        document.getElementById("shotFlash");
+
+      const powerFill =
+        document.getElementById("powerFill");
+
+      const reticle =
+        document.getElementById("aimReticle");
+
+      const netSvg =
+        document.getElementById("netSvg");
+
+      const unlockEls = [
+        ...document.querySelectorAll(".unlock")
+      ];
+
+      const BALL_R = 14;
+
+      const SHOOT_X = 100;
+
+      const SHOOT_Y = () =>
+        area.clientHeight - 70;
+
+      const G = 1800;
+
+      let playing = false;
+      let shooting = false;
+
+      let score = 0;
+      let streak = 0;
+      let shots = 0;
+      let unlocked = 0;
+
+      let aimAngleDeg = 55;
+      let power = 0.72;
+
+      let trajectoryDots = [];
+
+      const makeQuips = [
+        "Buckets.",
+        "Money.",
+        "Nothing but net.",
+        "Swish.",
+        "That's a W.",
+        "Ice in the veins."
+      ];
+
+      const missQuips = [
+        "Brick.",
+        "Off the backboard.",
+        "Rough.",
+        "Not even close.",
+        "Airball energy.",
+        "Missed wide."
+      ];
+
+      const streakQuips = {
+        2: "Two in a row.",
+        3: "On fire.",
+        4: "Heat check.",
+        5: "Unconscious."
+      };
+
+      const UNLOCK_DATA = [
+        [
+          "THE FED",
+          "28 datasets. Onboarding: weeks → 2 days."
+        ],
+        [
+          "COMPUTER VISION",
+          "91% accuracy. 10hr → 12min analysis."
+        ],
+        [
+          "BIOTECH ETL",
+          "15+ sources unified. 40% faster."
+        ],
+        [
+          "REAL USERS",
+          "20+ biologists. 20+ person-hrs/mo saved."
+        ]
+      ];
+
+      function clamp(value, min, max) {
+        return Math.max(
+          min,
+          Math.min(max, value)
+        );
+      }
+
+      function random(min, max) {
+        return min +
+          Math.random() * (max - min);
+      }
+
+      function rimGeometry() {
+
+        const hoopRight = 115;
+        const hoopWidth = 92;
+
+        const rimRightOffset = 7;
+
+        const rimLeft =
+          area.clientWidth -
+          hoopRight -
+          hoopWidth +
+          rimRightOffset;
+
+        const rimWidth = 55;
+
+        const rimTop = 105 + 48;
+
+        return {
+          left: rimLeft,
+          right: rimLeft + rimWidth,
+          top: rimTop,
+          center: rimLeft + rimWidth / 2
+        };
+      }
+
+      function showFlash(text, opacity = 1) {
+
+        flashEl.textContent = text;
+
+        flashEl.style.opacity =
+          String(opacity);
+
+        clearTimeout(
+          flashEl._timer
+        );
+
+        flashEl._timer =
+          setTimeout(() => {
+            flashEl.style.opacity = "0";
+          }, 900);
+      }
+
+      function clearTrajectory() {
+
+        trajectoryDots.forEach((dot) => {
+          dot.remove();
+        });
+
+        trajectoryDots = [];
+      }
+
+      function computeVelocity() {
+
+        const angle =
+          aimAngleDeg *
+          Math.PI /
+          180;
+
+        const speed =
+          430 +
+          power * 350;
+
+        const vx =
+          Math.cos(angle) * speed;
+
+        const vy =
+          Math.sin(angle) * speed;
+
+        return {
+          vx,
+          vy
+        };
+      }
+
+      function drawTrajectory() {
+
+        clearTrajectory();
+
+        const {
+          vx,
+          vy
+        } = computeVelocity();
+
+        const dt = 0.018;
+
+        let x = SHOOT_X;
+        let y = SHOOT_Y();
+
+        let velocityY = vy;
+
+        for (let i = 0; i < 35; i++) {
+
+          x += vx * dt;
+          y -= velocityY * dt;
+
+          velocityY -= G * dt;
+
+          if (
+            x < 0 ||
+            x > area.clientWidth ||
+            y > area.clientHeight + 20
+          ) {
+            break;
+          }
+
+          if (i % 2 === 0) {
+
+            const dot =
+              document.createElement("div");
+
+            dot.className =
+              "traj-dot";
+
+            dot.style.left =
+              `${x - 2}px`;
+
+            dot.style.top =
+              `${y - 2}px`;
+
+            dot.style.opacity =
+              String(
+                Math.max(
+                  0.08,
+                  0.5 - i / 90
+                )
+              );
+
+            area.appendChild(dot);
+
+            trajectoryDots.push(dot);
+          }
+        }
+      }
+
+      function updateAim() {
+
+        reticle.style.left =
+          `${SHOOT_X}px`;
+
+        reticle.style.top =
+          `${SHOOT_Y()}px`;
+
+        const percentage =
+          clamp(
+            ((power - 0.45) / 0.65) *
+            100,
+            0,
+            100
+          );
+
+        powerFill.style.height =
+          `${percentage}%`;
+      }
+
+      function updateFromPointer(event) {
+
+        if (
+          !playing ||
+          shooting
+        ) {
+          return;
+        }
+
+        const rect =
+          area.getBoundingClientRect();
+
+        const mouseX =
+          event.clientX -
+          rect.left;
+
+        const mouseY =
+          event.clientY -
+          rect.top;
+
+        const dx =
+          mouseX - SHOOT_X;
+
+        const dy =
+          SHOOT_Y() - mouseY;
+
+        if (dx <= 0) return;
+
+        const angle =
+          Math.atan2(
+            dy,
+            dx
+          ) *
+          180 /
+          Math.PI;
+
+        aimAngleDeg =
+          clamp(
+            angle,
+            25,
+            78
+          );
+
+        const distance =
+          Math.hypot(
+            dx,
+            dy
+          );
+
+        power =
+          clamp(
+            distance / 300,
+            0.45,
+            1.1
+          );
+
+        updateAim();
+
+        drawTrajectory();
+      }
+
+      function animateNet() {
+
+        netSvg.style.transition =
+          "transform 0s";
+
+        netSvg.style.transform =
+          "scaleY(1.18) scaleX(0.88)";
+
+        setTimeout(() => {
+
+          netSvg.style.transition =
+            "transform 0.4s cubic-bezier(.22,1,.36,1)";
+
+          netSvg.style.transform =
+            "scaleY(1) scaleX(1)";
+
+        }, 20);
+      }
+
+      function unlockNext() {
+
+        if (
+          unlocked >=
+          unlockEls.length
+        ) {
+          return;
+        }
+
+        const element =
+          unlockEls[unlocked];
+
+        const [
+          label,
+          description
+        ] =
+          UNLOCK_DATA[unlocked];
+
+        element
+          .querySelector("strong")
+          .textContent =
+          label;
+
+        element
+          .querySelector("span")
+          .textContent =
+          description;
+
+        unlocked++;
+
+        element.classList.remove(
+          "locked"
+        );
+
+        element.classList.add(
+          "unlocked"
+        );
+
+        const remaining =
+          unlockEls.length -
+          unlocked;
+
+        statusEl.textContent =
+          remaining > 0
+            ? `${unlocked}/4 unlocked · ${remaining} more to go`
+            : "ALL STATS UNLOCKED";
+      }
+
+      function resetBall() {
+
+        ballEl.style.left =
+          `${SHOOT_X - BALL_R}px`;
+
+        ballEl.style.top =
+          `${SHOOT_Y() - BALL_R}px`;
+
+        ballEl.style.transform =
+          "rotate(0deg)";
+
+        updateAim();
+      }
+
+      function resolveShot(made) {
+
+        if (made) {
+
+          score++;
+          streak++;
+
+          scoreEl.textContent =
+            String(score);
+
+          streakEl.textContent =
+            String(streak);
+
+          const quip =
+            streakQuips[streak] ||
+            makeQuips[
+              Math.floor(
+                Math.random() *
+                makeQuips.length
+              )
+            ];
+
+          showFlash(quip);
+
+          animateNet();
+
+          unlockNext();
+
+        } else {
+
+          const previousStreak =
+            streak;
+
+          streak = 0;
+
+          streakEl.textContent =
+            "0";
+
+          const quip =
+            previousStreak >= 3
+              ? `Streak gone. (${previousStreak} in a row though.)`
+              : missQuips[
+                  Math.floor(
+                    Math.random() *
+                    missQuips.length
+                  )
+                ];
+
+          showFlash(quip);
+        }
+      }
+
+      function shoot() {
+
+        if (
+          !playing ||
+          shooting
+        ) {
+          return;
+        }
+
+        shooting = true;
+
+        shots++;
+
+        shotsEl.textContent =
+          String(shots);
+
+        clearTrajectory();
+
+        powerFill.style.height =
+          "0%";
+
+        let {
+          vx,
+          vy
+        } = computeVelocity();
+
+        vx += random(-15, 15);
+        vy += random(-18, 18);
+
+        let x = SHOOT_X;
+        let y = SHOOT_Y();
+
+        let rotation = 0;
+
+        const rim =
+          rimGeometry();
+
+        let previousTime =
+          performance.now();
+
+        let made = false;
+        let resolved = false;
+        let rimChecked = false;
+
+        function frame(now) {
+
+          const dt =
+            Math.min(
+              (now - previousTime) / 1000,
+              0.033
+            );
+
+          previousTime = now;
+
+          x += vx * dt;
+          y -= vy * dt;
+
+          vy -= G * dt;
+
+          rotation +=
+            vx * dt * 0.55;
+
+          ballEl.style.left =
+            `${x - BALL_R}px`;
+
+          ballEl.style.top =
+            `${y - BALL_R}px`;
+
+          ballEl.style.transform =
+            `rotate(${rotation}deg)`;
+
+          /*
+           * The ball is considered a make when its center
+           * crosses the rim plane while moving downward,
+           * and the center is safely inside the rim opening.
+           */
+
+          if (
+            !rimChecked &&
+            vy < 0 &&
+            y >= rim.top &&
+            y <= rim.top + 28
+          ) {
+
+            rimChecked = true;
+
+            const inside =
+              x >
+                rim.left + BALL_R + 3 &&
+              x <
+                rim.right - BALL_R - 3;
+
+            if (inside) {
+              made = true;
+            }
+          }
+
+          /*
+           * Basic backboard interaction.
+           */
+
+          const backboardLeft =
+            area.clientWidth -
+            115 -
+            92 +
+            55;
+
+          const backboardTop =
+            105;
+
+          const backboardBottom =
+            backboardTop + 42;
+
+          if (
+            x + BALL_R >
+              backboardLeft &&
+            x - BALL_R <
+              backboardLeft + 4 &&
+            y >
+              backboardTop - 10 &&
+            y <
+              backboardBottom + 10 &&
+            vx > 0
+          ) {
+
+            x =
+              backboardLeft -
+              BALL_R;
+
+            vx =
+              -Math.abs(vx) * 0.55;
+          }
+
+          /*
+           * Rim edge collision.
+           */
+
+          if (
+            !made &&
+            rimChecked &&
+            y >= rim.top - 2 &&
+            y <= rim.top + 15 &&
+            x >= rim.left - 4 &&
+            x <= rim.right + 4
+          ) {
+
+            const center =
+              rim.center;
+
+            vx +=
+              x < center
+                ? -random(25, 70)
+                : random(25, 70);
+
+            vy =
+              Math.abs(vy) * 0.42;
+          }
+
+          /*
+           * Finish when ball reaches the floor or leaves the area.
+           */
+
+          const floor =
+            area.clientHeight -
+            25;
+
+          const finished =
+            y >= floor ||
+            x >
+              area.clientWidth +
+              BALL_R * 2 ||
+            x <
+              -BALL_R * 3;
+
+          if (
+            !finished &&
+            !made
+          ) {
+
+            requestAnimationFrame(
+              frame
+            );
+
+            return;
+          }
+
+          if (resolved) return;
+
+          resolved = true;
+
+          resolveShot(made);
+
+          setTimeout(() => {
+
+            resetBall();
+
+            shooting = false;
+
+            if (score >= 4) {
+              finishGame();
+            } else if (shots >= 10) {
+              endGame();
+            }
+
+          }, made ? 380 : 220);
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      function startGame() {
+
+        playing = true;
+        shooting = false;
+
+        score = 0;
+        streak = 0;
+        shots = 0;
+        unlocked = 0;
+
+        scoreEl.textContent = "0";
+        streakEl.textContent = "0";
+        shotsEl.textContent = "0";
+
+        unlockEls.forEach((element, index) => {
+
+          element.classList.remove(
+            "unlocked"
+          );
+
+          element.classList.add(
+            "locked"
+          );
+
+          const labels = [
+            "THE FED",
+            "COMPUTER VISION",
+            "BIOTECH ETL",
+            "REAL USERS"
+          ];
+
+          const descriptions = [
+            "28 datasets. Onboarding: weeks → 2 days.",
+            "91% accuracy. 10hr → 12min.",
+            "15+ sources unified. 40% faster.",
+            "20+ biologists. 20+ person-hours/mo saved."
+          ];
+
+          element
+            .querySelector("strong")
+            .textContent =
+            `LOCKED · ${labels[index]}`;
+
+          element
+            .querySelector("span")
+            .textContent =
+            descriptions[index];
+
+        });
+
+        statusEl.textContent =
+          "Sink 3 to unlock the stats";
+
+        noteEl.textContent =
+          "The terminal below also has some hidden commands.";
+
+        overlay.classList.add(
+          "hidden"
+        );
+
+        resetBall();
+
+        clearTrajectory();
+      }
+
+      function finishGame() {
+
+        playing = false;
+
+        const percentage =
+          shots > 0
+            ? Math.round(
+                score / shots * 100
+              )
+            : 0;
+
+        titleEl.textContent =
+          "ALL STATS UNLOCKED";
+
+        textEl.textContent =
+          `${score} for ${shots} (${percentage}% FG). Stats revealed. Check the terminal for more.`;
+
+        startBtn.textContent =
+          "RUN IT BACK";
+
+        overlay.classList.remove(
+          "hidden"
+        );
+      }
+
+      function endGame() {
+
+        playing = false;
+
+        let title;
+        let text;
+
+        if (score === 0) {
+
+          title =
+            "BIG BRICK ENERGY";
+
+          text =
+            `0 for ${shots}. Legendary brick session.`;
+
+        } else if (score >= 3) {
+
+          title =
+            "CLOSE ONE";
+
+          text =
+            `${score} for ${shots}. One bucket short of unlocking everything.`;
+
+        } else {
+
+          title =
+            "GOOD RUN";
+
+          const percentage =
+            Math.round(
+              score / shots * 100
+            );
+
+          text =
+            `${score} for ${shots} (${percentage}% FG). Try again to unlock all stats.`;
+        }
+
+        titleEl.textContent =
+          title;
+
+        textEl.textContent =
+          text;
+
+        startBtn.textContent =
+          "RUN IT BACK";
+
+        overlay.classList.remove(
+          "hidden"
+        );
+      }
+
+      area.addEventListener(
+        "mousemove",
+        updateFromPointer
+      );
+
+      area.addEventListener(
+        "mouseleave",
+        clearTrajectory
+      );
+
+      area.addEventListener(
+        "click",
+        (event) => {
+
+          if (
+            event.target.closest(
+              ".game-overlay"
+            )
+          ) {
+            return;
+          }
+
+          shoot();
+        }
+      );
+
+      document.addEventListener(
+        "keydown",
+        (event) => {
+
+          if (
+            event.code !== "Space"
+          ) {
+            return;
+          }
+
+          const rect =
+            document
+              .getElementById(
+                "side-quest"
+              )
+              .getBoundingClientRect();
+
+          if (
+            rect.top <
+              window.innerHeight &&
+            rect.bottom > 0
+          ) {
+
+            event.preventDefault();
+
+            shoot();
+          }
+        }
+      );
+
+      startBtn.addEventListener(
+        "click",
+        startGame
+      );
+
+      resetBall();
+
+    })();
+
+
+    /* =========================================================
+       TERMINAL
+       ========================================================= */
+
+    (() => {
+
+      const form =
+        document.getElementById(
+          "terminalForm"
+        );
+
+      const input =
+        document.getElementById(
+          "terminalInput"
+        );
+
+      const output =
+        document.getElementById(
+          "terminalOutput"
+        );
+
+      const commands = {
+
+        help:
+`Available commands:
+
+about       who I am
+ls          list portfolio sections
+projects    list projects
+skills      list technologies
+contact     contact information
+hire        why hire me
+joke        questionable developer humor
+clear       clear terminal
+
+Hidden commands exist too.`,
+
+        about:
+`Andy Zhu
+
+Rutgers University, Class of 2026
+B.S. Computer Science & Data Science
+Statistics Minor
+GPA: 3.5
+Dean's List x5
+
+Data + software + analytics.
+
+I chose CS because I actually like to code.`,
+
+        ls:
+`about.txt
+experience/
+  ├── federal-reserve/
+  └── simcere/
+projects/
+side-quest/
+skills/
+contact.txt`,
+
+        projects:
+`01  Algorithmic Trading Backtester     [data · analytics]
+02  Cell Imaging Analysis Tool         [software · ml]
+03  Credit Risk Prediction             [data · ml · analytics]
+04  System Monitoring Dashboard        [software · data]
+05  NBA Analytics Platform             [data · analytics]
+06  R&D Lab Data Automation             [software · analytics]
+07  Servin Food Recommendation         [software · data]`,
+
+        skills:
+`Python · SQL · R · TypeScript · JavaScript · Java
+
+AWS:
+Lambda · Glue · Athena · S3 · EMR · DynamoDB · CDK · EC2 · RDS
+
+Data:
+PySpark · Apache Airflow · pandas · NumPy · Docker
+
+ML:
+scikit-learn · TensorFlow · Cellpose · OpenCV
+
+Application:
+R Shiny · React · FastAPI · Flask · PostgreSQL · SQLite`,
+
+        contact:
+`Email:    andyzhu0915@gmail.com
+GitHub:   github.com/AndyZ0915
+LinkedIn: linkedin.com/in/andyzhu04
+
+I check all three.`,
+
+        hire:
+`Reasons to hire Andy:
+
+- Comfortable with ambiguous problems
+- Will ask the right questions before building
+- Cares about whether the output is actually useful
+- Ships things that stay useful after the demo
+- Knows when a framework is unnecessary overhead
+
+Not reasons to hire Andy:
+
+- If you need someone with 5 years of experience
+
+That is genuinely the only one.`,
+
+        joke:
+`Two bugs walk into a bar.
+
+First bug:
+"I haven't shipped in months."
+
+Second bug:
+"I am in production right now."`,
+
+        whoami:
+`andy`,
+
+        sudo:
+`Permission denied.
+
+Nice try though.`,
+
+        nba:
+`Andy builds NBA analytics tools in his free time.
+
+He is very normal about basketball.`,
+
+        stat:
+`Statistics fact:
+
+Correlation does not imply causation.
+
+In Andy's experience, people will still build dashboards assuming it does.`,
+
+        python:
+`Python 3.12.0
+portfolio-build
+
+Type "exit()" to quit.
+
+Just kidding.
+You are still here.`,
+
+        ping:
+`PING portfolio
+
+1 packet
+Reply: time=0ms
+
+Fast because there is no backend.`,
+
+        rutgers:
+`R-U RAH RAH, R-U RAH RAH
+Hoo-Rah, Hoo-Rah, Rutgers, Rah
+
+Class of 2026.
+3.5 GPA.
+Dean's List x5.
+
+Scarlet Knights.`,
+
+        basketball:
+`You typed basketball into a terminal.
+
+Scroll up and actually play the game.`,
+
+        "git log":
+`commit f2a91c3 (HEAD -> main)
+Author: Andy Zhu
+Date:   recent
+
+    add real physics to basketball game
+
+commit 88d2b41
+
+    fix look-ahead bias in backtester
+
+commit 1f40cc9
+
+    rm -rf node_modules
+
+commit 4e9d102
+
+    initial commit
+    it works on my machine`,
+
+        secret:
+`Found it.
+
+Real secret:
+
+The basketball uses projectile physics:
+v0*t - 0.5*g*t²
+
+Every shot gets a small random perturbation
+on its initial velocity vector.
+
+Also try:
+
+whoami
+sudo
+nba
+ping
+stat
+python
+rutgers
+git log`
+
+      };
+
+      const history = [];
+
+      let historyIndex = -1;
+
+      form.addEventListener(
+        "keydown",
+        (event) => {
+
+          if (
+            event.key !== "Enter"
+          ) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const command =
+            input.value
+              .trim()
+              .toLowerCase();
+
+          if (!command) {
+            return;
+          }
+
+          history.push(command);
+
+          historyIndex =
+            history.length;
+
+          if (command === "clear") {
+
+            output.textContent = "";
+
+            input.value = "";
+
+            return;
+          }
+
+          let response;
+
+          if (command === "date") {
+
+            const graduation =
+              new Date(
+                "2026-05-15T00:00:00"
+              );
+
+            const days =
+              Math.floor(
+                (
+                  Date.now() -
+                  graduation.getTime()
+                ) /
+                86400000
+              );
+
+            response =
+              `${new Date().toDateString()}
+
+Days since graduation: ${days}
+
+Still looking for the right role.`;
+
+          } else {
+
+            response =
+              commands[command] ||
+              `Command not found: "${command}"
+
+Type "help" for available commands.`;
+
+          }
+
+          const previous =
+            output.textContent.trim();
+
+          output.textContent =
+            (
+              previous
+                ? previous + "\n\n"
+                : ""
+            ) +
+            "$ " +
+            command +
+            "\n" +
+            response;
+
+          input.value = "";
+
+          setTimeout(() => {
+
+            output.scrollTop =
+              output.scrollHeight;
+
+          }, 10);
+
+        }
+      );
+
+      input.addEventListener(
+        "keydown",
+        (event) => {
+
+          if (
+            event.key === "ArrowUp"
+          ) {
+
+            event.preventDefault();
+
+            if (history.length) {
+
+              historyIndex =
+                Math.max(
+                  0,
+                  historyIndex - 1
+                );
+
+              input.value =
+                history[
+                  historyIndex
+                ] || "";
+            }
+          }
+
+          if (
+            event.key === "ArrowDown"
+          ) {
+
+            event.preventDefault();
+
+            historyIndex =
+              Math.min(
+                history.length,
+                historyIndex + 1
+              );
+
+            input.value =
+              history[
+                historyIndex
+              ] || "";
+          }
+
+        }
+      );
+
+    })();
+
+
+    /* =========================================================
+       HIRE TIMER
+       ========================================================= */
+
+    (() => {
+
+      const timer =
+        document.getElementById(
+          "hireTimer"
+        );
+
+      const message =
+        document.getElementById(
+          "timerMessage"
+        );
+
+      const start =
+        Date.now();
+
+      const milestones = [
+        [0, "Still deciding?"],
+        [15, "Good sign."],
+        [30, "You're actually reading this."],
+        [60, "Okay you're thorough. Respect."],
+        [90, "This is longer than most first-round interviews."],
+        [120, "Andy is fully employed if you just email him."],
+        [180, "At this point you might as well reach out."],
+        [240, "Seriously though. andyzhu0915@gmail.com."],
+        [300, "Five minutes. You win. Email him."],
+        [420, "Seven minutes. Bold move."],
+        [600, "Ten minutes. He would just like a job, thanks."]
+      ];
+
+      function updateTimer() {
+
+        const seconds =
+          Math.floor(
+            (Date.now() - start) /
+            1000
+          );
+
+        const minutes =
+          Math.floor(
+            seconds / 60
+          );
+
+        timer.textContent =
+          String(minutes)
+            .padStart(2, "0") +
+          ":" +
+          String(
+            seconds % 60
+          ).padStart(2, "0");
+
+        let current =
+          milestones[0][1];
+
+        for (
+          const [
+            threshold,
+            text
+          ] of milestones
+        ) {
+
+          if (
+            seconds >= threshold
+          ) {
+            current = text;
+          }
+
+        }
+
+        message.textContent =
+          current;
+      }
+
+      setInterval(
+        updateTimer,
+        1000
+      );
+
+      updateTimer();
+
+    })();
+
+
+    /* =========================================================
+       SCROLL REVEAL
+       ========================================================= */
+
+    (() => {
+
+      const elements =
+        document.querySelectorAll(
+          ".reveal"
+        );
+
+      if (
+        !(
+          "IntersectionObserver" in
+          window
+        )
+      ) {
+
+        elements.forEach(
+          (element) => {
+            element.classList.add(
+              "visible"
+            );
+          }
+        );
+
+        return;
+      }
+
+      const observer =
+        new IntersectionObserver(
+          (entries) => {
+
+            entries.forEach(
+              (entry) => {
+
+                if (
+                  entry.isIntersecting
+                ) {
+
+                  entry.target.classList.add(
+                    "visible"
+                  );
+
+                  observer.unobserve(
+                    entry.target
+                  );
+
+                }
+
+              }
+            );
+
+          },
+          {
+            threshold: 0.12
+          }
+        );
+
+      elements.forEach(
+        (element) => {
+          observer.observe(element);
+        }
+      );
+
+    })();
+
+  </script>
+
 </body>
 </html>
