@@ -17,13 +17,12 @@
       --border: #deded7;
       --soft: #efefe9;
       --dark: #191919;
+      --accent: #2563eb;
       --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
       --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
@@ -38,1033 +37,446 @@
       line-height: 1.55;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    button {
-      -webkit-tap-highlight-color: transparent;
-    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
 
     .container {
       width: min(1100px, calc(100% - 40px));
       margin: 0 auto;
     }
 
-    .mono,
-    .eyebrow,
-    .section-label,
-    .project-number,
-    .complexity,
-    .tag,
-    .filter,
-    .skill,
-    .path-button,
-    .timeline-role,
-    .terminal,
-    .hire-timer,
-    footer {
-      font-family: var(--mono);
-    }
+    .mono, .eyebrow, .section-label, .project-number, .complexity,
+    .tag, .filter, .skill, .path-button, .timeline-role, .terminal,
+    .hire-timer, footer { font-family: var(--mono); }
 
-    /* Navigation */
-
+    /* ── Nav ── */
     .nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid rgba(222, 222, 215, 0.9);
-      background: rgba(247, 247, 244, 0.9);
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid rgba(222,222,215,0.9);
+      background: rgba(247,247,244,0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
-
     .nav-inner {
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      height: 64px; display: flex;
+      align-items: center; justify-content: space-between;
     }
+    .logo { font-family: var(--mono); font-weight: 700; font-size: 0.9rem; letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 24px; font-size: 0.86rem; color: var(--muted); }
+    .nav-links a { transition: color 0.15s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--text); }
 
-    .logo {
-      font-family: var(--mono);
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .nav-links a {
-      transition: color 0.15s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      color: var(--text);
-    }
-
-    /* Hero */
-
+    /* ── Hero ── */
     .hero {
-      min-height: 82vh;
-      display: flex;
-      align-items: center;
-      padding: 100px 0 80px;
+      min-height: 82vh; display: flex;
+      align-items: center; padding: 100px 0 80px;
     }
-
-    .eyebrow,
-    .section-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .eyebrow, .section-label {
+      font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
     }
-
     .hero h1 {
-      max-width: 900px;
-      margin: 14px 0 18px;
+      max-width: 900px; margin: 14px 0 18px;
       font-size: clamp(3.5rem, 9vw, 7.8rem);
-      line-height: 0.9;
-      letter-spacing: -0.075em;
+      line-height: 0.9; letter-spacing: -0.075em;
     }
-
     .hero-role {
-      min-height: 32px;
-      font-family: var(--mono);
-      font-size: clamp(0.9rem, 2vw, 1.05rem);
-      color: var(--muted);
+      min-height: 32px; font-family: var(--mono);
+      font-size: clamp(0.9rem, 2vw, 1.05rem); color: var(--muted);
     }
-
     .typewriter-cursor {
-      display: inline-block;
-      width: 7px;
-      height: 1em;
-      margin-left: 5px;
-      vertical-align: -2px;
-      background: currentColor;
-      animation: blink 0.9s steps(1) infinite;
+      display: inline-block; width: 7px; height: 1em;
+      margin-left: 5px; vertical-align: -2px;
+      background: currentColor; animation: blink 0.9s steps(1) infinite;
     }
-
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
-
-    .hero-copy {
-      max-width: 620px;
-      margin-top: 30px;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 32px;
-      flex-wrap: wrap;
-    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero-copy { max-width: 580px; margin-top: 30px; color: var(--muted); font-size: 1.05rem; }
+    .hero-actions { display: flex; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
 
     .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0 16px;
-      border: 1px solid var(--text);
-      border-radius: 7px;
-      background: var(--text);
-      color: #fff;
-      font-size: 0.86rem;
-      cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 42px; padding: 0 16px;
+      border: 1px solid var(--text); border-radius: 7px;
+      background: var(--text); color: #fff;
+      font-size: 0.86rem; cursor: pointer;
       transition: transform 0.15s ease, background 0.15s ease;
     }
-
     .button.secondary {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--border);
+      background: transparent; color: var(--text); border-color: var(--border);
     }
+    .button:hover, .button:focus-visible { transform: translateY(-1px); }
 
-    .button:hover,
-    .button:focus-visible {
-      transform: translateY(-1px);
-    }
-
-    /* Sections */
-
-    section {
-      padding: 95px 0;
-      border-top: 1px solid var(--border);
-    }
-
+    /* ── Sections ── */
+    section { padding: 95px 0; border-top: 1px solid var(--border); }
     .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
+      display: flex; align-items: end;
+      justify-content: space-between; gap: 24px;
       margin: 12px 0 38px;
     }
-
     .section-heading h2 {
-      margin: 0;
-      font-size: clamp(2rem, 5vw, 3.6rem);
-      letter-spacing: -0.05em;
-      line-height: 1;
+      margin: 0; font-size: clamp(2rem, 5vw, 3.6rem);
+      letter-spacing: -0.05em; line-height: 1;
     }
+    .section-heading p { margin: 0; color: var(--muted); font-family: var(--mono); font-size: 0.78rem; }
 
-    .section-heading p {
-      margin: 0;
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 0.78rem;
-    }
-
-    /* Experience */
-
-    .timeline {
+    /* ── About Me ── */
+    .about-grid {
       display: grid;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 40px;
-      padding: 28px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .timeline-item:last-child {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .timeline-date {
-      font-family: var(--mono);
-      font-size: 0.76rem;
-      color: var(--muted);
-    }
-
-    .timeline-company {
-      margin: 0 0 4px;
-      font-size: 1.2rem;
-    }
-
-    .timeline-role {
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
-
-    .timeline-item ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .timeline-item li + li {
-      margin-top: 7px;
-    }
-
-    /* Projects */
-
-    .filters,
-    .path-grid,
-    .skill-list {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .filters {
-      margin-bottom: 28px;
-    }
-
-    .filter,
-    .skill,
-    .path-button {
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      border-radius: 7px;
-      padding: 8px 12px;
-      font-size: 0.72rem;
-      cursor: pointer;
-      transition:
-        background 0.15s ease,
-        color 0.15s ease,
-        border-color 0.15s ease;
-    }
-
-    .filter {
-      border-radius: 999px;
-    }
-
-    .filter:hover,
-    .filter:focus-visible,
-    .filter.active,
-    .path-button:hover,
-    .path-button:focus-visible,
-    .path-button.active,
-    .skill:hover,
-    .skill:focus-visible,
-    .skill.active {
-      background: var(--text);
-      color: #fff;
-      border-color: var(--text);
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .project-card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--surface);
-      padding: 25px;
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-3px);
-      border-color: #bcbcb5;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
-    }
-
-    .project-card.hidden {
-      display: none;
-    }
-
-    .project-card.skill-match {
-      border-color: var(--text);
-      box-shadow: 0 0 0 2px rgba(23, 23, 23, 0.06);
-    }
-
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: flex-start;
-    }
-
-    .project-number {
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    .project-card h3 {
-      margin: 10px 0 8px;
-      font-size: 1.35rem;
-      letter-spacing: -0.02em;
-    }
-
-    .project-card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .complexity {
-      white-space: nowrap;
-      font-size: 0.68rem;
-      color: var(--muted);
-    }
-
-    .pips {
-      letter-spacing: 2px;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 20px;
-    }
-
-    .tag {
-      padding: 4px 7px;
-      background: var(--soft);
-      border-radius: 4px;
-      font-size: 0.67rem;
-    }
-
-    .project-details {
-      display: none;
-      margin-top: 20px;
-      padding-top: 18px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .project-card.open .project-details {
-      display: block;
-    }
-
-    .project-toggle {
-      margin-top: 18px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: var(--text);
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      cursor: pointer;
-    }
-
-    .project-toggle:hover,
-    .project-toggle:focus-visible {
-      text-decoration: underline;
-    }
-
-    /* Side Quest */
-
-    .side-quest {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .game-shell {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--dark);
-      color: #eee;
-      overflow: hidden;
-      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.1);
-    }
-
-    .game-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      background: #222;
-      border-bottom: 1px solid #333;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-    }
-
-    .game-title {
-      font-weight: 700;
-      letter-spacing: 0.08em;
-    }
-
-    .game-status {
-      color: #999;
-    }
-
-    .game-area {
-      position: relative;
-      height: 430px;
-      overflow: hidden;
-      background: #e7e2d6;
-      cursor: crosshair;
-      user-select: none;
-      touch-action: none;
-    }
-
-    .game-sky {
-      position: absolute;
-      inset: 0 0 105px;
-      background: linear-gradient(
-        180deg,
-        #e7e2d6 0%,
-        #f2efe8 100%
-      );
-    }
-
-    .court {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 105px;
-      background: #cfc7b7;
-      border-top: 2px solid #b4ac9e;
-    }
-
-    .court::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 14px;
-      width: 170px;
-      height: 75px;
-      transform: translateX(-50%);
-      border: 2px solid rgba(23, 23, 23, 0.22);
-      border-bottom: 0;
-      border-radius: 90px 90px 0 0;
-    }
-
-    .court::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 42px;
-      border-top: 2px solid rgba(23, 23, 23, 0.12);
-    }
-
-    .hoop {
-      position: absolute;
-      right: 115px;
-      top: 105px;
-      width: 92px;
-      height: 105px;
-    }
-
-    .backboard {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 58px;
-      height: 42px;
-      border: 3px solid #222;
-      background: #eee;
-    }
-
-    .backboard-inner {
-      position: absolute;
-      right: 8px;
-      top: 7px;
-      width: 36px;
-      height: 24px;
-      border: 2px solid #c75a32;
-    }
-
-    .rim {
-      position: absolute;
-      right: 7px;
-      top: 48px;
-      width: 55px;
-      height: 12px;
-      border: 4px solid #c75a32;
-      border-radius: 50%;
-      z-index: 6;
-    }
-
-    .net {
-      position: absolute;
-      right: 11px;
-      top: 56px;
-      width: 47px;
-      height: 40px;
-      overflow: hidden;
-      z-index: 5;
-    }
-
-    .net svg {
-      width: 100%;
-      height: 100%;
-      transform-origin: top center;
-    }
-
-    .ball {
-      position: absolute;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle at 38% 35%,
-        #e8864a,
-        #c05a20
-      );
-      border: 1.5px solid #7c351a;
-      z-index: 7;
-      will-change: transform, left, top;
-    }
-
-    .ball::before {
-      content: "";
-      position: absolute;
-      width: 1.5px;
-      height: 100%;
-      left: 11px;
-      background: #7c351a;
-      transform: rotate(30deg);
-      border-radius: 2px;
-    }
-
-    .ball::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 1.5px;
-      top: 12px;
-      background: #7c351a;
-      transform: rotate(-20deg);
-      border-radius: 2px;
-    }
-
-    .traj-dot {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: rgba(23, 23, 23, 0.18);
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    .aim-reticle {
-      position: absolute;
-      left: 103px;
-      bottom: 70px;
-      width: 16px;
-      height: 16px;
-      pointer-events: none;
-      z-index: 8;
-      transform: translate(-50%, -50%);
-    }
-
-    .aim-reticle::before,
-    .aim-reticle::after {
-      content: "";
-      position: absolute;
-      background: rgba(23, 23, 23, 0.4);
-    }
-
-    .aim-reticle::before {
-      width: 1px;
-      height: 100%;
-      left: 50%;
-      top: 0;
-    }
-
-    .aim-reticle::after {
-      width: 100%;
-      height: 1px;
-      top: 50%;
-      left: 0;
-    }
-
-    .game-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(247, 247, 244, 0.88);
-      color: #171717;
-      text-align: center;
-      padding: 25px;
-      z-index: 12;
-    }
-
-    .game-overlay.hidden {
-      display: none;
-    }
-
-    .game-message h3 {
-      margin: 0 0 8px;
-      font-family: var(--mono);
-      font-size: 1.1rem;
-      letter-spacing: 0.04em;
-    }
-
-    .game-message p {
-      margin: 0 0 18px;
-      color: #555;
-      font-size: 0.84rem;
-      max-width: 320px;
-    }
-
-    .game-button {
-      border: 1px solid #171717;
-      background: #171717;
-      color: #fff;
-      padding: 9px 16px;
-      border-radius: 6px;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      cursor: pointer;
-      transition: transform 0.12s ease;
-    }
-
-    .game-button:hover,
-    .game-button:focus-visible {
-      transform: translateY(-1px);
-    }
-
-    .game-controls {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 14px 16px;
-      background: #191919;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-    }
-
-    .game-score {
-      display: flex;
-      gap: 18px;
-    }
-
-    .game-help {
-      color: #888;
-    }
-
-    .shot-flash {
-      position: absolute;
-      top: 42%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--mono);
-      font-size: 1rem;
-      font-weight: 700;
-      pointer-events: none;
-      opacity: 0;
-      z-index: 11;
-      transition: opacity 0.12s ease;
-      white-space: nowrap;
-    }
-
-    .power-bar-wrap {
-      position: absolute;
-      left: 66px;
-      bottom: 55px;
-      width: 8px;
-      height: 80px;
-      background: rgba(0, 0, 0, 0.15);
-      border-radius: 4px;
-      z-index: 9;
-      overflow: hidden;
-    }
-
-    .power-bar-fill {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 0%;
-      background: linear-gradient(
-        180deg,
-        #c75a32,
-        #f5a623
-      );
-      border-radius: 4px;
-      transition: height 0.05s ease;
-    }
-
-    .unlocks {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .unlock {
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 13px;
-      background: var(--surface);
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      transition:
-        border-color 0.25s ease,
-        transform 0.25s ease,
-        opacity 0.25s ease,
-        box-shadow 0.25s ease;
-    }
-
-    .unlock strong {
-      display: block;
-      color: var(--text);
-      margin-bottom: 4px;
-      font-size: 0.72rem;
-    }
-
-    .unlock.locked {
-      opacity: 0.4;
-      filter: blur(0.4px);
-    }
-
-    .unlock.unlocked {
-      border-color: var(--text);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
-    }
-
-    .side-note {
-      margin-top: 14px;
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 0.7rem;
-    }
-
-    /* Terminal */
-
-    .terminal {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      background: #111;
-      color: #eee;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
-    }
-
-    .terminal-bar {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      padding: 11px 14px;
-      background: #1d1d1d;
-      border-bottom: 1px solid #333;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #555;
-    }
-
-    .terminal-title {
-      margin-left: 7px;
-      color: #888;
-      font-size: 0.68rem;
-    }
-
-    .terminal-body {
-      min-height: 300px;
-      padding: 20px;
-      font-size: 0.78rem;
-      line-height: 1.7;
-    }
-
-    .terminal-output {
-      min-height: 100px;
-      max-height: 220px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      color: #cfcfcf;
-    }
-
-    .terminal-form {
-      display: flex;
-      gap: 9px;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 60px;
       margin-top: 8px;
     }
+    .about-block { }
+    .about-block-label {
+      font-family: var(--mono); font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .about-block-label::after {
+      content: ""; flex: 1; height: 1px; background: var(--border);
+    }
+    .about-block p {
+      margin: 0 0 12px; color: var(--muted); font-size: 0.97rem; line-height: 1.7;
+    }
+    .about-block p:last-child { margin-bottom: 0; }
+    .about-block strong { color: var(--text); font-weight: 500; }
 
-    .prompt {
-      color: #aaa;
+    /* traits */
+    .traits-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 10px; margin-top: 4px;
+    }
+    .trait-card {
+      border: 1px solid var(--border); border-radius: 9px;
+      padding: 14px 16px; background: var(--surface);
+    }
+    .trait-title {
+      font-family: var(--mono); font-size: 0.7rem;
+      font-weight: 700; color: var(--text);
+      letter-spacing: 0.04em; margin-bottom: 5px;
+    }
+    .trait-desc {
+      font-size: 0.84rem; color: var(--muted); line-height: 1.5;
     }
 
-    .terminal-input {
-      width: 100%;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      color: #fff;
-      font: inherit;
-    }
-
-    .terminal-hint {
-      margin-top: 10px;
-      color: #666;
-      font-size: 0.68rem;
-    }
-
-    /* Contact */
-
-    .contact {
-      padding-bottom: 55px;
-    }
-
-    .contact-grid {
+    /* timeline bar for past/present/future */
+    .arc-row {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 30px;
-      align-items: end;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-top: 4px;
     }
-
-    .contact h2 {
-      max-width: 750px;
-      margin: 12px 0 0;
-      font-size: clamp(2.5rem, 7vw, 6rem);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
+    .arc-block {
+      border-left: 2px solid var(--border);
+      padding-left: 16px;
     }
-
-    .contact-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    .arc-block.present { border-color: var(--text); }
+    .arc-label {
+      font-family: var(--mono); font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
     }
+    .arc-block.present .arc-label { color: var(--text); }
+    .arc-text { font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+    .arc-block.present .arc-text { color: var(--text); }
 
-    .contact-links a {
-      border-bottom: 1px solid var(--text);
-      font-family: var(--mono);
-      font-size: 0.78rem;
-    }
-
-    .hire-timer {
-      margin-top: 35px;
-      padding-top: 18px;
+    /* ── Experience ── */
+    .timeline { display: grid; }
+    .timeline-item {
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 40px; padding: 28px 0;
       border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.72rem;
+    }
+    .timeline-item:last-child { border-bottom: 1px solid var(--border); }
+    .timeline-date { font-family: var(--mono); font-size: 0.76rem; color: var(--muted); }
+    .timeline-company { margin: 0 0 4px; font-size: 1.2rem; }
+    .timeline-role { margin: 0 0 14px; color: var(--muted); font-size: 0.78rem; }
+    .timeline-item ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    .timeline-item li + li { margin-top: 7px; }
+    .timeline-note {
+      margin-top: 14px; padding: 12px 14px;
+      background: var(--soft); border-radius: 7px;
+      font-family: var(--mono); font-size: 0.72rem; color: var(--muted);
+      font-style: italic;
     }
 
-    .hire-timer strong {
-      color: var(--text);
-      font-weight: 500;
+    /* ── Projects ── */
+    .filters, .path-grid, .skill-list { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filters { margin-bottom: 28px; }
+    .filter, .skill, .path-button {
+      border: 1px solid var(--border); background: transparent;
+      color: var(--muted); border-radius: 7px;
+      padding: 8px 12px; font-size: 0.72rem; cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .filter { border-radius: 999px; }
+    .filter:hover, .filter:focus-visible, .filter.active,
+    .path-button:hover, .path-button:focus-visible, .path-button.active,
+    .skill:hover, .skill:focus-visible, .skill.active {
+      background: var(--text); color: #fff; border-color: var(--text);
+    }
+    .project-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .project-card {
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--surface); padding: 25px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-3px); border-color: #bcbcb5;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.05);
+    }
+    .project-card.hidden { display: none; }
+    .project-card.skill-match { border-color: var(--text); box-shadow: 0 0 0 2px rgba(23,23,23,0.06); }
+    .project-top { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; }
+    .project-number { font-size: 0.7rem; color: var(--muted); }
+    .project-card h3 { margin: 10px 0 8px; font-size: 1.35rem; letter-spacing: -0.02em; }
+    .project-card p { margin: 0; color: var(--muted); }
+    .complexity { white-space: nowrap; font-size: 0.68rem; color: var(--muted); }
+    .pips { letter-spacing: 2px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+    .tag { padding: 4px 7px; background: var(--soft); border-radius: 4px; font-size: 0.67rem; }
+    .project-details {
+      display: none; margin-top: 20px; padding-top: 18px;
+      border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem;
+    }
+    .project-card.open .project-details { display: block; }
+    .project-toggle {
+      margin-top: 18px; padding: 0; border: 0;
+      background: transparent; color: var(--text);
+      font-family: var(--mono); font-size: 0.72rem; cursor: pointer;
+    }
+    .project-toggle:hover, .project-toggle:focus-visible { text-decoration: underline; }
+
+    /* ── Basketball ── */
+    .side-quest { position: relative; overflow: hidden; }
+    .game-shell {
+      border: 1px solid var(--border); border-radius: 14px;
+      background: var(--dark); color: #eee; overflow: hidden;
+      box-shadow: 0 20px 55px rgba(0,0,0,0.1);
+    }
+    .game-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 16px; background: #222; border-bottom: 1px solid #333;
+      font-family: var(--mono); font-size: 0.72rem;
+    }
+    .game-title { font-weight: 700; letter-spacing: 0.08em; }
+    .game-status { color: #999; }
+
+    .game-area {
+      position: relative; height: 440px; overflow: hidden;
+      background: #e7e2d6; user-select: none; touch-action: none;
+    }
+    .game-sky { position: absolute; inset: 0 0 110px; background: linear-gradient(180deg,#e7e2d6 0%,#f2efe8 100%); }
+    .court {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 110px;
+      background: #cfc7b7; border-top: 2px solid #b4ac9e;
+    }
+    .court::before {
+      content: ""; position: absolute; left: 50%; top: 14px;
+      width: 170px; height: 75px; transform: translateX(-50%);
+      border: 2px solid rgba(23,23,23,0.22); border-bottom: 0;
+      border-radius: 90px 90px 0 0;
+    }
+    .court::after {
+      content: ""; position: absolute; left: 0; right: 0;
+      top: 42px; border-top: 2px solid rgba(23,23,23,0.12);
     }
 
-    footer {
-      padding: 22px 0 35px;
-      color: var(--muted);
-      font-size: 0.68rem;
+    /* hoop — positioned via CSS vars so JS can adjust per screen */
+    .hoop {
+      position: absolute;
+      right: var(--hoop-right, 115px);
+      top: 110px;
+      width: 92px; height: 105px;
+    }
+    .backboard {
+      position: absolute; right: 0; top: 0;
+      width: 58px; height: 42px;
+      border: 3px solid #222; background: #eee;
+    }
+    .backboard-inner {
+      position: absolute; right: 8px; top: 7px;
+      width: 36px; height: 24px; border: 2px solid #c75a32;
+    }
+    .rim {
+      position: absolute; right: 7px; top: 48px;
+      width: 55px; height: 12px;
+      border: 4px solid #c75a32; border-radius: 50%; z-index: 6;
+    }
+    .net { position: absolute; right: 11px; top: 56px; width: 47px; height: 40px; overflow: hidden; z-index: 5; }
+    .net svg { width: 100%; height: 100%; transform-origin: top center; }
+    .ball {
+      position: absolute; width: 28px; height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 35%, #e8864a, #c05a20);
+      border: 1.5px solid #7c351a; z-index: 7; will-change: transform, left, top;
+    }
+    .ball::before {
+      content: ""; position: absolute; width: 1.5px; height: 100%;
+      left: 11px; background: #7c351a; transform: rotate(30deg); border-radius: 2px;
+    }
+    .ball::after {
+      content: ""; position: absolute; width: 100%; height: 1.5px;
+      top: 12px; background: #7c351a; transform: rotate(-20deg); border-radius: 2px;
+    }
+    .traj-dot {
+      position: absolute; width: 5px; height: 5px;
+      border-radius: 50%; pointer-events: none; z-index: 3;
+    }
+    /* aim line colored by power zone */
+    .traj-dot.power-low    { background: rgba(37,99,235,0.35); }
+    .traj-dot.power-ok     { background: rgba(22,163,74,0.40); }
+    .traj-dot.power-high   { background: rgba(220,38,38,0.35); }
+
+    .power-bar-wrap {
+      position: absolute; left: 66px; bottom: 60px;
+      width: 8px; height: 80px;
+      background: rgba(0,0,0,0.15); border-radius: 4px;
+      z-index: 9; overflow: hidden;
+    }
+    .power-bar-fill {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 0%; border-radius: 4px;
+      transition: height 0.04s ease, background 0.1s ease;
     }
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      border-top: 1px solid var(--border);
-      padding-top: 20px;
+    /* fire streak overlay */
+    .fire-streak {
+      position: absolute; inset: 0; pointer-events: none;
+      z-index: 4; opacity: 0;
+      background: radial-gradient(ellipse at 30% 75%, rgba(200,80,0,0.18) 0%, transparent 65%);
+      transition: opacity 0.6s ease;
+    }
+    .fire-streak.active { opacity: 1; }
+
+    .shot-flash {
+      position: absolute; top: 38%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-family: var(--mono); font-size: 1.05rem; font-weight: 700;
+      pointer-events: none; opacity: 0; z-index: 11;
+      transition: opacity 0.12s ease; white-space: nowrap;
+    }
+    .shot-flash.make { color: #166534; }
+    .shot-flash.miss { color: #7f1d1d; }
+    .shot-flash.streak { color: #92400e; font-size: 1.2rem; }
+
+    .game-overlay {
+      position: absolute; inset: 0; display: flex;
+      align-items: center; justify-content: center;
+      background: rgba(247,247,244,0.9); color: #171717;
+      text-align: center; padding: 25px; z-index: 12;
+      backdrop-filter: blur(4px);
+    }
+    .game-overlay.hidden { display: none; }
+    .game-message h3 { margin: 0 0 8px; font-family: var(--mono); font-size: 1.1rem; letter-spacing: 0.04em; }
+    .game-message p { margin: 0 0 18px; color: #555; font-size: 0.84rem; max-width: 320px; }
+    .game-button {
+      border: 1px solid #171717; background: #171717; color: #fff;
+      padding: 9px 16px; border-radius: 6px;
+      font-family: var(--mono); font-size: 0.72rem; cursor: pointer;
+      transition: transform 0.12s ease;
+    }
+    .game-button:hover, .game-button:focus-visible { transform: translateY(-1px); }
+
+    .game-controls {
+      display: flex; justify-content: space-between; gap: 20px;
+      padding: 14px 16px; background: #191919;
+      font-family: var(--mono); font-size: 0.72rem;
+    }
+    .game-score { display: flex; gap: 18px; }
+    .game-score .fg { color: #888; }
+    .game-help { color: #888; }
+
+    .unlocks { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-top: 16px; }
+    .unlock {
+      border: 1px solid var(--border); border-radius: 9px;
+      padding: 13px; background: var(--surface); color: var(--muted);
+      font-family: var(--mono); font-size: 0.68rem;
+      transition: border-color 0.25s ease, transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
+    }
+    .unlock strong { display: block; color: var(--text); margin-bottom: 4px; font-size: 0.72rem; }
+    .unlock.locked { opacity: 0.4; filter: blur(0.4px); }
+    .unlock.unlocked { border-color: var(--text); transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.07); }
+    .side-note { margin-top: 14px; color: var(--muted); font-family: var(--mono); font-size: 0.7rem; }
+
+    /* mobile shoot button */
+    .mobile-shoot-btn {
+      display: none;
+      width: 100%; margin-top: 8px;
+      background: #191919; color: #fff;
+      border: 0; border-radius: 8px;
+      padding: 13px; font-family: var(--mono); font-size: 0.78rem;
+      cursor: pointer; letter-spacing: 0.06em;
     }
 
-    /* Reveal */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition:
-        opacity 0.6s ease,
-        transform 0.6s ease;
+    /* ── Terminal ── */
+    .terminal {
+      border: 1px solid var(--border); border-radius: 10px;
+      overflow: hidden; background: #111; color: #eee;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.08);
     }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .terminal-bar {
+      display: flex; align-items: center; gap: 7px;
+      padding: 11px 14px; background: #1d1d1d; border-bottom: 1px solid #333;
     }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #555; }
+    .terminal-title { margin-left: 7px; color: #888; font-size: 0.68rem; }
+    .terminal-body { min-height: 300px; padding: 20px; font-size: 0.78rem; line-height: 1.7; }
+    .terminal-output { min-height: 100px; max-height: 220px; overflow-y: auto; white-space: pre-wrap; color: #cfcfcf; }
+    .terminal-form { display: flex; gap: 9px; align-items: center; margin-top: 8px; }
+    .prompt { color: #aaa; }
+    .terminal-input { width: 100%; border: 0; outline: 0; background: transparent; color: #fff; font: inherit; }
+    .terminal-hint { margin-top: 10px; color: #666; font-size: 0.68rem; }
 
-    /* Focus */
+    /* ── Contact ── */
+    .contact { padding-bottom: 55px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: end; }
+    .contact h2 { max-width: 750px; margin: 12px 0 0; font-size: clamp(2.5rem,7vw,6rem); line-height: 0.95; letter-spacing: -0.06em; }
+    .contact-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .contact-links a { border-bottom: 1px solid var(--text); font-family: var(--mono); font-size: 0.78rem; }
+    .hire-timer { margin-top: 35px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.72rem; }
+    .hire-timer strong { color: var(--text); font-weight: 500; }
 
-    :focus-visible {
-      outline: 2px solid var(--text);
-      outline-offset: 3px;
-    }
+    footer { padding: 22px 0 35px; color: var(--muted); font-size: 0.68rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
 
-    /* Responsive */
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+
+    /* ── Responsive ── */
     @media (max-width: 850px) {
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .timeline-item {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .unlocks {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .project-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 10px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .unlocks { grid-template-columns: repeat(2,1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .arc-row { grid-template-columns: 1fr; gap: 14px; }
     }
-
     @media (max-width: 560px) {
-      .container {
-        width: calc(100% - 28px);
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        min-height: 75vh;
-        padding: 80px 0 65px;
-      }
-
-      .hero h1 {
-        font-size: clamp(3.3rem, 18vw, 5rem);
-      }
-
-      section {
-        padding: 70px 0;
-      }
-
-      .section-heading {
-        display: block;
-      }
-
-      .section-heading p {
-        margin-top: 12px;
-      }
-
-      .game-area {
-        height: 360px;
-      }
-
-      .hoop {
-        right: 55px;
-        transform: scale(0.88);
-        transform-origin: top right;
-      }
-
-      .game-controls {
-        display: block;
-      }
-
-      .game-help {
-        margin-top: 6px;
-      }
-
-      .unlocks {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .contact h2 {
-        font-size: 3.4rem;
-      }
-
-      .footer-inner {
-        display: block;
-      }
-
-      .footer-inner span + span {
-        display: block;
-        margin-top: 7px;
-      }
+      .container { width: calc(100% - 28px); }
+      .nav-links { display: none; }
+      .hero { min-height: 75vh; padding: 80px 0 65px; }
+      .hero h1 { font-size: clamp(3.3rem,18vw,5rem); }
+      section { padding: 70px 0; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 12px; }
+      .game-area { height: 370px; }
+      .game-controls { display: block; }
+      .game-help { margin-top: 6px; }
+      .unlocks { grid-template-columns: 1fr 1fr; }
+      .contact h2 { font-size: 3.4rem; }
+      .footer-inner { display: block; }
+      .footer-inner span + span { display: block; margin-top: 7px; }
+      .mobile-shoot-btn { display: block; }
+      .traits-grid { grid-template-columns: 1fr; }
     }
-
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -1074,12 +486,11 @@
   <nav class="nav" aria-label="Main navigation">
     <div class="container nav-inner">
       <a class="logo" href="#" aria-label="Andy Zhu home">AZ/26</a>
-
       <div class="nav-links">
+        <a href="#about">about</a>
         <a href="#experience">experience</a>
         <a href="#projects">projects</a>
         <a href="#side-quest">side quest</a>
-        <a href="#skills">skills</a>
         <a href="#contact">contact</a>
       </div>
     </div>
@@ -1088,123 +499,158 @@
   <main>
 
     <!-- Hero -->
-
     <header class="hero">
       <div class="container">
-
         <div class="eyebrow">Rutgers '26 · New Jersey</div>
-
         <h1>Andy Zhu.</h1>
-
-        <div
-          class="hero-role"
-          id="heroRole"
-          aria-label="Software, Data, Analytics, Statistics"
-        ></div>
-
+        <div class="hero-role" id="heroRole" aria-label="Software, Data, Analytics, Statistics"></div>
         <p class="hero-copy">
-          New graduate building practical data and software systems across
-          economic research, biotech analytics, cloud engineering, and
-          applied machine learning.
+          I picked computer science because I actually like to code. Most of what I've built
+          sits somewhere between data infrastructure and software. Pipelines, ETL work, some ML
+          on the side. New grad, looking for the right role.
         </p>
-
         <div class="hero-actions">
           <a class="button" href="#projects">View projects</a>
           <a class="button secondary" href="#contact">Get in touch</a>
         </div>
-
       </div>
     </header>
 
-    <!-- Experience -->
-
-    <section id="experience" class="reveal">
+    <!-- About -->
+    <section id="about" class="reveal">
       <div class="container">
 
-        <div class="section-label">Experience</div>
+        <div class="section-label">About</div>
+        <div class="section-heading">
+          <h2>A bit more about me.</h2>
+          <p>past · present · future · how I work</p>
+        </div>
 
+        <!-- Arc: past / present / future -->
+        <div class="arc-row" style="margin-bottom: 52px;">
+          <div class="arc-block past">
+            <div class="arc-label">How I got here</div>
+            <div class="arc-text">
+              Grew up in Livingston, NJ. Started at Rutgers in pure statistics, liked the math
+              but wanted to build things, so I switched into CS and Data Science. Spent the last
+              two summers interning, first at a biotech in Cambridge, then at the Federal Reserve
+              in Philadelphia. Graduated May 2026.
+            </div>
+          </div>
+          <div class="arc-block present">
+            <div class="arc-label">Right now</div>
+            <div class="arc-text">
+              Looking for a data engineering or analyst role. I want to work somewhere with
+              real data problems, not just dashboards. 3.5 GPA, Dean's List five times, two
+              internships where I built things that stayed in use after I left.
+            </div>
+          </div>
+          <div class="arc-block future">
+            <div class="arc-label">Where I'm heading</div>
+            <div class="arc-text">
+              Interested in the infrastructure layer: pipelines, data quality, the systems that
+              make downstream analytics actually reliable. Still early enough in my career that
+              I'm open to wherever good problems show up, but that's the direction I keep
+              gravitating toward.
+            </div>
+          </div>
+        </div>
+
+        <!-- Two column: story + traits -->
+        <div class="about-grid">
+
+          <div class="about-block">
+            <div class="about-block-label">A bit more context</div>
+            <p>
+              At the Fed, I built a vendor ingestion framework in Airflow and PySpark that
+              standardized how the Economic Research Division onboards external datasets.
+              Getting a new vendor pipeline set up used to take weeks. After the framework
+              was in place, it took about two days. That's the kind of problem I find
+              genuinely interesting to work on.
+            </p>
+            <p>
+              At Simcere I worked alongside biologists who needed to process microscopy data
+              faster than they could manually. Batch analysis went from 10+ hours to 12 minutes.
+              That's a pretty meaningful difference in how many experiments a team can run in a week.
+            </p>
+            <p>
+              Outside of work I was External VP of the Chinese Student Organization at Rutgers,
+              which involved a lot of coordination and follow-through across a large group.
+              I also play basketball more than is probably reasonable.
+            </p>
+          </div>
+
+          <div class="about-block">
+            <div class="about-block-label">How I work</div>
+            <div class="traits-grid">
+              <div class="trait-card">
+                <div class="trait-title">Slow to code, fast to ship</div>
+                <div class="trait-desc">I spend time on the problem before the solution. Scope creep and wrong assumptions are way more expensive than an extra hour of planning.</div>
+              </div>
+              <div class="trait-card">
+                <div class="trait-title">Learn by building</div>
+                <div class="trait-desc">Tutorials are fine for orientation but I don't really understand something until I've broken it. Most of my side projects started as "let me see if I can do this."</div>
+              </div>
+              <div class="trait-card">
+                <div class="trait-title">Fine with hard feedback</div>
+                <div class="trait-desc">I'd rather find out something is wrong before it ships. Not precious about my first draft of anything.</div>
+              </div>
+              <div class="trait-card">
+                <div class="trait-title">Skeptical of frameworks</div>
+                <div class="trait-desc">I've worked in enough codebases to appreciate when something simple would've been better. I try to reach for the right tool, not the impressive one.</div>
+              </div>
+              <div class="trait-card">
+                <div class="trait-title">Okay with not knowing</div>
+                <div class="trait-desc">A lot of the work I've done started with no clear spec. I'm comfortable figuring it out as I go, asking questions early, and adjusting when the answer changes.</div>
+              </div>
+              <div class="trait-card">
+                <div class="trait-title">Thinks past the demo</div>
+                <div class="trait-desc">Both internships involved handing things off to people who would actually use them. That shifts how you think about documentation, edge cases, and usability.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="reveal">
+      <div class="container">
+        <div class="section-label">Experience</div>
         <div class="section-heading">
           <h2>Where I've built things.</h2>
           <p>2025 — 2026</p>
         </div>
-
         <div class="timeline">
 
           <article class="timeline-item">
-
-            <div class="timeline-date">
-              JUN 2026 — AUG 2026
-            </div>
-
+            <div class="timeline-date">JUN 2026 — AUG 2026</div>
             <div>
-              <h3 class="timeline-company">
-                Federal Reserve Bank of Philadelphia
-              </h3>
-
-              <p class="timeline-role">
-                Data Engineering Intern · Economic Research
-              </p>
-
+              <h3 class="timeline-company">Federal Reserve Bank of Philadelphia</h3>
+              <p class="timeline-role">IT Research Intern · Economic Research Division</p>
               <ul>
-                <li>
-                  Architected a reusable vendor ingestion framework with
-                  Airflow, EMR, and PySpark, standardizing 28 datasets and
-                  cutting onboarding from weeks to 2 days, deployed to 30+
-                  economists.
-                </li>
-
-                <li>
-                  Designed a 3-stage S3 QA pipeline with
-                  HEALTHY/WARNING/CRITICAL status tiers across 7 data-quality
-                  dimensions, running on SPOT-instance EMR to keep daily
-                  costs under $2.
-                </li>
-
-                <li>
-                  Built an automated HTML QA reporter eliminating manual
-                  audit prep and enabling Athena self-service that
-                  accelerated research turnaround by 40%.
-                </li>
+                <li>Architected a reusable vendor ingestion framework using Airflow, EMR, and PySpark, standardizing 29 datasets and cutting onboarding from weeks to 2 days, deployed to 30+ economists.</li>
+                <li>Designed a three-stage S3 QA pipeline (HEALTHY / WARNING / CRITICAL) across 7 data quality dimensions, running on SPOT-instance EMR to keep daily costs under $2.</li>
+                <li>Built an automated HTML QA reporter that eliminated manual audit prep and enabled Athena self-service, accelerating research turnaround by 40%.</li>
               </ul>
+              <div class="timeline-note">First time building infrastructure that other people's research depended on. You think about edge cases differently when the thing going down isn't your problem alone.</div>
             </div>
-
           </article>
 
           <article class="timeline-item">
-
-            <div class="timeline-date">
-              JUN 2025 — SEP 2025
-            </div>
-
+            <div class="timeline-date">JUN 2025 — SEP 2025</div>
             <div>
-              <h3 class="timeline-company">
-                Simcere of America Inc.
-              </h3>
-
-              <p class="timeline-role">
-                Software & Data Engineering Intern
-              </p>
-
+              <h3 class="timeline-company">Simcere of America Inc.</h3>
+              <p class="timeline-role">Software & Data Engineering Intern · Cambridge, MA</p>
               <ul>
-                <li>
-                  Unified 15+ clinical and genomic sources via Python/R ETL
-                  pipelines, cutting manual processing 40% and giving 20+
-                  researchers near-real-time data access.
-                </li>
-
-                <li>
-                  Deployed a ResNet-50 pipeline achieving 91% accuracy and
-                  compressing microscopy analysis from 10+ hours to 12 minutes.
-                </li>
-
-                <li>
-                  Launched an authenticated R Shiny dashboard on AWS
-                  EC2/RDS with row-level security, saving 20+ person-hours
-                  monthly for a team of 20+ biologists.
-                </li>
+                <li>Unified 15+ clinical and genomic sources via Python/R ETL pipelines, cutting manual processing 40% and giving 20+ researchers near-real-time data access.</li>
+                <li>Built a CV pipeline achieving 91% accuracy that compressed microscopy analysis from 10+ hours to 12 minutes per batch, the most significant workflow change for the bio team.</li>
+                <li>Launched an authenticated R Shiny dashboard on AWS EC2/RDS with row-level security, saving 20+ person-hours monthly.</li>
               </ul>
+              <div class="timeline-note">First time working directly alongside non-technical users. Figuring out how to talk about what a system can and can't do, without overcomplicating it, took some adjustment.</div>
             </div>
-
           </article>
 
         </div>
@@ -1212,12 +658,9 @@
     </section>
 
     <!-- Projects -->
-
     <section id="projects" class="reveal">
       <div class="container">
-
         <div class="section-label">Projects</div>
-
         <div class="section-heading">
           <h2>Things I've built.</h2>
           <p>click a project to inspect it</p>
@@ -1232,1837 +675,745 @@
         </div>
 
         <div class="project-grid">
-
-          <!-- 01 -->
-
-          <article
-            class="project-card"
-            data-category="data analytics"
-            data-skills="python sql pandas numpy sqlite"
-          >
+          <article class="project-card" data-category="data analytics" data-skills="python sql pandas numpy sqlite">
             <div class="project-top">
-
-              <div>
-                <div class="project-number">01 / 07</div>
-                <h3>Algorithmic Trading Backtester</h3>
-              </div>
-
-              <div class="complexity">
-                COMPLEXITY<br>
-                <span class="pips">●●●●○</span>
-              </div>
-
+              <div><div class="project-number">01</div><h3>Algorithmic Trading Backtester</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●●○</span></div>
             </div>
-
-            <p>
-              Bias-controlled research platform for testing trading
-              strategies and measuring risk.
-            </p>
-
+            <p>Bias-controlled research platform for testing trading strategies and measuring risk.</p>
             <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">pandas</span>
-              <span class="tag">NumPy</span>
-              <span class="tag">Streamlit</span>
-              <span class="tag">SQLite</span>
-              <span class="tag">Docker</span>
+              <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">NumPy</span>
+              <span class="tag">Streamlit</span><span class="tag">SQLite</span><span class="tag">Docker</span>
             </div>
-
             <div class="project-details">
-              Signals execute on the next bar to eliminate look-ahead bias.
-              Typed DataQualityReport with 10 OHLCV checks and a 15-metric
-              risk suite covering Sharpe, Sortino, Calmar, Max Drawdown,
-              and CAGR. SQLite caching with a 7-day TTL and multi-provider
-              fallback cuts external API calls by 90%.
+              Signals execute on the next bar to eliminate look-ahead bias. Typed DataQualityReport with
+              10 OHLCV checks and a 15-metric risk suite covering Sharpe, Sortino, Calmar, Max Drawdown,
+              and CAGR. SQLite caching with a 7-day TTL and multi-provider fallback cuts external API
+              calls by 90%.
             </div>
-
-            <button class="project-toggle" type="button">
-              details
-            </button>
+            <button class="project-toggle" type="button">details</button>
           </article>
 
-          <!-- 02 -->
-
-          <article
-            class="project-card"
-            data-category="software ml"
-            data-skills="python opencv sklearn"
-          >
+          <article class="project-card" data-category="software ml" data-skills="python opencv sklearn">
             <div class="project-top">
-
-              <div>
-                <div class="project-number">02 / 07</div>
-                <h3>Cell Imaging Analysis Tool</h3>
-              </div>
-
-              <div class="complexity">
-                COMPLEXITY<br>
-                <span class="pips">●●●●○</span>
-              </div>
-
+              <div><div class="project-number">02</div><h3>Cell Imaging Analysis Tool</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●●○</span></div>
             </div>
-
-            <p>
-              Production desktop app for automated cell segmentation and
-              tracking across microscopy sequences.
-            </p>
-
+            <p>Production desktop app for automated cell segmentation and tracking across microscopy sequences.</p>
             <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Cellpose</span>
-              <span class="tag">PyQt5</span>
-              <span class="tag">OpenCV</span>
-              <span class="tag">scikit-image</span>
+              <span class="tag">Python</span><span class="tag">Cellpose</span><span class="tag">PyQt5</span>
+              <span class="tag">OpenCV</span><span class="tag">scikit-image</span>
             </div>
-
             <div class="project-details">
-              PyQt5 background worker with Cellpose segmentation.
-              Hungarian algorithm tracking via
-              <code>linear_sum_assignment</code>, vectorized geometry via
-              <code>bincount</code> and <code>minimum.at</code>, and
-              multi-threaded optical flow interpolation between anchor
-              frames. Per-batch analysis was compressed from 10+ hours
-              to 12 minutes.
+              PyQt5 background worker with Cellpose segmentation. Hungarian algorithm tracking via
+              <code>linear_sum_assignment</code>, vectorized geometry via <code>bincount</code> and
+              <code>minimum.at</code>, and multi-threaded optical flow interpolation between anchor frames.
+              Per-batch analysis compressed from 10+ hours to 12 minutes.
             </div>
-
-            <button class="project-toggle" type="button">
-              details
-            </button>
+            <button class="project-toggle" type="button">details</button>
           </article>
 
-          <!-- 03 -->
-
-          <article
-            class="project-card"
-            data-category="data ml analytics"
-            data-skills="python sklearn pandas numpy"
-          >
+          <article class="project-card" data-category="data ml analytics" data-skills="python sklearn pandas numpy">
             <div class="project-top">
-
-              <div>
-                <div class="project-number">03 / 07</div>
-                <h3>Credit Risk Prediction</h3>
-              </div>
-
-              <div class="complexity">
-                COMPLEXITY<br>
-                <span class="pips">●●●○○</span>
-              </div>
-
+              <div><div class="project-number">03</div><h3>Credit Risk Prediction</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
             </div>
-
-            <p>
-              Loan-default modeling pipeline comparing classical ML
-              approaches on 30,000 credit accounts.
-            </p>
-
+            <p>Loan-default modeling pipeline comparing classical ML approaches on 30,000 credit accounts.</p>
             <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">scikit-learn</span>
-              <span class="tag">pandas</span>
-              <span class="tag">SQLite</span>
+              <span class="tag">Python</span><span class="tag">scikit-learn</span>
+              <span class="tag">pandas</span><span class="tag">SQLite</span>
             </div>
-
             <div class="project-details">
-              StratifiedKFold (n=5) with training-set-only imputation to
-              prevent leakage. Fourteen engineered features and 0.82
-              ROC-AUC with Gradient Boosting. Borrowers segmented into
-              four risk tiers with observed default rates from 6.8%
-              (Low) to 48.9% (Very High).
+              StratifiedKFold (n=5) with training-set-only imputation to prevent leakage. Fourteen
+              engineered features and 0.82 ROC-AUC with Gradient Boosting. Borrowers segmented into
+              four risk tiers with observed default rates from 6.8% (Low) to 48.9% (Very High).
             </div>
-
-            <button class="project-toggle" type="button">
-              details
-            </button>
+            <button class="project-toggle" type="button">details</button>
           </article>
 
-          <!-- 04 -->
-
-          <article
-            class="project-card"
-            data-category="software data"
-            data-skills="python flask sqlite"
-          >
+          <article class="project-card" data-category="software data" data-skills="python flask sqlite">
             <div class="project-top">
-
-              <div>
-                <div class="project-number">04 / 07</div>
-                <h3>System Monitoring Dashboard</h3>
-              </div>
-
-              <div class="complexity">
-                COMPLEXITY<br>
-                <span class="pips">●●●○○</span>
-              </div>
-
+              <div><div class="project-number">04</div><h3>System Monitoring Dashboard</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
             </div>
-
-            <p>
-              Lightweight monitoring interface for system status,
-              metrics, and alerting.
-            </p>
-
+            <p>Lightweight monitoring interface for system status, metrics, and alerting.</p>
             <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Flask</span>
-              <span class="tag">SQLite</span>
-              <span class="tag">Chart.js</span>
+              <span class="tag">Python</span><span class="tag">Flask</span>
+              <span class="tag">SQLite</span><span class="tag">Chart.js</span>
             </div>
-
             <div class="project-details">
-              WebSocket room-based broadcasting for real-time multi-client
-              updates. APScheduler background job for 30-day rolling
-              metric purge. SMTP-integrated email alerting with cooldown
-              controls to prevent alert spam.
+              WebSocket room-based broadcasting for real-time multi-client updates. APScheduler background
+              job for 30-day rolling metric purge. SMTP-integrated email alerting with cooldown controls
+              to prevent alert spam.
             </div>
-
-            <button class="project-toggle" type="button">
-              details
-            </button>
+            <button class="project-toggle" type="button">details</button>
           </article>
 
-          <!-- 05 -->
-
-          <article
-            class="project-card"
-            data-category="data analytics"
-            data-skills="python pandas sklearn numpy"
-          >
+          <article class="project-card" data-category="data analytics" data-skills="python pandas sklearn numpy">
             <div class="project-top">
-
-              <div>
-                <div class="project-number">05 / 07</div>
-                <h3>NBA Analytics Platform</h3>
-              </div>
-
-              <div class="complexity">
-                COMPLEXITY<br>
-                <span class="pips">●●●○○</span>
-              </div>
-
+              <div><div class="project-number">05</div><h3>NBA Analytics Platform</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
             </div>
-
-            <p>
-              Player development and performance analytics with
-              temporally correct modeling.
-            </p>
-
+            <p>Player development and performance analytics with temporally correct modeling.</p>
             <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">pandas</span>
-              <span class="tag">scikit-learn</span>
+              <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">scikit-learn</span>
             </div>
-
             <div class="project-details">
-              Three-way temporal train/validation/test split by season
-              year to prevent future-data leakage. Training-set-only
-              median imputation. Player-level metrics and exploratory
-              analysis for development pattern investigation.
+              Three-way temporal train/validation/test split by season year to prevent future-data leakage.
+              Training-set-only median imputation. Player-level metrics and exploratory analysis for
+              development pattern investigation.
             </div>
-
-            <button class="project-toggle" type="button">
-              details
-            </button>
+            <button class="project-toggle" type="button">details</button>
           </article>
 
-          <!-- 06 -->
-
-          <article
-            class="project-card"
-            data-category="software analytics"
-            data-skills="r shiny aws"
-          >
+          <article class="project-card" data-category="software analytics" data-skills="r shiny aws">
             <div class="project-top">
-
-              <div>
-                <div class="project-number">06 / 07</div>
-                <h3>R&D Lab Data Automation</h3>
-              </div>
-
-              <div class="complexity">
-                COMPLEXITY<br>
-                <span class="pips">●●●○○</span>
-              </div>
-
+              <div><div class="project-number">06</div><h3>R&D Lab Data Automation</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
             </div>
-
-            <p>
-              Authenticated R Shiny platform for repeatable
-              pharmaceutical laboratory analysis.
-            </p>
-
+            <p>Authenticated R Shiny platform for repeatable pharmaceutical laboratory analysis.</p>
             <div class="project-tags">
-              <span class="tag">R</span>
-              <span class="tag">Shiny</span>
-              <span class="tag">AWS EC2/RDS</span>
+              <span class="tag">R</span><span class="tag">Shiny</span><span class="tag">AWS EC2/RDS</span>
             </div>
-
             <div class="project-details">
-              Role-based access control and bcrypt password hashing.
-              Kill-rate analysis, cytokine profiling, 4-parameter logistic
-              dose-response fitting, ANOVA, and Kruskal-Wallis analysis.
-              Deployed on AWS EC2 and RDS.
+              Role-based access control with bcrypt password hashing. Kill-rate analysis, cytokine profiling,
+              4-parameter logistic dose-response fitting, ANOVA, and Kruskal-Wallis analysis. Deployed on
+              AWS EC2 and RDS.
             </div>
-
-            <button class="project-toggle" type="button">
-              details
-            </button>
+            <button class="project-toggle" type="button">details</button>
           </article>
 
-          <!-- 07 -->
-
-          <article
-            class="project-card"
-            data-category="software data"
-            data-skills="react typescript fastapi aws dynamodb"
-          >
+          <article class="project-card" data-category="software data" data-skills="react typescript fastapi aws dynamodb">
             <div class="project-top">
-
-              <div>
-                <div class="project-number">07 / 07</div>
-                <h3>Servin Food Recommendation</h3>
-              </div>
-
-              <div class="complexity">
-                COMPLEXITY<br>
-                <span class="pips">●●●●○</span>
-              </div>
-
+              <div><div class="project-number">07</div><h3>Servin Food Recommendation</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●●○</span></div>
             </div>
-
-            <p>
-              Serverless recommendation engine with entropy-weighted
-              confidence scoring.
-            </p>
-
+            <p>Serverless recommendation engine with entropy-weighted confidence scoring.</p>
             <div class="project-tags">
-              <span class="tag">React</span>
-              <span class="tag">TypeScript</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">AWS Lambda</span>
-              <span class="tag">DynamoDB</span>
-              <span class="tag">CDK</span>
+              <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">FastAPI</span>
+              <span class="tag">AWS Lambda</span><span class="tag">DynamoDB</span><span class="tag">CDK</span>
             </div>
-
             <div class="project-details">
-              Entropy-weighted confidence normalization across four
-              preference dimensions, with graceful degradation when
-              swipe data is sparse. Full CDK infrastructure stack
-              covering Lambda, API Gateway, DynamoDB, CloudFront,
-              and S3. Built with friends for fun.
+              Entropy-weighted confidence normalization across four preference dimensions, with graceful
+              degradation when swipe data is sparse. Full CDK infrastructure stack covering Lambda, API
+              Gateway, DynamoDB, CloudFront, and S3. Built with friends for fun.
             </div>
-
-            <button class="project-toggle" type="button">
-              details
-            </button>
+            <button class="project-toggle" type="button">details</button>
           </article>
-
         </div>
+
+        <!-- skill trace -->
+        <div style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 32px;">
+          <div class="section-label" style="margin-bottom: 14px;">Trace a skill through the projects</div>
+          <div class="skill-list">
+            <button class="skill" data-skill="python">Python</button>
+            <button class="skill" data-skill="sql">SQL</button>
+            <button class="skill" data-skill="aws">AWS</button>
+            <button class="skill" data-skill="pandas">pandas</button>
+            <button class="skill" data-skill="numpy">NumPy</button>
+            <button class="skill" data-skill="sklearn">scikit-learn</button>
+            <button class="skill" data-skill="opencv">OpenCV</button>
+            <button class="skill" data-skill="r">R</button>
+            <button class="skill" data-skill="shiny">R Shiny</button>
+            <button class="skill" data-skill="react">React</button>
+            <button class="skill" data-skill="typescript">TypeScript</button>
+            <button class="skill" data-skill="fastapi">FastAPI</button>
+            <button class="skill" data-skill="flask">Flask</button>
+            <button class="skill" data-skill="dynamodb">DynamoDB</button>
+            <button class="skill" data-skill="sqlite">SQLite</button>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- Basketball -->
-
     <section id="side-quest" class="side-quest reveal">
       <div class="container">
-
         <div class="section-label">Side Quest</div>
-
         <div class="section-heading">
           <h2>Shoot your shot.</h2>
-          <p>basketball · real physics · no leaderboard</p>
+          <p>basketball · real physics · sink 4 to unlock the stats</p>
         </div>
 
         <div class="game-shell">
-
           <div class="game-head">
-            <span class="game-title">
-              HALF-COURT CHALLENGE
-            </span>
-
-            <span class="game-status" id="gameStatus">
-              Sink 3 to unlock the stats
-            </span>
+            <span class="game-title">HALF-COURT CHALLENGE</span>
+            <span class="game-status" id="gameStatus">Sink 4 to unlock the stats</span>
           </div>
 
-          <div
-            class="game-area"
-            id="gameArea"
-            aria-label="Basketball shooting game"
-          >
-
+          <div class="game-area" id="gameArea" aria-label="Basketball shooting game">
             <div class="game-sky"></div>
             <div class="court"></div>
 
-            <div class="hoop">
+            <div class="hoop" id="hoopEl">
               <div class="backboard">
                 <div class="backboard-inner"></div>
               </div>
-
               <div class="rim"></div>
-
               <div class="net">
-                <svg
-                  viewBox="0 0 47 40"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  id="netSvg"
-                  aria-hidden="true"
-                >
-                  <line x1="4" y1="0" x2="2" y2="40" stroke="#666" stroke-width="1"/>
+                <svg viewBox="0 0 47 40" fill="none" xmlns="http://www.w3.org/2000/svg" id="netSvg" aria-hidden="true">
+                  <line x1="4"  y1="0" x2="2"  y2="40" stroke="#666" stroke-width="1"/>
                   <line x1="12" y1="0" x2="11" y2="40" stroke="#666" stroke-width="1"/>
                   <line x1="20" y1="0" x2="20" y2="40" stroke="#666" stroke-width="1"/>
                   <line x1="28" y1="0" x2="29" y2="40" stroke="#666" stroke-width="1"/>
                   <line x1="36" y1="0" x2="38" y2="40" stroke="#666" stroke-width="1"/>
                   <line x1="44" y1="0" x2="46" y2="40" stroke="#666" stroke-width="1"/>
-
-                  <line x1="0" y1="10" x2="47" y2="10" stroke="#666" stroke-width="1"/>
-                  <line x1="0" y1="22" x2="47" y2="22" stroke="#666" stroke-width="1"/>
-                  <line x1="3" y1="34" x2="44" y2="34" stroke="#666" stroke-width="1"/>
+                  <line x1="0"  y1="10" x2="47" y2="10" stroke="#666" stroke-width="1"/>
+                  <line x1="0"  y1="22" x2="47" y2="22" stroke="#666" stroke-width="1"/>
+                  <line x1="3"  y1="34" x2="44" y2="34" stroke="#666" stroke-width="1"/>
                 </svg>
               </div>
             </div>
 
+            <div class="fire-streak" id="fireStreak"></div>
             <div class="power-bar-wrap" aria-hidden="true">
               <div class="power-bar-fill" id="powerFill"></div>
             </div>
-
-            <div class="aim-reticle" id="aimReticle" aria-hidden="true"></div>
-
             <div class="ball" id="ball" aria-hidden="true"></div>
-
             <div class="shot-flash" id="shotFlash" aria-live="polite"></div>
 
             <div class="game-overlay" id="gameOverlay">
-
               <div class="game-message">
-
-                <h3 id="overlayTitle">
-                  HALF-COURT CHALLENGE
-                </h3>
-
-                <p id="overlayText">
-                  Sink 3 buckets. Unlock some real numbers from the résumé.
-                  Miss all 10 and we never speak of this.
-                </p>
-
-                <button
-                  class="game-button"
-                  id="startGame"
-                  type="button"
-                >
-                  LET'S RUN IT
-                </button>
-
+                <h3 id="overlayTitle">HALF-COURT CHALLENGE</h3>
+                <p id="overlayText">Sink 4 buckets. Unlock real numbers from the résumé. Miss all 10 and we never speak of this.</p>
+                <button class="game-button" id="startGame" type="button">LET'S RUN IT</button>
               </div>
-
             </div>
-
           </div>
 
           <div class="game-controls">
-
             <div class="game-score">
-              <span>
-                SCORE <strong id="gameScore">0</strong>
-              </span>
-
-              <span>
-                STREAK <strong id="gameStreak">0</strong>
-              </span>
-
-              <span>
-                SHOTS <strong id="gameShots">0</strong>
-              </span>
+              <span>SCORE <strong id="gameScore">0</strong></span>
+              <span>STREAK <strong id="gameStreak">0</strong></span>
+              <span>SHOTS <strong id="gameShots">0</strong></span>
+              <span class="fg">FG% <strong id="gameFG">—</strong></span>
             </div>
-
-            <div class="game-help">
-              aim with mouse · click or SPACE to shoot · don't brick it
-            </div>
-
+            <div class="game-help">aim with mouse / drag on mobile · shoot to score</div>
           </div>
-
         </div>
 
-        <div class="unlocks">
+        <button class="mobile-shoot-btn" id="mobileShootBtn" type="button" aria-label="Shoot">
+          SHOOT
+        </button>
 
+        <div class="unlocks">
           <div class="unlock locked" data-unlock="1">
             <strong>LOCKED · THE FED</strong>
-            <span>28 datasets. Onboarding: weeks → 2 days.</span>
+            <span>29 datasets. Onboarding: weeks → 2 days.</span>
           </div>
-
           <div class="unlock locked" data-unlock="2">
             <strong>LOCKED · COMPUTER VISION</strong>
             <span>91% accuracy. 10hr → 12min.</span>
           </div>
-
           <div class="unlock locked" data-unlock="3">
             <strong>LOCKED · BIOTECH ETL</strong>
             <span>15+ sources unified. 40% faster.</span>
           </div>
-
           <div class="unlock locked" data-unlock="4">
             <strong>LOCKED · REAL USERS</strong>
             <span>20+ biologists. 20+ hrs/mo saved.</span>
           </div>
-
         </div>
 
         <div class="side-note" id="sideNote">
           The terminal below also has some hidden commands.
         </div>
-
-      </div>
-    </section>
-
-    <!-- Skills -->
-
-    <section id="skills" class="reveal">
-      <div class="container">
-
-        <div class="section-label">Skills</div>
-
-        <div class="section-heading">
-          <h2>Tools I actually use.</h2>
-          <p>click one to trace it through the projects</p>
-        </div>
-
-        <div class="skill-list">
-
-          <button class="skill" data-skill="python">Python</button>
-          <button class="skill" data-skill="sql">SQL</button>
-          <button class="skill" data-skill="aws">AWS</button>
-          <button class="skill" data-skill="pandas">pandas</button>
-          <button class="skill" data-skill="numpy">NumPy</button>
-          <button class="skill" data-skill="sklearn">scikit-learn</button>
-          <button class="skill" data-skill="opencv">OpenCV</button>
-          <button class="skill" data-skill="r">R</button>
-          <button class="skill" data-skill="shiny">R Shiny</button>
-          <button class="skill" data-skill="react">React</button>
-          <button class="skill" data-skill="typescript">TypeScript</button>
-          <button class="skill" data-skill="fastapi">FastAPI</button>
-          <button class="skill" data-skill="flask">Flask</button>
-          <button class="skill" data-skill="dynamodb">DynamoDB</button>
-          <button class="skill" data-skill="sqlite">SQLite</button>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Route -->
-
-    <section class="reveal">
-      <div class="container">
-
-        <div class="section-label">Find your route</div>
-
-        <div class="section-heading">
-          <h2>What are you here for?</h2>
-          <p>filter the work</p>
-        </div>
-
-        <div class="path-grid">
-
-          <button class="path-button active" data-path="all">
-            everything
-          </button>
-
-          <button class="path-button" data-path="data">
-            data engineering
-          </button>
-
-          <button class="path-button" data-path="software">
-            software
-          </button>
-
-          <button class="path-button" data-path="analytics">
-            analytics
-          </button>
-
-          <button class="path-button" data-path="ml">
-            machine learning
-          </button>
-
-        </div>
-
-        <p
-          id="pathMessage"
-          style="font-family:var(--mono);color:var(--muted);font-size:.78rem;margin:14px 0 0"
-        >
-          Showing everything.
-        </p>
-
       </div>
     </section>
 
     <!-- Terminal -->
-
     <section class="reveal">
       <div class="container">
-
         <div class="section-label">Terminal</div>
-
         <div class="section-heading">
           <h2>Try the terminal.</h2>
           <p>type help</p>
         </div>
-
         <div class="terminal">
-
           <div class="terminal-bar">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="terminal-title">
-              andy@portfolio:~
-            </span>
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-title">andy@portfolio:~</span>
           </div>
-
           <div class="terminal-body">
-
-            <div
-              id="terminalOutput"
-              class="terminal-output"
-              aria-live="polite"
-            >
+            <div id="terminalOutput" class="terminal-output" aria-live="polite">
               Welcome. Type "help" to see available commands.
             </div>
-
             <div class="terminal-form" id="terminalForm">
               <span class="prompt">$</span>
-
-              <input
-                id="terminalInput"
-                class="terminal-input"
-                autocomplete="off"
-                spellcheck="false"
-                aria-label="Terminal command"
-              >
+              <input id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal command">
             </div>
-
             <div class="terminal-hint">
-              Try: help · about · projects · skills · contact · hire · joke · clear
-              &nbsp;·&nbsp; there are hidden ones too
+              Try: help · about · projects · skills · contact · hire · joke · clear &nbsp;·&nbsp; hidden ones too
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- Contact -->
-
     <section id="contact" class="contact reveal">
       <div class="container">
-
         <div class="contact-grid">
-
           <div>
-
             <div class="section-label">Contact</div>
-
-            <h2>
-              Let's build something useful.
-            </h2>
-
+            <h2>Let's build something useful.</h2>
           </div>
-
           <div class="contact-links">
-
-            <a href="mailto:andyzhu0915@gmail.com">
-              email
-            </a>
-
-            <a
-              href="https://github.com/AndyZ0915"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              github
-            </a>
-
-            <a
-              href="https://linkedin.com/in/andyzhu04"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              linkedin
-            </a>
-
+            <a href="mailto:andyzhu0915@gmail.com">email</a>
+            <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener noreferrer">github</a>
+            <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener noreferrer">linkedin</a>
           </div>
-
         </div>
-
         <div class="hire-timer">
-          You've been here for
-          <strong id="hireTimer">00:00</strong>.
+          You've been here for <strong id="hireTimer">00:00</strong>.
           <span id="timerMessage">Still deciding?</span>
         </div>
-
       </div>
     </section>
 
   </main>
 
   <footer>
-
     <div class="container footer-inner">
-
-      <span>
-        Andy Zhu · 2026
-      </span>
-
-      <span>
-        No frameworks were harmed in the making of this portfolio.
-      </span>
-
+      <span>Andy Zhu · 2026</span>
+      <span>No frameworks were harmed in the making of this portfolio.</span>
     </div>
-
   </footer>
 
   <script>
+  /* =========================================================
+     TYPEWRITER
+  ========================================================= */
+  (() => {
+    const el = document.getElementById("heroRole");
+    if (!el) return;
+    const text = "Software · Data · Analytics · Statistics";
+    const node = document.createTextNode("");
+    const cursor = document.createElement("span");
+    cursor.className = "typewriter-cursor";
+    cursor.setAttribute("aria-hidden", "true");
+    el.append(node, cursor);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { node.nodeValue = text; return; }
+    let i = 0;
+    function type() {
+      if (i >= text.length) return;
+      node.nodeValue += text[i]; i++;
+      setTimeout(type, text[i-1] === " " ? 75 : 42);
+    }
+    setTimeout(type, 350);
+  })();
 
-    /* =========================================================
-       TYPEWRITER
-       ========================================================= */
+  /* =========================================================
+     PROJECT TOGGLES
+  ========================================================= */
+  document.querySelectorAll(".project-toggle").forEach(button => {
+    button.addEventListener("click", e => {
+      e.stopPropagation();
+      const card = button.closest(".project-card");
+      if (!card) return;
+      const open = card.classList.toggle("open");
+      button.textContent = open ? "hide details" : "details";
+    });
+  });
 
-    (() => {
-      const el = document.getElementById("heroRole");
+  /* =========================================================
+     PROJECT FILTERS
+  ========================================================= */
+  const projectCards = [...document.querySelectorAll(".project-card")];
+  function filterProjects(value) {
+    projectCards.forEach(card => {
+      const cats = card.dataset.category.split(" ");
+      card.classList.toggle("hidden", value !== "all" && !cats.includes(value));
+    });
+  }
+  document.querySelectorAll(".filter").forEach(button => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+      button.classList.add("active");
+      filterProjects(button.dataset.filter);
+    });
+  });
 
-      if (!el) return;
-
-      const text = "Software · Data · Analytics · Statistics";
-
-      const node = document.createTextNode("");
-
-      const cursor = document.createElement("span");
-
-      cursor.className = "typewriter-cursor";
-      cursor.setAttribute("aria-hidden", "true");
-
-      el.append(node, cursor);
-
-      if (
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ) {
-        node.nodeValue = text;
-        return;
-      }
-
-      let i = 0;
-
-      function type() {
-        if (i >= text.length) return;
-
-        node.nodeValue += text[i];
-
-        i++;
-
-        const delay = text[i - 1] === " " ? 75 : 42;
-
-        setTimeout(type, delay);
-      }
-
-      setTimeout(type, 350);
-    })();
-
-
-    /* =========================================================
-       PROJECT DETAILS
-       ========================================================= */
-
-    document
-      .querySelectorAll(".project-toggle")
-      .forEach((button) => {
-
-        button.addEventListener("click", (event) => {
-
-          event.stopPropagation();
-
-          const card = button.closest(".project-card");
-
-          if (!card) return;
-
-          const open = card.classList.toggle("open");
-
-          button.textContent =
-            open ? "hide details" : "details";
-
-        });
-
+  /* =========================================================
+     SKILL TRACE
+  ========================================================= */
+  document.querySelectorAll(".skill").forEach(button => {
+    button.addEventListener("click", () => {
+      const wasActive = button.classList.contains("active");
+      document.querySelectorAll(".skill").forEach(b => b.classList.remove("active"));
+      projectCards.forEach(c => c.classList.remove("skill-match"));
+      if (wasActive) return;
+      button.classList.add("active");
+      projectCards.forEach(card => {
+        if (card.dataset.skills.split(" ").includes(button.dataset.skill))
+          card.classList.add("skill-match");
       });
+    });
+  });
 
+  /* =========================================================
+     BASKETBALL GAME — fixed physics, touch support, fire streak, FG%
+  ========================================================= */
+  (() => {
+    const area     = document.getElementById("gameArea");
+    const ballEl   = document.getElementById("ball");
+    const overlay  = document.getElementById("gameOverlay");
+    const titleEl  = document.getElementById("overlayTitle");
+    const textEl   = document.getElementById("overlayText");
+    const startBtn = document.getElementById("startGame");
+    const scoreEl  = document.getElementById("gameScore");
+    const streakEl = document.getElementById("gameStreak");
+    const shotsEl  = document.getElementById("gameShots");
+    const fgEl     = document.getElementById("gameFG");
+    const statusEl = document.getElementById("gameStatus");
+    const noteEl   = document.getElementById("sideNote");
+    const flashEl  = document.getElementById("shotFlash");
+    const powerFill= document.getElementById("powerFill");
+    const netSvg   = document.getElementById("netSvg");
+    const fireEl   = document.getElementById("fireStreak");
+    const mobileBtn= document.getElementById("mobileShootBtn");
 
-    /* =========================================================
-       PROJECT FILTERS
-       ========================================================= */
+    const BALL_R   = 14;
+    const SHOOT_X  = 100; // fixed launch x
+    const G        = 1800;
 
-    const projectCards = [
-      ...document.querySelectorAll(".project-card")
+    let playing = false, shooting = false;
+    let score = 0, streak = 0, shots = 0, unlocked = 0;
+    // angle in degrees (fixed), power ratio (fixed range)
+    let aimAngleDeg = 52;
+    let power = 0.72;
+    let trajectoryDots = [];
+
+    const makeQuips  = ["Buckets.", "Money.", "Nothing but net.", "Swish.", "That's a W.", "Ice in the veins.", "Pure."];
+    const missQuips  = ["Brick.", "Rough.", "Not even close.", "Airball energy.", "Missed wide.", "Left it short.", "Clang."];
+    const streakQuips = { 2: "Two in a row.", 3: "On fire.", 4: "Heat check.", 5: "Unconscious.", 6: "Can't miss." };
+    const UNLOCK_DATA = [
+      ["THE FED",         "29 datasets. Onboarding: weeks → 2 days."],
+      ["COMPUTER VISION", "91% accuracy. 10hr → 12min."],
+      ["BIOTECH ETL",     "15+ sources unified. 40% faster."],
+      ["REAL USERS",      "20+ biologists. 20+ hrs/mo saved."],
     ];
 
-    function filterProjects(value) {
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+    function rand(a, b) { return a + Math.random() * (b - a); }
 
-      projectCards.forEach((card) => {
-
-        const categories =
-          card.dataset.category.split(" ");
-
-        const visible =
-          value === "all" ||
-          categories.includes(value);
-
-        card.classList.toggle(
-          "hidden",
-          !visible
-        );
-
-      });
-
+    /* Rim geometry — computed fresh each time so it works on any screen size */
+    function rimGeo() {
+      const areaW = area.clientWidth;
+      // hoop CSS: right: 115px, width: 92px, rim right:7px, rim width:55px
+      // But on small screens we scale via CSS var. Read actual hoop position from DOM.
+      const hoopEl = document.getElementById("hoopEl");
+      const hoopRect = hoopEl.getBoundingClientRect();
+      const areaRect = area.getBoundingClientRect();
+      // rim is inside hoop: right:7px from hoop right edge, width:55px
+      const rimRight  = hoopRect.right  - areaRect.left - 7;
+      const rimLeft   = rimRight - 55;
+      const rimTop    = hoopRect.top - areaRect.top + 48; // top:110 offset + rim top:48
+      return { left: rimLeft, right: rimRight, top: rimTop, center: (rimLeft + rimRight) / 2 };
     }
 
-    document
-      .querySelectorAll(".filter")
-      .forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-          document
-            .querySelectorAll(".filter")
-            .forEach((item) => {
-              item.classList.remove("active");
-            });
-
-          button.classList.add("active");
-
-          filterProjects(
-            button.dataset.filter
-          );
-
-        });
-
-      });
-
-
-    /* =========================================================
-       SKILL TRACE
-       ========================================================= */
-
-    document
-      .querySelectorAll(".skill")
-      .forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-          const wasActive =
-            button.classList.contains("active");
-
-          document
-            .querySelectorAll(".skill")
-            .forEach((item) => {
-              item.classList.remove("active");
-            });
-
-          projectCards.forEach((card) => {
-            card.classList.remove("skill-match");
-          });
-
-          if (wasActive) return;
-
-          button.classList.add("active");
-
-          projectCards.forEach((card) => {
-
-            const skills =
-              card.dataset.skills.split(" ");
-
-            if (
-              skills.includes(
-                button.dataset.skill
-              )
-            ) {
-              card.classList.add("skill-match");
-            }
-
-          });
-
-        });
-
-      });
-
-
-    /* =========================================================
-       ROUTE SELECTOR
-       ========================================================= */
-
-    const pathMessage =
-      document.getElementById("pathMessage");
-
-    const pathText = {
-      all: "Showing everything.",
-      data: "Showing data-focused work.",
-      software: "Showing software-focused work.",
-      analytics: "Showing analytics-focused work.",
-      ml: "Showing machine-learning work."
-    };
-
-    document
-      .querySelectorAll(".path-button")
-      .forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-          const value =
-            button.dataset.path;
-
-          document
-            .querySelectorAll(".path-button")
-            .forEach((item) => {
-              item.classList.remove("active");
-            });
-
-          button.classList.add("active");
-
-          filterProjects(value);
-
-          pathMessage.textContent =
-            pathText[value];
-
-          document
-            .getElementById("projects")
-            .scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
-
-        });
-
-      });
-
-
-    /* =========================================================
-       BASKETBALL GAME
-       ========================================================= */
-
-    (() => {
-
-      const area =
-        document.getElementById("gameArea");
-
-      const ballEl =
-        document.getElementById("ball");
-
-      const overlay =
-        document.getElementById("gameOverlay");
-
-      const titleEl =
-        document.getElementById("overlayTitle");
-
-      const textEl =
-        document.getElementById("overlayText");
-
-      const startBtn =
-        document.getElementById("startGame");
-
-      const scoreEl =
-        document.getElementById("gameScore");
-
-      const streakEl =
-        document.getElementById("gameStreak");
-
-      const shotsEl =
-        document.getElementById("gameShots");
-
-      const statusEl =
-        document.getElementById("gameStatus");
-
-      const noteEl =
-        document.getElementById("sideNote");
-
-      const flashEl =
-        document.getElementById("shotFlash");
-
-      const powerFill =
-        document.getElementById("powerFill");
-
-      const reticle =
-        document.getElementById("aimReticle");
-
-      const netSvg =
-        document.getElementById("netSvg");
-
-      const unlockEls = [
-        ...document.querySelectorAll(".unlock")
-      ];
-
-      const BALL_R = 14;
-
-      const SHOOT_X = 100;
-
-      const SHOOT_Y = () =>
-        area.clientHeight - 70;
-
-      const G = 1800;
-
-      let playing = false;
-      let shooting = false;
-
-      let score = 0;
-      let streak = 0;
-      let shots = 0;
-      let unlocked = 0;
-
-      let aimAngleDeg = 55;
-      let power = 0.72;
-
-      let trajectoryDots = [];
-
-      const makeQuips = [
-        "Buckets.",
-        "Money.",
-        "Nothing but net.",
-        "Swish.",
-        "That's a W.",
-        "Ice in the veins."
-      ];
-
-      const missQuips = [
-        "Brick.",
-        "Off the backboard.",
-        "Rough.",
-        "Not even close.",
-        "Airball energy.",
-        "Missed wide."
-      ];
-
-      const streakQuips = {
-        2: "Two in a row.",
-        3: "On fire.",
-        4: "Heat check.",
-        5: "Unconscious."
-      };
-
-      const UNLOCK_DATA = [
-        [
-          "THE FED",
-          "28 datasets. Onboarding: weeks → 2 days."
-        ],
-        [
-          "COMPUTER VISION",
-          "91% accuracy. 10hr → 12min analysis."
-        ],
-        [
-          "BIOTECH ETL",
-          "15+ sources unified. 40% faster."
-        ],
-        [
-          "REAL USERS",
-          "20+ biologists. 20+ person-hrs/mo saved."
-        ]
-      ];
-
-      function clamp(value, min, max) {
-        return Math.max(
-          min,
-          Math.min(max, value)
-        );
-      }
-
-      function random(min, max) {
-        return min +
-          Math.random() * (max - min);
-      }
-
-      function rimGeometry() {
-
-        const hoopRight = 115;
-        const hoopWidth = 92;
-
-        const rimRightOffset = 7;
-
-        const rimLeft =
-          area.clientWidth -
-          hoopRight -
-          hoopWidth +
-          rimRightOffset;
-
-        const rimWidth = 55;
-
-        const rimTop = 105 + 48;
-
-        return {
-          left: rimLeft,
-          right: rimLeft + rimWidth,
-          top: rimTop,
-          center: rimLeft + rimWidth / 2
-        };
-      }
-
-      function showFlash(text, opacity = 1) {
-
-        flashEl.textContent = text;
-
-        flashEl.style.opacity =
-          String(opacity);
-
-        clearTimeout(
-          flashEl._timer
-        );
-
-        flashEl._timer =
-          setTimeout(() => {
-            flashEl.style.opacity = "0";
-          }, 900);
-      }
-
-      function clearTrajectory() {
-
-        trajectoryDots.forEach((dot) => {
-          dot.remove();
-        });
-
-        trajectoryDots = [];
-      }
-
-      function computeVelocity() {
-
-        const angle =
-          aimAngleDeg *
-          Math.PI /
-          180;
-
-        const speed =
-          430 +
-          power * 350;
-
-        const vx =
-          Math.cos(angle) * speed;
-
-        const vy =
-          Math.sin(angle) * speed;
-
-        return {
-          vx,
-          vy
-        };
-      }
-
-      function drawTrajectory() {
-
-        clearTrajectory();
-
-        const {
-          vx,
-          vy
-        } = computeVelocity();
-
-        const dt = 0.018;
-
-        let x = SHOOT_X;
-        let y = SHOOT_Y();
-
-        let velocityY = vy;
-
-        for (let i = 0; i < 35; i++) {
-
-          x += vx * dt;
-          y -= velocityY * dt;
-
-          velocityY -= G * dt;
-
-          if (
-            x < 0 ||
-            x > area.clientWidth ||
-            y > area.clientHeight + 20
-          ) {
-            break;
-          }
-
-          if (i % 2 === 0) {
-
-            const dot =
-              document.createElement("div");
-
-            dot.className =
-              "traj-dot";
-
-            dot.style.left =
-              `${x - 2}px`;
-
-            dot.style.top =
-              `${y - 2}px`;
-
-            dot.style.opacity =
-              String(
-                Math.max(
-                  0.08,
-                  0.5 - i / 90
-                )
-              );
-
-            area.appendChild(dot);
-
-            trajectoryDots.push(dot);
-          }
+    function SHOOT_Y() { return area.clientHeight - 70; }
+
+    /* Power color */
+    function powerClass(p) {
+      if (p < 0.55) return "power-low";
+      if (p < 0.90) return "power-ok";
+      return "power-high";
+    }
+    function powerBarColor(p) {
+      if (p < 0.55) return "linear-gradient(180deg, #2563eb, #93c5fd)";
+      if (p < 0.90) return "linear-gradient(180deg, #166534, #4ade80)";
+      return "linear-gradient(180deg, #dc2626, #f87171)";
+    }
+
+    function showFlash(text, cls = "make") {
+      flashEl.textContent = text;
+      flashEl.className = "shot-flash " + cls;
+      flashEl.style.opacity = "1";
+      clearTimeout(flashEl._t);
+      flashEl._t = setTimeout(() => { flashEl.style.opacity = "0"; }, 1000);
+    }
+
+    function clearTrajectory() { trajectoryDots.forEach(d => d.remove()); trajectoryDots = []; }
+
+    function computeVelocity() {
+      const angle = aimAngleDeg * Math.PI / 180;
+      const speed = 430 + power * 350;
+      return { vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed };
+    }
+
+    function drawTrajectory() {
+      clearTrajectory();
+      const { vx, vy } = computeVelocity();
+      const dt = 0.018;
+      let x = SHOOT_X, y = SHOOT_Y(), velocityY = vy;
+      for (let i = 0; i < 38; i++) {
+        x += vx * dt; y -= velocityY * dt; velocityY -= G * dt;
+        if (x < 0 || x > area.clientWidth || y > area.clientHeight + 20) break;
+        if (i % 2 === 0) {
+          const dot = document.createElement("div");
+          dot.className = "traj-dot " + powerClass(power);
+          dot.style.left = `${x - 2}px`;
+          dot.style.top  = `${y - 2}px`;
+          dot.style.opacity = String(Math.max(0.07, 0.5 - i / 80));
+          area.appendChild(dot);
+          trajectoryDots.push(dot);
         }
       }
+    }
 
-      function updateAim() {
+    function updatePowerBar() {
+      const pct = clamp(((power - 0.40) / 0.75) * 100, 0, 100);
+      powerFill.style.height     = `${pct}%`;
+      powerFill.style.background = powerBarColor(power);
+    }
 
-        reticle.style.left =
-          `${SHOOT_X}px`;
+    /* Decouple aim angle and power from raw pixel distance.
+       Angle: based on pointer Y relative to shoot Y (not distance).
+       Power: based on pointer X relative to a fixed 0-1 zone. */
+    function updateFromPointer(clientX, clientY) {
+      if (!playing || shooting) return;
+      const rect = area.getBoundingClientRect();
+      const mx = clientX - rect.left;
+      const my = clientY - rect.top;
+      const sy = SHOOT_Y();
+      const dx = mx - SHOOT_X;
+      const dy = sy - my;
+      if (dx <= 0) return;
 
-        reticle.style.top =
-          `${SHOOT_Y()}px`;
+      // angle: pure atan2
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+      aimAngleDeg = clamp(angle, 22, 78);
 
-        const percentage =
-          clamp(
-            ((power - 0.45) / 0.65) *
-            100,
-            0,
-            100
-          );
+      // power: normalize horizontal distance across the game area (0 = SHOOT_X, 1 = right edge)
+      const maxDist = area.clientWidth - SHOOT_X;
+      power = clamp(dx / maxDist * 1.5, 0.42, 1.1);
 
-        powerFill.style.height =
-          `${percentage}%`;
+      updatePowerBar();
+      drawTrajectory();
+    }
+
+    function animateNet() {
+      netSvg.style.transition = "transform 0s";
+      netSvg.style.transform  = "scaleY(1.20) scaleX(0.86)";
+      setTimeout(() => {
+        netSvg.style.transition = "transform 0.4s cubic-bezier(.22,1,.36,1)";
+        netSvg.style.transform  = "scaleY(1) scaleX(1)";
+      }, 20);
+    }
+
+    function unlockNext() {
+      if (unlocked >= 4) return;
+      const el = document.querySelector(`.unlock[data-unlock="${unlocked + 1}"]`);
+      if (!el) return;
+      const [label, desc] = UNLOCK_DATA[unlocked];
+      el.querySelector("strong").textContent = label;
+      el.querySelector("span").textContent   = desc;
+      unlocked++;
+      el.classList.remove("locked");
+      el.classList.add("unlocked");
+      const rem = 4 - unlocked;
+      statusEl.textContent = rem > 0 ? `${unlocked}/4 unlocked · ${rem} more to go` : "ALL STATS UNLOCKED";
+    }
+
+    function updateFG() {
+      fgEl.textContent = shots > 0 ? Math.round(score / shots * 100) + "%" : "—";
+    }
+
+    function resetBall() {
+      ballEl.style.left      = `${SHOOT_X - BALL_R}px`;
+      ballEl.style.top       = `${SHOOT_Y() - BALL_R}px`;
+      ballEl.style.transform = "rotate(0deg)";
+      updatePowerBar();
+    }
+
+    function resolveShot(made) {
+      if (made) {
+        score++; streak++;
+        scoreEl.textContent  = String(score);
+        streakEl.textContent = String(streak);
+        // fire streak visual
+        if (streak >= 3) {
+          fireEl.classList.add("active");
+          showFlash(streakQuips[Math.min(streak, 6)] || makeQuips[~~(Math.random() * makeQuips.length)], "streak");
+        } else {
+          showFlash(makeQuips[~~(Math.random() * makeQuips.length)], "make");
+        }
+        animateNet();
+        unlockNext();
+      } else {
+        const prev = streak; streak = 0; streakEl.textContent = "0";
+        if (streak === 0 && fireEl.classList.contains("active")) fireEl.classList.remove("active");
+        showFlash(prev >= 3 ? `Streak gone. (${prev} in a row though.)` : missQuips[~~(Math.random() * missQuips.length)], "miss");
       }
+      updateFG();
+    }
 
-      function updateFromPointer(event) {
+    function shoot() {
+      if (!playing || shooting) return;
+      shooting = true;
+      shots++; shotsEl.textContent = String(shots);
+      clearTrajectory();
+      powerFill.style.height = "0%";
 
-        if (
-          !playing ||
-          shooting
-        ) {
-          return;
+      let { vx, vy } = computeVelocity();
+      vx += rand(-12, 12);
+      vy += rand(-15, 15);
+
+      let x = SHOOT_X, y = SHOOT_Y(), rotation = 0;
+      const rim = rimGeo();
+      let prevTime = performance.now();
+      let made = false, resolved = false, rimChecked = false;
+
+      function frame(now) {
+        const dt = Math.min((now - prevTime) / 1000, 0.033);
+        prevTime = now;
+        x += vx * dt; y -= vy * dt; vy -= G * dt;
+        rotation += vx * dt * 0.55;
+
+        ballEl.style.left      = `${x - BALL_R}px`;
+        ballEl.style.top       = `${y - BALL_R}px`;
+        ballEl.style.transform = `rotate(${rotation}deg)`;
+
+        // make detection: center crosses rim plane moving downward
+        if (!rimChecked && vy < 0 && y >= rim.top && y <= rim.top + 30) {
+          rimChecked = true;
+          if (x > rim.left + BALL_R + 2 && x < rim.right - BALL_R - 2) made = true;
         }
 
-        const rect =
-          area.getBoundingClientRect();
+        // backboard
+        const bbLeft = rim.right + 7; // backboard starts right of rim gap
+        if (x + BALL_R > bbLeft && x - BALL_R < bbLeft + 6 && y > rim.top - 40 && y < rim.top + 45 && vx > 0) {
+          x = bbLeft - BALL_R; vx = -Math.abs(vx) * 0.52;
+        }
 
-        const mouseX =
-          event.clientX -
-          rect.left;
+        // rim edge bounce
+        if (!made && rimChecked && y >= rim.top - 4 && y <= rim.top + 18 && x >= rim.left - 6 && x <= rim.right + 6) {
+          const c = rim.center;
+          vx += x < c ? -rand(20, 60) : rand(20, 60);
+          vy  = Math.abs(vy) * 0.38;
+        }
 
-        const mouseY =
-          event.clientY -
-          rect.top;
+        const floor = area.clientHeight - 22;
+        const gone  = y >= floor || x > area.clientWidth + BALL_R * 2 || x < -BALL_R * 3;
 
-        const dx =
-          mouseX - SHOOT_X;
+        if (!gone && !made) { requestAnimationFrame(frame); return; }
 
-        const dy =
-          SHOOT_Y() - mouseY;
-
-        if (dx <= 0) return;
-
-        const angle =
-          Math.atan2(
-            dy,
-            dx
-          ) *
-          180 /
-          Math.PI;
-
-        aimAngleDeg =
-          clamp(
-            angle,
-            25,
-            78
-          );
-
-        const distance =
-          Math.hypot(
-            dx,
-            dy
-          );
-
-        power =
-          clamp(
-            distance / 300,
-            0.45,
-            1.1
-          );
-
-        updateAim();
-
-        drawTrajectory();
-      }
-
-      function animateNet() {
-
-        netSvg.style.transition =
-          "transform 0s";
-
-        netSvg.style.transform =
-          "scaleY(1.18) scaleX(0.88)";
+        if (resolved) return;
+        resolved = true;
+        resolveShot(made);
 
         setTimeout(() => {
-
-          netSvg.style.transition =
-            "transform 0.4s cubic-bezier(.22,1,.36,1)";
-
-          netSvg.style.transform =
-            "scaleY(1) scaleX(1)";
-
-        }, 20);
+          resetBall();
+          shooting = false;
+          if (score >= 4)  finishGame();
+          else if (shots >= 10) endGame();
+        }, made ? 400 : 230);
       }
-
-      function unlockNext() {
-
-        if (
-          unlocked >=
-          unlockEls.length
-        ) {
-          return;
-        }
-
-        const element =
-          unlockEls[unlocked];
-
-        const [
-          label,
-          description
-        ] =
-          UNLOCK_DATA[unlocked];
-
-        element
-          .querySelector("strong")
-          .textContent =
-          label;
-
-        element
-          .querySelector("span")
-          .textContent =
-          description;
-
-        unlocked++;
-
-        element.classList.remove(
-          "locked"
-        );
-
-        element.classList.add(
-          "unlocked"
-        );
-
-        const remaining =
-          unlockEls.length -
-          unlocked;
-
-        statusEl.textContent =
-          remaining > 0
-            ? `${unlocked}/4 unlocked · ${remaining} more to go`
-            : "ALL STATS UNLOCKED";
-      }
-
-      function resetBall() {
-
-        ballEl.style.left =
-          `${SHOOT_X - BALL_R}px`;
-
-        ballEl.style.top =
-          `${SHOOT_Y() - BALL_R}px`;
-
-        ballEl.style.transform =
-          "rotate(0deg)";
-
-        updateAim();
-      }
-
-      function resolveShot(made) {
-
-        if (made) {
-
-          score++;
-          streak++;
-
-          scoreEl.textContent =
-            String(score);
-
-          streakEl.textContent =
-            String(streak);
-
-          const quip =
-            streakQuips[streak] ||
-            makeQuips[
-              Math.floor(
-                Math.random() *
-                makeQuips.length
-              )
-            ];
-
-          showFlash(quip);
-
-          animateNet();
-
-          unlockNext();
-
-        } else {
-
-          const previousStreak =
-            streak;
-
-          streak = 0;
-
-          streakEl.textContent =
-            "0";
-
-          const quip =
-            previousStreak >= 3
-              ? `Streak gone. (${previousStreak} in a row though.)`
-              : missQuips[
-                  Math.floor(
-                    Math.random() *
-                    missQuips.length
-                  )
-                ];
-
-          showFlash(quip);
-        }
-      }
-
-      function shoot() {
-
-        if (
-          !playing ||
-          shooting
-        ) {
-          return;
-        }
-
-        shooting = true;
-
-        shots++;
-
-        shotsEl.textContent =
-          String(shots);
-
-        clearTrajectory();
-
-        powerFill.style.height =
-          "0%";
-
-        let {
-          vx,
-          vy
-        } = computeVelocity();
-
-        vx += random(-15, 15);
-        vy += random(-18, 18);
-
-        let x = SHOOT_X;
-        let y = SHOOT_Y();
-
-        let rotation = 0;
-
-        const rim =
-          rimGeometry();
-
-        let previousTime =
-          performance.now();
-
-        let made = false;
-        let resolved = false;
-        let rimChecked = false;
-
-        function frame(now) {
-
-          const dt =
-            Math.min(
-              (now - previousTime) / 1000,
-              0.033
-            );
-
-          previousTime = now;
-
-          x += vx * dt;
-          y -= vy * dt;
-
-          vy -= G * dt;
-
-          rotation +=
-            vx * dt * 0.55;
-
-          ballEl.style.left =
-            `${x - BALL_R}px`;
-
-          ballEl.style.top =
-            `${y - BALL_R}px`;
-
-          ballEl.style.transform =
-            `rotate(${rotation}deg)`;
-
-          /*
-           * The ball is considered a make when its center
-           * crosses the rim plane while moving downward,
-           * and the center is safely inside the rim opening.
-           */
-
-          if (
-            !rimChecked &&
-            vy < 0 &&
-            y >= rim.top &&
-            y <= rim.top + 28
-          ) {
-
-            rimChecked = true;
-
-            const inside =
-              x >
-                rim.left + BALL_R + 3 &&
-              x <
-                rim.right - BALL_R - 3;
-
-            if (inside) {
-              made = true;
-            }
-          }
-
-          /*
-           * Basic backboard interaction.
-           */
-
-          const backboardLeft =
-            area.clientWidth -
-            115 -
-            92 +
-            55;
-
-          const backboardTop =
-            105;
-
-          const backboardBottom =
-            backboardTop + 42;
-
-          if (
-            x + BALL_R >
-              backboardLeft &&
-            x - BALL_R <
-              backboardLeft + 4 &&
-            y >
-              backboardTop - 10 &&
-            y <
-              backboardBottom + 10 &&
-            vx > 0
-          ) {
-
-            x =
-              backboardLeft -
-              BALL_R;
-
-            vx =
-              -Math.abs(vx) * 0.55;
-          }
-
-          /*
-           * Rim edge collision.
-           */
-
-          if (
-            !made &&
-            rimChecked &&
-            y >= rim.top - 2 &&
-            y <= rim.top + 15 &&
-            x >= rim.left - 4 &&
-            x <= rim.right + 4
-          ) {
-
-            const center =
-              rim.center;
-
-            vx +=
-              x < center
-                ? -random(25, 70)
-                : random(25, 70);
-
-            vy =
-              Math.abs(vy) * 0.42;
-          }
-
-          /*
-           * Finish when ball reaches the floor or leaves the area.
-           */
-
-          const floor =
-            area.clientHeight -
-            25;
-
-          const finished =
-            y >= floor ||
-            x >
-              area.clientWidth +
-              BALL_R * 2 ||
-            x <
-              -BALL_R * 3;
-
-          if (
-            !finished &&
-            !made
-          ) {
-
-            requestAnimationFrame(
-              frame
-            );
-
-            return;
-          }
-
-          if (resolved) return;
-
-          resolved = true;
-
-          resolveShot(made);
-
-          setTimeout(() => {
-
-            resetBall();
-
-            shooting = false;
-
-            if (score >= 4) {
-              finishGame();
-            } else if (shots >= 10) {
-              endGame();
-            }
-
-          }, made ? 380 : 220);
-        }
-
-        requestAnimationFrame(frame);
-      }
-
-      function startGame() {
-
-        playing = true;
-        shooting = false;
-
-        score = 0;
-        streak = 0;
-        shots = 0;
-        unlocked = 0;
-
-        scoreEl.textContent = "0";
-        streakEl.textContent = "0";
-        shotsEl.textContent = "0";
-
-        unlockEls.forEach((element, index) => {
-
-          element.classList.remove(
-            "unlocked"
-          );
-
-          element.classList.add(
-            "locked"
-          );
-
-          const labels = [
-            "THE FED",
-            "COMPUTER VISION",
-            "BIOTECH ETL",
-            "REAL USERS"
-          ];
-
-          const descriptions = [
-            "28 datasets. Onboarding: weeks → 2 days.",
-            "91% accuracy. 10hr → 12min.",
-            "15+ sources unified. 40% faster.",
-            "20+ biologists. 20+ person-hours/mo saved."
-          ];
-
-          element
-            .querySelector("strong")
-            .textContent =
-            `LOCKED · ${labels[index]}`;
-
-          element
-            .querySelector("span")
-            .textContent =
-            descriptions[index];
-
-        });
-
-        statusEl.textContent =
-          "Sink 3 to unlock the stats";
-
-        noteEl.textContent =
-          "The terminal below also has some hidden commands.";
-
-        overlay.classList.add(
-          "hidden"
-        );
-
-        resetBall();
-
-        clearTrajectory();
-      }
-
-      function finishGame() {
-
-        playing = false;
-
-        const percentage =
-          shots > 0
-            ? Math.round(
-                score / shots * 100
-              )
-            : 0;
-
-        titleEl.textContent =
-          "ALL STATS UNLOCKED";
-
-        textEl.textContent =
-          `${score} for ${shots} (${percentage}% FG). Stats revealed. Check the terminal for more.`;
-
-        startBtn.textContent =
-          "RUN IT BACK";
-
-        overlay.classList.remove(
-          "hidden"
-        );
-      }
-
-      function endGame() {
-
-        playing = false;
-
-        let title;
-        let text;
-
-        if (score === 0) {
-
-          title =
-            "BIG BRICK ENERGY";
-
-          text =
-            `0 for ${shots}. Legendary brick session.`;
-
-        } else if (score >= 3) {
-
-          title =
-            "CLOSE ONE";
-
-          text =
-            `${score} for ${shots}. One bucket short of unlocking everything.`;
-
-        } else {
-
-          title =
-            "GOOD RUN";
-
-          const percentage =
-            Math.round(
-              score / shots * 100
-            );
-
-          text =
-            `${score} for ${shots} (${percentage}% FG). Try again to unlock all stats.`;
-        }
-
-        titleEl.textContent =
-          title;
-
-        textEl.textContent =
-          text;
-
-        startBtn.textContent =
-          "RUN IT BACK";
-
-        overlay.classList.remove(
-          "hidden"
-        );
-      }
-
-      area.addEventListener(
-        "mousemove",
-        updateFromPointer
-      );
-
-      area.addEventListener(
-        "mouseleave",
-        clearTrajectory
-      );
-
-      area.addEventListener(
-        "click",
-        (event) => {
-
-          if (
-            event.target.closest(
-              ".game-overlay"
-            )
-          ) {
-            return;
-          }
-
-          shoot();
-        }
-      );
-
-      document.addEventListener(
-        "keydown",
-        (event) => {
-
-          if (
-            event.code !== "Space"
-          ) {
-            return;
-          }
-
-          const rect =
-            document
-              .getElementById(
-                "side-quest"
-              )
-              .getBoundingClientRect();
-
-          if (
-            rect.top <
-              window.innerHeight &&
-            rect.bottom > 0
-          ) {
-
-            event.preventDefault();
-
-            shoot();
-          }
-        }
-      );
-
-      startBtn.addEventListener(
-        "click",
-        startGame
-      );
-
+      requestAnimationFrame(frame);
+    }
+
+    function startGame() {
+      playing = true; shooting = false;
+      score = 0; streak = 0; shots = 0; unlocked = 0;
+      scoreEl.textContent = "0"; streakEl.textContent = "0";
+      shotsEl.textContent = "0"; fgEl.textContent = "—";
+      fireEl.classList.remove("active");
+      document.querySelectorAll(".unlock").forEach((el, i) => {
+        el.classList.remove("unlocked"); el.classList.add("locked");
+        el.querySelector("strong").textContent = `LOCKED · ${UNLOCK_DATA[i][0]}`;
+        el.querySelector("span").textContent   = UNLOCK_DATA[i][1];
+      });
+      statusEl.textContent = "Sink 4 to unlock the stats";
+      noteEl.textContent   = "The terminal below also has some hidden commands.";
+      overlay.classList.add("hidden");
       resetBall();
+      clearTrajectory();
+    }
 
-    })();
+    function finishGame() {
+      playing = false;
+      const pct = shots > 0 ? Math.round(score / shots * 100) : 0;
+      titleEl.textContent = "ALL STATS UNLOCKED";
+      textEl.textContent  = `${score} for ${shots} (${pct}% FG). Stats revealed. Check the terminal for more.`;
+      startBtn.textContent = "RUN IT BACK";
+      overlay.classList.remove("hidden");
+    }
 
+    function endGame() {
+      playing = false;
+      let title, text;
+      if (score === 0) {
+        title = "BIG BRICK ENERGY";
+        text  = `0 for ${shots}. Legendary brick session.`;
+      } else if (score >= 3) {
+        title = "CLOSE ONE";
+        text  = `${score} for ${shots}. One bucket short of unlocking everything.`;
+      } else {
+        const pct = Math.round(score / shots * 100);
+        title = "GOOD RUN";
+        text  = `${score} for ${shots} (${pct}% FG). Try again to unlock all stats.`;
+      }
+      titleEl.textContent  = title;
+      textEl.textContent   = text;
+      startBtn.textContent = "RUN IT BACK";
+      overlay.classList.remove("hidden");
+    }
 
-    /* =========================================================
-       TERMINAL
-       ========================================================= */
+    /* ── Input: mouse ── */
+    area.addEventListener("mousemove", e => updateFromPointer(e.clientX, e.clientY));
+    area.addEventListener("mouseleave", clearTrajectory);
+    area.addEventListener("click", e => {
+      if (e.target.closest(".game-overlay")) return;
+      shoot();
+    });
 
-    (() => {
+    /* ── Input: touch — drag to aim, release to shoot ── */
+    let lastTouchX = 0, lastTouchY = 0;
+    area.addEventListener("touchstart", e => {
+      if (e.target.closest(".game-overlay")) return;
+      const t = e.touches[0];
+      lastTouchX = t.clientX; lastTouchY = t.clientY;
+      updateFromPointer(t.clientX, t.clientY);
+      e.preventDefault();
+    }, { passive: false });
+    area.addEventListener("touchmove", e => {
+      const t = e.touches[0];
+      lastTouchX = t.clientX; lastTouchY = t.clientY;
+      updateFromPointer(t.clientX, t.clientY);
+      e.preventDefault();
+    }, { passive: false });
+    area.addEventListener("touchend", e => {
+      if (e.target.closest(".game-overlay")) return;
+      shoot();
+      e.preventDefault();
+    }, { passive: false });
 
-      const form =
-        document.getElementById(
-          "terminalForm"
-        );
+    /* ── Mobile shoot button ── */
+    mobileBtn.addEventListener("click", () => shoot());
 
-      const input =
-        document.getElementById(
-          "terminalInput"
-        );
+    /* ── Space bar ── */
+    document.addEventListener("keydown", e => {
+      if (e.code !== "Space") return;
+      const rect = document.getElementById("side-quest").getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) { e.preventDefault(); shoot(); }
+    });
 
-      const output =
-        document.getElementById(
-          "terminalOutput"
-        );
+    startBtn.addEventListener("click", startGame);
+    resetBall();
+  })();
 
-      const commands = {
+  /* =========================================================
+     TERMINAL
+  ========================================================= */
+  (() => {
+    const form   = document.getElementById("terminalForm");
+    const input  = document.getElementById("terminalInput");
+    const output = document.getElementById("terminalOutput");
 
-        help:
+    const commands = {
+      help:
 `Available commands:
 
 about       who I am
@@ -3076,20 +1427,17 @@ clear       clear terminal
 
 Hidden commands exist too.`,
 
-        about:
+      about:
 `Andy Zhu
 
 Rutgers University, Class of 2026
 B.S. Computer Science & Data Science
-Statistics Minor
-GPA: 3.5
-Dean's List x5
+Statistics Minor | GPA: 3.5 | Dean's List x5
 
-Data + software + analytics.
+I chose CS because I actually like to code.
+I build things that stay useful after the demo.`,
 
-I chose CS because I actually like to code.`,
-
-        ls:
+      ls:
 `about.txt
 experience/
   ├── federal-reserve/
@@ -3099,23 +1447,23 @@ side-quest/
 skills/
 contact.txt`,
 
-        projects:
+      projects:
 `01  Algorithmic Trading Backtester     [data · analytics]
 02  Cell Imaging Analysis Tool         [software · ml]
 03  Credit Risk Prediction             [data · ml · analytics]
 04  System Monitoring Dashboard        [software · data]
 05  NBA Analytics Platform             [data · analytics]
-06  R&D Lab Data Automation             [software · analytics]
+06  R&D Lab Data Automation            [software · analytics]
 07  Servin Food Recommendation         [software · data]`,
 
-        skills:
+      skills:
 `Python · SQL · R · TypeScript · JavaScript · Java
 
 AWS:
 Lambda · Glue · Athena · S3 · EMR · DynamoDB · CDK · EC2 · RDS
 
 Data:
-PySpark · Apache Airflow · pandas · NumPy · Docker
+PySpark · Apache Airflow · pandas · NumPy · Docker · SLURM/HPC
 
 ML:
 scikit-learn · TensorFlow · Cellpose · OpenCV
@@ -3123,67 +1471,61 @@ scikit-learn · TensorFlow · Cellpose · OpenCV
 Application:
 R Shiny · React · FastAPI · Flask · PostgreSQL · SQLite`,
 
-        contact:
+      contact:
 `Email:    andyzhu0915@gmail.com
 GitHub:   github.com/AndyZ0915
 LinkedIn: linkedin.com/in/andyzhu04
 
 I check all three.`,
 
-        hire:
+      hire:
 `Reasons to hire Andy:
 
-- Comfortable with ambiguous problems
-- Will ask the right questions before building
-- Cares about whether the output is actually useful
-- Ships things that stay useful after the demo
-- Knows when a framework is unnecessary overhead
+- Gets into a problem before starting to code
+- Cares whether the output is actually useful
+- Worked in environments where things had to hold up after the demo
+- Doesn't reach for a framework when a script would do
+- Fine with ambiguity, gets sharper as context builds
 
 Not reasons to hire Andy:
 
-- If you need someone with 5 years of experience
+- If you need 5 years of experience
 
 That is genuinely the only one.`,
 
-        joke:
+      joke:
 `Two bugs walk into a bar.
 
-First bug:
-"I haven't shipped in months."
+First bug: "I haven't shipped in months."
+Second bug: "I am in production right now."`,
 
-Second bug:
-"I am in production right now."`,
+      whoami: `andy`,
 
-        whoami:
-`andy`,
+      sudo: `Permission denied.\n\nNice try though.`,
 
-        sudo:
-`Permission denied.
-
-Nice try though.`,
-
-        nba:
+      nba:
 `Andy builds NBA analytics tools in his free time.
 
-He is very normal about basketball.`,
+He is very normal about basketball.
 
-        stat:
+(He is not normal about basketball.)`,
+
+      stat:
 `Statistics fact:
 
 Correlation does not imply causation.
 
-In Andy's experience, people will still build dashboards assuming it does.`,
+In Andy's experience, people build dashboards assuming it does.`,
 
-        python:
+      python:
 `Python 3.12.0
 portfolio-build
 
 Type "exit()" to quit.
 
-Just kidding.
-You are still here.`,
+Just kidding. You are still here.`,
 
-        ping:
+      ping:
 `PING portfolio
 
 1 packet
@@ -3191,31 +1533,33 @@ Reply: time=0ms
 
 Fast because there is no backend.`,
 
-        rutgers:
+      rutgers:
 `R-U RAH RAH, R-U RAH RAH
 Hoo-Rah, Hoo-Rah, Rutgers, Rah
 
-Class of 2026.
-3.5 GPA.
-Dean's List x5.
+Class of 2026 · 3.5 GPA · Dean's List x5
 
 Scarlet Knights.`,
 
-        basketball:
+      basketball:
 `You typed basketball into a terminal.
 
 Scroll up and actually play the game.`,
 
-        "git log":
+      "git log":
 `commit f2a91c3 (HEAD -> main)
 Author: Andy Zhu
 Date:   recent
 
-    add real physics to basketball game
+    add touch support and fire streak to basketball game
 
 commit 88d2b41
 
     fix look-ahead bias in backtester
+
+commit 4c21f7a
+
+    add about section — past, present, future, traits
 
 commit 1f40cc9
 
@@ -3223,335 +1567,94 @@ commit 1f40cc9
 
 commit 4e9d102
 
-    initial commit
-    it works on my machine`,
+    initial commit — works on my machine`,
 
-        secret:
+      secret:
 `Found it.
 
-Real secret:
-
 The basketball uses projectile physics:
-v0*t - 0.5*g*t²
+  x(t) = x₀ + vx·t
+  y(t) = y₀ - vy·t + ½g·t²
 
-Every shot gets a small random perturbation
-on its initial velocity vector.
+Power normalizes across screen width, not pixel distance,
+so it works the same on every screen size.
 
-Also try:
+Also try: whoami · sudo · nba · ping · stat · python · rutgers · git log`
+    };
 
-whoami
-sudo
-nba
-ping
-stat
-python
-rutgers
-git log`
+    const history = []; let historyIndex = -1;
 
-      };
-
-      const history = [];
-
-      let historyIndex = -1;
-
-      form.addEventListener(
-        "keydown",
-        (event) => {
-
-          if (
-            event.key !== "Enter"
-          ) {
-            return;
-          }
-
-          event.preventDefault();
-
-          const command =
-            input.value
-              .trim()
-              .toLowerCase();
-
-          if (!command) {
-            return;
-          }
-
-          history.push(command);
-
-          historyIndex =
-            history.length;
-
-          if (command === "clear") {
-
-            output.textContent = "";
-
-            input.value = "";
-
-            return;
-          }
-
-          let response;
-
-          if (command === "date") {
-
-            const graduation =
-              new Date(
-                "2026-05-15T00:00:00"
-              );
-
-            const days =
-              Math.floor(
-                (
-                  Date.now() -
-                  graduation.getTime()
-                ) /
-                86400000
-              );
-
-            response =
-              `${new Date().toDateString()}
-
-Days since graduation: ${days}
-
-Still looking for the right role.`;
-
-          } else {
-
-            response =
-              commands[command] ||
-              `Command not found: "${command}"
-
-Type "help" for available commands.`;
-
-          }
-
-          const previous =
-            output.textContent.trim();
-
-          output.textContent =
-            (
-              previous
-                ? previous + "\n\n"
-                : ""
-            ) +
-            "$ " +
-            command +
-            "\n" +
-            response;
-
-          input.value = "";
-
-          setTimeout(() => {
-
-            output.scrollTop =
-              output.scrollHeight;
-
-          }, 10);
-
-        }
-      );
-
-      input.addEventListener(
-        "keydown",
-        (event) => {
-
-          if (
-            event.key === "ArrowUp"
-          ) {
-
-            event.preventDefault();
-
-            if (history.length) {
-
-              historyIndex =
-                Math.max(
-                  0,
-                  historyIndex - 1
-                );
-
-              input.value =
-                history[
-                  historyIndex
-                ] || "";
-            }
-          }
-
-          if (
-            event.key === "ArrowDown"
-          ) {
-
-            event.preventDefault();
-
-            historyIndex =
-              Math.min(
-                history.length,
-                historyIndex + 1
-              );
-
-            input.value =
-              history[
-                historyIndex
-              ] || "";
-          }
-
-        }
-      );
-
-    })();
-
-
-    /* =========================================================
-       HIRE TIMER
-       ========================================================= */
-
-    (() => {
-
-      const timer =
-        document.getElementById(
-          "hireTimer"
-        );
-
-      const message =
-        document.getElementById(
-          "timerMessage"
-        );
-
-      const start =
-        Date.now();
-
-      const milestones = [
-        [0, "Still deciding?"],
-        [15, "Good sign."],
-        [30, "You're actually reading this."],
-        [60, "Okay you're thorough. Respect."],
-        [90, "This is longer than most first-round interviews."],
-        [120, "Andy is fully employed if you just email him."],
-        [180, "At this point you might as well reach out."],
-        [240, "Seriously though. andyzhu0915@gmail.com."],
-        [300, "Five minutes. You win. Email him."],
-        [420, "Seven minutes. Bold move."],
-        [600, "Ten minutes. He would just like a job, thanks."]
-      ];
-
-      function updateTimer() {
-
-        const seconds =
-          Math.floor(
-            (Date.now() - start) /
-            1000
-          );
-
-        const minutes =
-          Math.floor(
-            seconds / 60
-          );
-
-        timer.textContent =
-          String(minutes)
-            .padStart(2, "0") +
-          ":" +
-          String(
-            seconds % 60
-          ).padStart(2, "0");
-
-        let current =
-          milestones[0][1];
-
-        for (
-          const [
-            threshold,
-            text
-          ] of milestones
-        ) {
-
-          if (
-            seconds >= threshold
-          ) {
-            current = text;
-          }
-
-        }
-
-        message.textContent =
-          current;
+    form.addEventListener("keydown", e => {
+      if (e.key !== "Enter") return;
+      e.preventDefault();
+      const cmd = input.value.trim().toLowerCase();
+      if (!cmd) return;
+      history.push(cmd); historyIndex = history.length;
+      if (cmd === "clear") { output.textContent = ""; input.value = ""; return; }
+      let response;
+      if (cmd === "date") {
+        const grad = new Date("2026-05-15T00:00:00");
+        const days = Math.floor((Date.now() - grad.getTime()) / 86400000);
+        response = `${new Date().toDateString()}\n\nDays since graduation: ${days}\n\nStill looking for the right role.`;
+      } else {
+        response = commands[cmd] || `Command not found: "${cmd}"\n\nType "help" for available commands.`;
       }
+      const prev = output.textContent.trim();
+      output.textContent = (prev ? prev + "\n\n" : "") + "$ " + cmd + "\n" + response;
+      input.value = "";
+      setTimeout(() => { output.scrollTop = output.scrollHeight; }, 10);
+    });
 
-      setInterval(
-        updateTimer,
-        1000
-      );
+    input.addEventListener("keydown", e => {
+      if (e.key === "ArrowUp") { e.preventDefault(); historyIndex = Math.max(0, historyIndex - 1); input.value = history[historyIndex] || ""; }
+      if (e.key === "ArrowDown") { e.preventDefault(); historyIndex = Math.min(history.length, historyIndex + 1); input.value = history[historyIndex] || ""; }
+    });
+  })();
 
-      updateTimer();
+  /* =========================================================
+     HIRE TIMER
+  ========================================================= */
+  (() => {
+    const timer   = document.getElementById("hireTimer");
+    const message = document.getElementById("timerMessage");
+    const start   = Date.now();
+    const milestones = [
+      [0,   "Still deciding?"],
+      [15,  "Good sign."],
+      [30,  "You're actually reading this."],
+      [60,  "Okay you're thorough. Respect."],
+      [90,  "This is longer than most first-round interviews."],
+      [120, "Andy is fully employed if you just email him."],
+      [180, "At this point you might as well reach out."],
+      [240, "Seriously though. andyzhu0915@gmail.com."],
+      [300, "Five minutes. You win. Email him."],
+      [420, "Seven minutes. Bold move."],
+      [600, "Ten minutes. He would just like a job, thanks."]
+    ];
+    function updateTimer() {
+      const secs = Math.floor((Date.now() - start) / 1000);
+      const mins = Math.floor(secs / 60);
+      timer.textContent = String(mins).padStart(2,"0") + ":" + String(secs % 60).padStart(2,"0");
+      let cur = milestones[0][1];
+      for (const [t, txt] of milestones) { if (secs >= t) cur = txt; }
+      message.textContent = cur;
+    }
+    setInterval(updateTimer, 1000); updateTimer();
+  })();
 
-    })();
-
-
-    /* =========================================================
-       SCROLL REVEAL
-       ========================================================= */
-
-    (() => {
-
-      const elements =
-        document.querySelectorAll(
-          ".reveal"
-        );
-
-      if (
-        !(
-          "IntersectionObserver" in
-          window
-        )
-      ) {
-
-        elements.forEach(
-          (element) => {
-            element.classList.add(
-              "visible"
-            );
-          }
-        );
-
-        return;
-      }
-
-      const observer =
-        new IntersectionObserver(
-          (entries) => {
-
-            entries.forEach(
-              (entry) => {
-
-                if (
-                  entry.isIntersecting
-                ) {
-
-                  entry.target.classList.add(
-                    "visible"
-                  );
-
-                  observer.unobserve(
-                    entry.target
-                  );
-
-                }
-
-              }
-            );
-
-          },
-          {
-            threshold: 0.12
-          }
-        );
-
-      elements.forEach(
-        (element) => {
-          observer.observe(element);
-        }
-      );
-
-    })();
-
+  /* =========================================================
+     SCROLL REVEAL
+  ========================================================= */
+  (() => {
+    const els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) { els.forEach(e => e.classList.add("visible")); return; }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.10 });
+    els.forEach(e => observer.observe(e));
+  })();
   </script>
 
 </body>
