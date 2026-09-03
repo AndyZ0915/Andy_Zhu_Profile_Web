@@ -1,1870 +1,1660 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Andy Zhu | Data Engineer & Analyst</title>
-  <meta name="description" content="Andy Zhu is a Rutgers Computer Science and Data Science graduate focused on data engineering, analytics, software, and practical systems.">
+  <meta name="description" content="Andy Zhu — Data engineering, software, and analytics portfolio.">
   <meta name="author" content="Andy Zhu">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#f7f7f4">
+  <title>Andy Zhu | Data & Software Engineering</title>
 
   <style>
     :root {
-      --bg: #f5f4ef;
-      --surface: #fbfaf6;
-      --ink: #171717;
-      --muted: #6f6d66;
-      --line: #d8d6ce;
-      --accent: #171717;
-      --max: 1120px;
-      --radius: 14px;
+      --bg: #f7f7f4;
+      --surface: #ffffff;
+      --text: #171717;
+      --muted: #6d6d68;
+      --border: #deded7;
+      --soft: #efefe9;
+      --dark: #191919;
+      --accent: #2563eb;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 80px;
     }
 
     body {
+      margin: 0;
       background: var(--bg);
-      color: var(--ink);
-      font-family: "DM Sans", sans-serif;
-      line-height: 1.6;
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.55;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
 
     .container {
-      width: min(calc(100% - 40px), var(--max));
+      width: min(1100px, calc(100% - 40px));
       margin: 0 auto;
     }
 
-    .mono {
-      font-family: "DM Mono", monospace;
-    }
+    .mono, .eyebrow, .section-label, .project-number, .complexity,
+    .tag, .filter, .skill, .path-button, .timeline-role, .terminal,
+    .hire-timer, footer { font-family: var(--mono); }
 
-    /* NAV */
-
+    /* ── Nav ── */
     .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(245, 244, 239, 0.9);
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid rgba(222,222,215,0.9);
+      background: rgba(247,247,244,0.92);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
+      -webkit-backdrop-filter: blur(12px);
     }
-
     .nav-inner {
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
+      height: 64px; display: flex;
+      align-items: center; justify-content: space-between;
     }
+    .logo { font-family: var(--mono); font-weight: 700; font-size: 0.9rem; letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 24px; font-size: 0.86rem; color: var(--muted); }
+    .nav-links a { transition: color 0.15s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--text); }
 
-    .logo {
-      font-family: "DM Mono", monospace;
-      font-weight: 500;
-      letter-spacing: -0.04em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      font-family: "DM Mono", monospace;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .nav-links a:hover {
-      color: var(--ink);
-    }
-
-    /* HERO */
-
+    /* ── Hero ── */
     .hero {
-      min-height: 82vh;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid var(--line);
+      min-height: 82vh; display: flex;
+      align-items: center; padding: 100px 0 80px;
     }
-
-    .hero-inner {
-      padding: 100px 0 110px;
+    .eyebrow, .section-label {
+      font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
     }
-
-    .eyebrow,
-    .section-label {
-      font-family: "DM Mono", monospace;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-    }
-
     .hero h1 {
-      margin-top: 18px;
-      max-width: 900px;
-      font-size: clamp(4rem, 10vw, 8.5rem);
-      line-height: 0.88;
-      letter-spacing: -0.075em;
-      font-weight: 600;
+      max-width: 900px; margin: 14px 0 18px;
+      font-size: clamp(3.5rem, 9vw, 7.8rem);
+      line-height: 0.9; letter-spacing: -0.075em;
     }
-
     .hero-role {
-      margin-top: 28px;
-      min-height: 38px;
-      font-family: "DM Mono", monospace;
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      color: var(--muted);
+      min-height: 32px; font-family: var(--mono);
+      font-size: clamp(0.9rem, 2vw, 1.05rem); color: var(--muted);
     }
-
-    .hero-copy {
-      max-width: 680px;
-      margin-top: 24px;
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      line-height: 1.65;
+    .typewriter-cursor {
+      display: inline-block; width: 7px; height: 1em;
+      margin-left: 5px; vertical-align: -2px;
+      background: currentColor; animation: blink 0.9s steps(1) infinite;
     }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 34px;
-      flex-wrap: wrap;
-    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero-copy { max-width: 580px; margin-top: 30px; color: var(--muted); font-size: 1.05rem; }
+    .hero-actions { display: flex; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
 
     .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 0 20px;
-      border: 1px solid var(--ink);
-      border-radius: 999px;
-      background: var(--ink);
-      color: var(--bg);
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: transform 0.2s ease, background 0.2s ease;
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 42px; padding: 0 16px;
+      border: 1px solid var(--text); border-radius: 7px;
+      background: var(--text); color: #fff;
+      font-size: 0.86rem; cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease;
     }
-
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
     .button.secondary {
-      background: transparent;
-      color: var(--ink);
+      background: transparent; color: var(--text); border-color: var(--border);
     }
+    .button:hover, .button:focus-visible { transform: translateY(-1px); }
 
-    /* SECTIONS */
-
-    section {
-      padding: 110px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
+    /* ── Sections ── */
+    section { padding: 95px 0; border-top: 1px solid var(--border); }
     .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 30px;
-      margin-top: 14px;
-      margin-bottom: 55px;
+      display: flex; align-items: end;
+      justify-content: space-between; gap: 24px;
+      margin: 12px 0 38px;
     }
-
     .section-heading h2 {
-      font-size: clamp(2.4rem, 5vw, 4.5rem);
-      line-height: 0.95;
-      letter-spacing: -0.065em;
-      font-weight: 600;
+      margin: 0; font-size: clamp(2rem, 5vw, 3.6rem);
+      letter-spacing: -0.05em; line-height: 1;
+    }
+    .section-heading p { margin: 0; color: var(--muted); font-family: var(--mono); font-size: 0.78rem; }
+
+    /* ── About photo ── */
+    .about-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 44px;
+    }
+    .about-header-text { flex: 1; }
+    .about-photo-wrap {
+      flex-shrink: 0;
+      width: 108px;
+      height: 108px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 4px;
+    }
+    .about-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    @media (max-width: 480px) {
+      .about-photo-wrap { width: 80px; height: 80px; }
     }
 
-    .section-heading p {
-      font-family: "DM Mono", monospace;
-      color: var(--muted);
-      font-size: 0.75rem;
-      white-space: nowrap;
-    }
-
-    /* ABOUT */
-
-    .about-intro {
-      max-width: 800px;
-      font-size: clamp(1.3rem, 3vw, 2rem);
-      line-height: 1.4;
-      letter-spacing: -0.025em;
-      margin-bottom: 60px;
-    }
-
-    .arc-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .arc-block {
-      padding: 28px;
-      min-height: 210px;
-    }
-
-    .arc-block + .arc-block {
-      border-left: 1px solid var(--line);
-    }
-
-    .arc-label {
-      font-family: "DM Mono", monospace;
-      text-transform: uppercase;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .arc-text {
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
+    /* ── About Me ── */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 70px;
-      margin-top: 70px;
+      gap: 48px 60px;
+      margin-top: 8px;
     }
-
+    .about-block { }
     .about-block-label {
-      font-family: "DM Mono", monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-bottom: 22px;
+      font-family: var(--mono); font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
     }
-
+    .about-block-label::after {
+      content: ""; flex: 1; height: 1px; background: var(--border);
+    }
     .about-block p {
-      margin-bottom: 20px;
-      max-width: 580px;
+      margin: 0 0 12px; color: var(--muted); font-size: 0.97rem; line-height: 1.7;
     }
+    .about-block p:last-child { margin-bottom: 0; }
+    .about-block strong { color: var(--text); font-weight: 500; }
 
+    /* traits */
     .traits-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      border-top: 1px solid var(--line);
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 10px; margin-top: 4px;
     }
-
     .trait-card {
-      padding: 22px 0;
-      border-bottom: 1px solid var(--line);
+      border: 1px solid var(--border); border-radius: 9px;
+      padding: 14px 16px; background: var(--surface);
     }
-
-    .trait-card:nth-child(odd) {
-      padding-right: 20px;
-    }
-
-    .trait-card:nth-child(even) {
-      padding-left: 20px;
-      border-left: 1px solid var(--line);
-    }
-
     .trait-title {
-      font-weight: 600;
-      margin-bottom: 6px;
+      font-family: var(--mono); font-size: 0.7rem;
+      font-weight: 700; color: var(--text);
+      letter-spacing: 0.04em; margin-bottom: 5px;
     }
-
     .trait-desc {
+      font-size: 0.84rem; color: var(--muted); line-height: 1.5;
+    }
+
+    /* timeline bar for past/present/future */
+    .arc-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-top: 4px;
+    }
+    .arc-block {
+      border-left: 2px solid var(--border);
+      padding-left: 16px;
+    }
+    .arc-block.present { border-color: var(--text); }
+    .arc-label {
+      font-family: var(--mono); font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .arc-block.present .arc-label { color: var(--text); }
+    .arc-text { font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+    .arc-block.present .arc-text { color: var(--text); }
+
+    /* ── Outside ── */
+    .outside-intro {
+      max-width: 680px;
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+    .outside-intro p { margin: 0 0 14px; }
+    .outside-intro p:last-child { margin: 0; }
+    .outside-intro strong { color: var(--text); font-weight: 500; }
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .interest-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      background: var(--surface);
+    }
+    .interest-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+    .interest-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .interest-text strong { color: var(--text); font-weight: 500; }
+    @media (max-width: 750px) {
+      .interest-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .interest-grid { grid-template-columns: 1fr; }
     }
 
-    /* EXPERIENCE */
-
-    .timeline {
-      border-top: 1px solid var(--line);
-    }
-
+    /* ── Experience ── */
+    .timeline { display: grid; }
     .timeline-item {
-      display: grid;
-      grid-template-columns: 190px 1fr;
-      gap: 45px;
-      padding: 42px 0;
-      border-bottom: 1px solid var(--line);
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 40px; padding: 28px 0;
+      border-top: 1px solid var(--border);
     }
-
-    .timeline-date {
-      font-family: "DM Mono", monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-      padding-top: 5px;
-    }
-
-    .timeline-company {
-      font-size: 1.45rem;
-      letter-spacing: -0.03em;
-      margin-bottom: 4px;
-    }
-
-    .timeline-role {
-      color: var(--muted);
-      margin-bottom: 22px;
-    }
-
-    .timeline-item ul {
-      list-style: none;
-    }
-
-    .timeline-item li {
-      position: relative;
-      padding-left: 20px;
-      margin-bottom: 12px;
-      max-width: 800px;
-    }
-
-    .timeline-item li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--muted);
-    }
-
+    .timeline-item:last-child { border-bottom: 1px solid var(--border); }
+    .timeline-date { font-family: var(--mono); font-size: 0.76rem; color: var(--muted); }
+    .timeline-company { margin: 0 0 4px; font-size: 1.2rem; }
+    .timeline-role { margin: 0 0 14px; color: var(--muted); font-size: 0.78rem; }
+    .timeline-item ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    .timeline-item li + li { margin-top: 7px; }
     .timeline-note {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px dashed var(--line);
-      color: var(--muted);
-      font-size: 0.9rem;
+      margin-top: 14px; padding: 12px 14px;
+      background: var(--soft); border-radius: 7px;
+      font-family: var(--mono); font-size: 0.72rem; color: var(--muted);
       font-style: italic;
-      max-width: 760px;
     }
 
-    /* PROJECTS */
-
-    .filters {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
+    /* ── Projects ── */
+    .filters, .path-grid, .skill-list { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filters { margin-bottom: 28px; }
+    .filter, .skill, .path-button {
+      border: 1px solid var(--border); background: transparent;
+      color: var(--muted); border-radius: 7px;
+      padding: 8px 12px; font-size: 0.72rem; cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     }
-
-    .filter {
-      border: 1px solid var(--line);
-      background: transparent;
-      border-radius: 999px;
-      padding: 7px 14px;
-      cursor: pointer;
-      color: var(--muted);
-      font-size: 0.8rem;
+    .filter { border-radius: 999px; }
+    .filter:hover, .filter:focus-visible, .filter.active,
+    .path-button:hover, .path-button:focus-visible, .path-button.active,
+    .skill:hover, .skill:focus-visible, .skill.active {
+      background: var(--text); color: #fff; border-color: var(--text);
     }
-
-    .filter.active,
-    .filter:hover {
-      border-color: var(--ink);
-      color: var(--ink);
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
-    }
-
+    .project-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
     .project-card {
-      padding: 30px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      min-height: 310px;
-      transition: background 0.2s ease;
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--surface); padding: 25px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
-
     .project-card:hover {
-      background: var(--surface);
+      transform: translateY(-3px); border-color: #bcbcb5;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.05);
     }
-
-    .project-card.hidden {
-      display: none;
-    }
-
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .project-number {
-      font-family: "DM Mono", monospace;
-      color: var(--muted);
-      font-size: 0.7rem;
-      margin-bottom: 12px;
-    }
-
-    .project-card h3 {
-      font-size: 1.45rem;
-      letter-spacing: -0.035em;
-    }
-
-    .complexity {
-      font-family: "DM Mono", monospace;
-      color: var(--muted);
-      font-size: 0.62rem;
-      text-align: right;
-      line-height: 1.5;
-    }
-
-    .pips {
-      letter-spacing: 2px;
-    }
-
-    .project-summary {
-      margin-top: 25px;
-      max-width: 520px;
-    }
-
+    .project-card.hidden { display: none; }
+    .project-card.skill-match { border-color: var(--text); box-shadow: 0 0 0 2px rgba(23,23,23,0.06); }
+    .project-top { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; }
+    .project-number { font-size: 0.7rem; color: var(--muted); }
+    .project-card h3 { margin: 10px 0 8px; font-size: 1.35rem; letter-spacing: -0.02em; }
+    .project-card p { margin: 0; color: var(--muted); }
+    .complexity { white-space: nowrap; font-size: 0.68rem; color: var(--muted); }
+    .pips { letter-spacing: 2px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+    .tag { padding: 4px 7px; background: var(--soft); border-radius: 4px; font-size: 0.67rem; }
     .project-details {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
+      display: none; margin-top: 20px; padding-top: 18px;
+      border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem;
+    }
+    .project-card.open .project-details { display: block; }
+    .project-toggle {
+      margin-top: 18px; padding: 0; border: 0;
+      background: transparent; color: var(--text);
+      font-family: var(--mono); font-size: 0.72rem; cursor: pointer;
+    }
+    .project-toggle:hover, .project-toggle:focus-visible { text-decoration: underline; }
+
+    /* ── Basketball ── */
+    .side-quest { position: relative; overflow: hidden; }
+    .game-shell {
+      border: 1px solid var(--border); border-radius: 14px;
+      background: var(--dark); color: #eee; overflow: hidden;
+      box-shadow: 0 20px 55px rgba(0,0,0,0.1);
+    }
+    .game-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 16px; background: #222; border-bottom: 1px solid #333;
+      font-family: var(--mono); font-size: 0.72rem;
+    }
+    .game-title { font-weight: 700; letter-spacing: 0.08em; }
+    .game-status { color: #999; }
+
+    .game-area {
+      position: relative; height: 440px; overflow: hidden;
+      background: #e7e2d6; user-select: none; touch-action: none;
+    }
+    .game-sky { position: absolute; inset: 0 0 110px; background: linear-gradient(180deg,#e7e2d6 0%,#f2efe8 100%); }
+    .court {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 110px;
+      background: #cfc7b7; border-top: 2px solid #b4ac9e;
+    }
+    .court::before {
+      content: ""; position: absolute; left: 50%; top: 14px;
+      width: 170px; height: 75px; transform: translateX(-50%);
+      border: 2px solid rgba(23,23,23,0.22); border-bottom: 0;
+      border-radius: 90px 90px 0 0;
+    }
+    .court::after {
+      content: ""; position: absolute; left: 0; right: 0;
+      top: 42px; border-top: 2px solid rgba(23,23,23,0.12);
     }
 
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 22px;
+    /* hoop — positioned via CSS vars so JS can adjust per screen */
+    .hoop {
+      position: absolute;
+      right: var(--hoop-right, 115px);
+      top: 110px;
+      width: 92px; height: 105px;
+    }
+    .backboard {
+      position: absolute; right: 0; top: 0;
+      width: 58px; height: 42px;
+      border: 3px solid #222; background: #eee;
+    }
+    .backboard-inner {
+      position: absolute; right: 8px; top: 7px;
+      width: 36px; height: 24px; border: 2px solid #c75a32;
+    }
+    .rim {
+      position: absolute; right: 7px; top: 48px;
+      width: 55px; height: 12px;
+      border: 4px solid #c75a32; border-radius: 50%; z-index: 6;
+    }
+    .net { position: absolute; right: 11px; top: 56px; width: 47px; height: 40px; overflow: hidden; z-index: 5; }
+    .net svg { width: 100%; height: 100%; transform-origin: top center; }
+    .ball {
+      position: absolute; width: 28px; height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 35%, #e8864a, #c05a20);
+      border: 1.5px solid #7c351a; z-index: 7; will-change: transform, left, top;
+    }
+    .ball::before {
+      content: ""; position: absolute; width: 1.5px; height: 100%;
+      left: 11px; background: #7c351a; transform: rotate(30deg); border-radius: 2px;
+    }
+    .ball::after {
+      content: ""; position: absolute; width: 100%; height: 1.5px;
+      top: 12px; background: #7c351a; transform: rotate(-20deg); border-radius: 2px;
+    }
+    .traj-dot {
+      position: absolute; width: 5px; height: 5px;
+      border-radius: 50%; pointer-events: none; z-index: 3;
+    }
+    /* aim line colored by power zone */
+    .traj-dot.power-low    { background: rgba(37,99,235,0.35); }
+    .traj-dot.power-ok     { background: rgba(22,163,74,0.40); }
+    .traj-dot.power-high   { background: rgba(220,38,38,0.35); }
+
+    .power-bar-wrap {
+      position: absolute; left: 66px; bottom: 60px;
+      width: 8px; height: 80px;
+      background: rgba(0,0,0,0.15); border-radius: 4px;
+      z-index: 9; overflow: hidden;
+    }
+    .power-bar-fill {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 0%; border-radius: 4px;
+      transition: height 0.04s ease, background 0.1s ease;
     }
 
-    .tag {
-      font-family: "DM Mono", monospace;
-      font-size: 0.64rem;
-      padding: 5px 8px;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      color: var(--muted);
+    /* fire streak overlay */
+    .fire-streak {
+      position: absolute; inset: 0; pointer-events: none;
+      z-index: 4; opacity: 0;
+      background: radial-gradient(ellipse at 30% 75%, rgba(200,80,0,0.18) 0%, transparent 65%);
+      transition: opacity 0.6s ease;
+    }
+    .fire-streak.active { opacity: 1; }
+
+    .shot-flash {
+      position: absolute; top: 38%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-family: var(--mono); font-size: 1.05rem; font-weight: 700;
+      pointer-events: none; opacity: 0; z-index: 11;
+      transition: opacity 0.12s ease; white-space: nowrap;
+    }
+    .shot-flash.make { color: #166534; }
+    .shot-flash.miss { color: #7f1d1d; }
+    .shot-flash.streak { color: #92400e; font-size: 1.2rem; }
+
+    .game-overlay {
+      position: absolute; inset: 0; display: flex;
+      align-items: center; justify-content: center;
+      background: rgba(247,247,244,0.9); color: #171717;
+      text-align: center; padding: 25px; z-index: 12;
+      backdrop-filter: blur(4px);
+    }
+    .game-overlay.hidden { display: none; }
+    .game-message h3 { margin: 0 0 8px; font-family: var(--mono); font-size: 1.1rem; letter-spacing: 0.04em; }
+    .game-message p { margin: 0 0 18px; color: #555; font-size: 0.84rem; max-width: 320px; }
+    .game-button {
+      border: 1px solid #171717; background: #171717; color: #fff;
+      padding: 9px 16px; border-radius: 6px;
+      font-family: var(--mono); font-size: 0.72rem; cursor: pointer;
+      transition: transform 0.12s ease;
+    }
+    .game-button:hover, .game-button:focus-visible { transform: translateY(-1px); }
+
+    .game-controls {
+      display: flex; justify-content: space-between; gap: 20px;
+      padding: 14px 16px; background: #191919;
+      font-family: var(--mono); font-size: 0.72rem;
+    }
+    .game-score { display: flex; gap: 18px; }
+    .game-score .fg { color: #888; }
+    .game-help { color: #888; }
+
+    .unlocks { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-top: 16px; }
+    .unlock {
+      border: 1px solid var(--border); border-radius: 9px;
+      padding: 13px; background: var(--surface); color: var(--muted);
+      font-family: var(--mono); font-size: 0.68rem;
+      transition: border-color 0.25s ease, transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
+    }
+    .unlock strong { display: block; color: var(--text); margin-bottom: 4px; font-size: 0.72rem; }
+    .unlock.locked { opacity: 0.4; filter: blur(0.4px); }
+    .unlock.unlocked { border-color: var(--text); transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.07); }
+    .side-note { margin-top: 14px; color: var(--muted); font-family: var(--mono); font-size: 0.7rem; }
+
+    /* mobile shoot button */
+    .mobile-shoot-btn {
+      display: none;
+      width: 100%; margin-top: 8px;
+      background: #191919; color: #fff;
+      border: 0; border-radius: 8px;
+      padding: 13px; font-family: var(--mono); font-size: 0.78rem;
+      cursor: pointer; letter-spacing: 0.06em;
     }
 
-    /* SKILLS */
-
-    .skills-layout {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 70px;
-    }
-
-    .skills-intro {
-      font-size: 1.15rem;
-      color: var(--muted);
-    }
-
-    .skill-group {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 25px;
-      padding: 22px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .skill-group:last-child {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .skill-group h3 {
-      font-family: "DM Mono", monospace;
-      text-transform: uppercase;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-    }
-
-    .skill-list {
-      line-height: 2;
-    }
-
-    /* SIDE QUEST */
-
-    .side-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .side-card {
-      border: 1px solid var(--line);
-      padding: 28px;
-      border-radius: var(--radius);
-      background: var(--surface);
-    }
-
-    .side-card-label {
-      font-family: "DM Mono", monospace;
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 15px;
-    }
-
-    .side-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 8px;
-    }
-
-    .side-card p {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    /* TERMINAL */
-
+    /* ── Terminal ── */
     .terminal {
-      background: #171717;
-      color: #e8e6df;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      border: 1px solid var(--border); border-radius: 10px;
+      overflow: hidden; background: #111; color: #eee;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.08);
     }
-
     .terminal-bar {
-      padding: 12px 16px;
-      border-bottom: 1px solid #343434;
-      font-family: "DM Mono", monospace;
-      font-size: 0.7rem;
-      color: #888;
+      display: flex; align-items: center; gap: 7px;
+      padding: 11px 14px; background: #1d1d1d; border-bottom: 1px solid #333;
     }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #555; }
+    .terminal-title { margin-left: 7px; color: #888; font-size: 0.68rem; }
+    .terminal-body { min-height: 300px; padding: 20px; font-size: 0.78rem; line-height: 1.7; }
+    .terminal-output { min-height: 100px; max-height: 220px; overflow-y: auto; white-space: pre-wrap; color: #cfcfcf; }
+    .terminal-form { display: flex; gap: 9px; align-items: center; margin-top: 8px; }
+    .prompt { color: #aaa; }
+    .terminal-input { width: 100%; border: 0; outline: 0; background: transparent; color: #fff; font: inherit; }
+    .terminal-hint { margin-top: 10px; color: #666; font-size: 0.68rem; }
 
-    .terminal-body {
-      padding: 25px;
-      min-height: 330px;
-      font-family: "DM Mono", monospace;
-      font-size: 0.8rem;
-      white-space: pre-wrap;
-      overflow-x: auto;
+    /* ── Contact ── */
+    .contact { padding-bottom: 55px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: end; }
+    .contact h2 { max-width: 750px; margin: 12px 0 0; font-size: clamp(2.5rem,7vw,6rem); line-height: 0.95; letter-spacing: -0.06em; }
+    .contact-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .contact-links a { border-bottom: 1px solid var(--text); font-family: var(--mono); font-size: 0.78rem; }
+    .hire-timer { margin-top: 35px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.72rem; }
+    .hire-timer strong { color: var(--text); font-weight: 500; }
+
+    footer { padding: 22px 0 35px; color: var(--muted); font-size: 0.68rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 850px) {
+      .project-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 10px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .unlocks { grid-template-columns: repeat(2,1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .arc-row { grid-template-columns: 1fr; gap: 14px; }
     }
-
-    .terminal-form {
-      display: flex;
-      border-top: 1px solid #343434;
+    @media (max-width: 560px) {
+      .container { width: calc(100% - 28px); }
+      .nav-links { display: none; }
+      .hero { min-height: 75vh; padding: 80px 0 65px; }
+      .hero h1 { font-size: clamp(3.3rem,18vw,5rem); }
+      section { padding: 70px 0; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 12px; }
+      .game-area { height: 370px; }
+      .game-controls { display: block; }
+      .game-help { margin-top: 6px; }
+      .unlocks { grid-template-columns: 1fr 1fr; }
+      .contact h2 { font-size: 3.4rem; }
+      .footer-inner { display: block; }
+      .footer-inner span + span { display: block; margin-top: 7px; }
+      .mobile-shoot-btn { display: block; }
+      .traits-grid { grid-template-columns: 1fr; }
     }
-
-    .terminal-prompt {
-      padding: 14px 0 14px 18px;
-      color: #888;
-      font-family: "DM Mono", monospace;
-    }
-
-    .terminal-input {
-      flex: 1;
-      background: transparent;
-      border: 0;
-      outline: 0;
-      color: #e8e6df;
-      padding: 14px 15px;
-      font-family: "DM Mono", monospace;
-    }
-
-    /* CONTACT */
-
-    .contact {
-      padding-bottom: 70px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
-    }
-
-    .contact-copy {
-      font-size: 1.25rem;
-      max-width: 600px;
-    }
-
-    .contact-links {
-      display: grid;
-      border-top: 1px solid var(--line);
-    }
-
-    .contact-link {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 17px 0;
-      border-bottom: 1px solid var(--line);
-      font-family: "DM Mono", monospace;
-      font-size: 0.78rem;
-    }
-
-    .contact-link span:last-child {
-      color: var(--muted);
-    }
-
-    footer {
-      padding: 25px 0;
-      font-family: "DM Mono", monospace;
-      font-size: 0.68rem;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 800px) {
-      .container {
-        width: min(calc(100% - 28px), var(--max));
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-inner {
-        padding: 85px 0 90px;
-      }
-
-      section {
-        padding: 80px 0;
-      }
-
-      .section-heading {
-        display: block;
-        margin-bottom: 38px;
-      }
-
-      .section-heading p {
-        margin-top: 12px;
-      }
-
-      .arc-row,
-      .about-grid,
-      .skills-layout,
-      .contact-grid,
-      .side-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .arc-block {
-        min-height: auto;
-      }
-
-      .arc-block + .arc-block {
-        border-left: 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .about-grid {
-        gap: 50px;
-      }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .timeline-item {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .timeline-date {
-        padding-top: 0;
-      }
-
-      .skill-group {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .traits-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .trait-card:nth-child(even) {
-        padding-left: 0;
-        border-left: 0;
-      }
-
-      .trait-card:nth-child(odd) {
-        padding-right: 0;
-      }
-
-      footer {
-        display: block;
-      }
-
-      footer span + span {
-        display: block;
-        margin-top: 8px;
-      }
-    }
-
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      * {
-        transition: none !important;
-      }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
   </style>
-
 </head>
 
 <body>
 
-  <nav class="nav">
+  <nav class="nav" aria-label="Main navigation">
     <div class="container nav-inner">
-      <a href="#" class="logo">AZ/26</a>
-
-```
-  <div class="nav-links">
-    <a href="#about">about</a>
-    <a href="#experience">experience</a>
-    <a href="#projects">projects</a>
-    <a href="#skills">skills</a>
-    <a href="#contact">contact</a>
-  </div>
-</div>
-```
-
+      <a class="logo" href="#" aria-label="Andy Zhu home">AZ/26</a>
+      <div class="nav-links">
+        <a href="#about">about</a>
+        <a href="#outside">outside</a>
+        <a href="#experience">experience</a>
+        <a href="#projects">projects</a>
+        <a href="#side-quest">side quest</a>
+        <a href="#contact">contact</a>
+      </div>
+    </div>
   </nav>
 
   <main>
 
-```
-<!-- HERO -->
-
-<header class="hero">
-  <div class="container hero-inner">
-
-    <div class="eyebrow">Rutgers '26 · New Jersey</div>
-
-    <h1>Andy Zhu.</h1>
-
-    <div class="hero-role">
-      Data Engineering · Analytics · Software
-    </div>
-
-    <p class="hero-copy">
-      I like building things, especially when the problem isn't completely
-      defined yet. Most of what I've built sits somewhere between data
-      infrastructure, software, and analytics.
-    </p>
-
-    <div class="hero-actions">
-      <a class="button" href="#projects">View projects</a>
-      <a class="button secondary" href="#contact">Get in touch</a>
-    </div>
-
-  </div>
-</header>
-
-
-<!-- ABOUT -->
-
-<section id="about">
-
-  <div class="container">
-
-    <div class="section-label">About</div>
-
-    <div class="section-heading">
-      <h2>A bit more about me.</h2>
-      <p>past · present · future · how I work</p>
-    </div>
-
-    <p class="about-intro">
-      I chose computer science because I actually like to code.
-      I also like understanding who is going to use what I build.
-    </p>
-
-
-    <div class="arc-row">
-
-      <div class="arc-block">
-        <div class="arc-label">How I got here</div>
-
-        <div class="arc-text">
-          Started at Rutgers studying statistics, liked the math but
-          wanted to build things, so I moved into Computer Science and
-          Data Science. Spent two summers interning, first at a biotech
-          in Cambridge and then at the Federal Reserve in Philadelphia.
-          Graduated May 2026.
-        </div>
-      </div>
-
-
-      <div class="arc-block">
-        <div class="arc-label">Right now</div>
-
-        <div class="arc-text">
-          Looking for a data engineering or analyst role. I want to work
-          on real data problems and systems that people actually depend on,
-          not just things that look good in a demo.
-        </div>
-      </div>
-
-
-      <div class="arc-block">
-        <div class="arc-label">Where I'm heading</div>
-
-        <div class="arc-text">
-          I'm especially interested in the infrastructure behind reliable
-          analytics: pipelines, data quality, automation, and the systems
-          that make downstream work easier.
-        </div>
-      </div>
-
-    </div>
-
-
-    <div class="about-grid">
-
-      <div class="about-block">
-
-        <div class="about-block-label">A bit more context</div>
-
-        <p>
-          At the Federal Reserve, I built a vendor ingestion framework in
-          Airflow and PySpark that standardized how external datasets were
-          brought into the Economic Research Division. A process that had
-          taken weeks could be set up in about two days.
+    <!-- Hero -->
+    <header class="hero">
+      <div class="container">
+        <div class="eyebrow">Rutgers '26 · New Jersey</div>
+        <h1>Andy Zhu.</h1>
+        <div class="hero-role" id="heroRole" aria-label="Software, Data, Analytics, Statistics"></div>
+        <p class="hero-copy">
+          I picked computer science because I actually like to code. Most of what I've built
+          sits somewhere between data infrastructure and software. Pipelines, ETL work, some ML
+          on the side. New grad, looking for the right role.
         </p>
-
-        <p>
-          At SIMCERE, I worked alongside biologists using clinical,
-          genomic, and microscopy data. One computer vision workflow went
-          from more than 10 hours of batch analysis to about 12 minutes.
-        </p>
-
-        <p>
-          Outside of technical work, I progressed from intern to External
-          VP of Rutgers' Chinese Student Organization. That meant learning
-          how to get a large group of people moving in the same direction,
-          usually without having formal authority over them.
-        </p>
-
+        <div class="hero-actions">
+          <a class="button" href="#projects">View projects</a>
+          <a class="button secondary" href="#contact">Get in touch</a>
+        </div>
       </div>
+    </header>
 
+    <!-- About -->
+    <section id="about" class="reveal">
+      <div class="container">
 
-      <div class="about-block">
-
-        <div class="about-block-label">How I work</div>
-
-        <div class="traits-grid">
-
-          <div class="trait-card">
-            <div class="trait-title">Understand first</div>
-            <div class="trait-desc">
-              I like knowing what the actual problem is before deciding
-              what to build.
+        <div class="about-header">
+          <div class="about-header-text">
+            <div class="section-label">About</div>
+            <div class="section-heading" style="margin-bottom: 0;">
+              <h2>A bit more about me.</h2>
+              <p>past · present · future · how I work</p>
             </div>
           </div>
+          <div class="about-photo-wrap">
+            <img src="IMG_7419.jpg" alt="Andy Zhu" loading="lazy">
+          </div>
+        </div>
 
-          <div class="trait-card">
-            <div class="trait-title">Learn by building</div>
-            <div class="trait-desc">
-              I understand things much better after I've built them,
-              broken them, and figured out why.
+        <!-- Arc: past / present / future -->
+        <div class="arc-row" style="margin-bottom: 52px;">
+          <div class="arc-block past">
+            <div class="arc-label">How I got here</div>
+            <div class="arc-text">
+              Grew up in Livingston, NJ. Started at Rutgers in pure statistics, liked the math
+              but wanted to build things, so I switched into CS and Data Science. Spent the last
+              two summers interning, first at a biotech in Cambridge, then at the Federal Reserve
+              in Philadelphia. Graduated May 2026.
             </div>
           </div>
-
-          <div class="trait-card">
-            <div class="trait-title">Open to feedback</div>
-            <div class="trait-desc">
-              I'd rather find a problem early than defend a bad first draft.
+          <div class="arc-block present">
+            <div class="arc-label">Right now</div>
+            <div class="arc-text">
+              Looking for a data engineering or analyst role. I want to work somewhere with
+              real data problems, not just dashboards. 3.5 GPA, Dean's List five times, two
+              internships where I built things that stayed in use after I left.
             </div>
           </div>
-
-          <div class="trait-card">
-            <div class="trait-title">Use the right tool</div>
-            <div class="trait-desc">
-              I don't want the most complicated solution. I want the one
-              that makes sense for the problem.
+          <div class="arc-block future">
+            <div class="arc-label">Where I'm heading</div>
+            <div class="arc-text">
+              Interested in the infrastructure layer: pipelines, data quality, the systems that
+              make downstream analytics actually reliable. Still early enough in my career that
+              I'm open to wherever good problems show up, but that's the direction I keep
+              gravitating toward.
             </div>
           </div>
+        </div>
 
-          <div class="trait-card">
-            <div class="trait-title">Comfortable with ambiguity</div>
-            <div class="trait-desc">
-              A lot of real work starts without a perfect specification.
-            </div>
+        <!-- Two column: story + traits -->
+        <div class="about-grid">
+
+          <div class="about-block">
+            <div class="about-block-label">A bit more context</div>
+            <p>
+              At the Fed, I built a vendor ingestion framework in Airflow and PySpark that
+              standardized how the Economic Research Division onboards external datasets.
+              Getting a new vendor pipeline set up used to take weeks. After the framework
+              was in place, it took about two days. That's the kind of problem I find
+              genuinely interesting to work on.
+            </p>
+            <p>
+              At Simcere I worked alongside biologists who needed to process microscopy data
+              faster than they could manually. Batch analysis went from 10+ hours to 12 minutes.
+              That's a pretty meaningful difference in how many experiments a team can run in a week.
+            </p>
+            <p>
+              Outside of the technical work, I was External VP of the Chinese Student Organization
+              at Rutgers, which was mostly an exercise in getting a large group of people to
+              coordinate on things without anyone having formal authority over anyone else.
+              Useful practice, it turns out.
+            </p>
           </div>
 
-          <div class="trait-card">
-            <div class="trait-title">Think past the demo</div>
-            <div class="trait-desc">
-              I care whether something keeps working once someone else
-              has to use it.
+          <div class="about-block">
+            <div class="about-block-label">How I work</div>
+            <div class="traits-grid">
+              <div class="trait-card">
+                <div class="trait-title">Slow to code, fast to ship</div>
+                <div class="trait-desc">I spend time on the problem before the solution. Scope creep and wrong assumptions are way more expensive than an extra hour of planning.</div>
+              </div>
+              <div class="trait-card">
+                <div class="trait-title">Learn by building</div>
+                <div class="trait-desc">Tutorials are fine for orientation but I don't really understand something until I've broken it. Most of my side projects started as "let me see if I can do this."</div>
+              </div>
+              <div class="trait-card">
+                <div class="trait-title">Fine with hard feedback</div>
+                <div class="trait-desc">I'd rather find out something is wrong before it ships. Not precious about my first draft of anything.</div>
+              </div>
+              <div class="trait-card">
+                <div class="trait-title">Skeptical of frameworks</div>
+                <div class="trait-desc">I've worked in enough codebases to appreciate when something simple would've been better. I try to reach for the right tool, not the impressive one.</div>
+              </div>
+              <div class="trait-card">
+                <div class="trait-title">Okay with not knowing</div>
+                <div class="trait-desc">A lot of the work I've done started with no clear spec. I'm comfortable figuring it out as I go, asking questions early, and adjusting when the answer changes.</div>
+              </div>
+              <div class="trait-card">
+                <div class="trait-title">Thinks past the demo</div>
+                <div class="trait-desc">Both internships involved handing things off to people who would actually use them. That shifts how you think about documentation, edge cases, and usability.</div>
+              </div>
             </div>
           </div>
 
         </div>
 
       </div>
+    </section>
 
-    </div>
+    <!-- Outside -->
+    <section id="outside" class="reveal">
+      <div class="container">
 
-  </div>
-
-</section>
-
-
-<!-- EXPERIENCE -->
-
-<section id="experience">
-
-  <div class="container">
-
-    <div class="section-label">Experience</div>
-
-    <div class="section-heading">
-      <h2>Where I've built things.</h2>
-      <p>2025 — 2026</p>
-    </div>
-
-
-    <div class="timeline">
-
-
-      <article class="timeline-item">
-
-        <div class="timeline-date">
-          JUN 2026 — AUG 2026
+        <div class="section-label">Outside of work</div>
+        <div class="section-heading">
+          <h2>The rest of it.</h2>
+          <p>not a highlight reel</p>
         </div>
 
-        <div>
-
-          <h3 class="timeline-company">
-            Federal Reserve Bank of Philadelphia
-          </h3>
-
-          <p class="timeline-role">
-            Data Engineering Intern · Economic Research
+        <div class="outside-intro">
+          <p>
+            I cook a lot. Not in a serious or aspirational way, just whatever looks good
+            on my feed that week. I'll try most cuisines and I've made enough disasters to
+            know what I'm doing now most of the time. It's one of those things where the
+            experimentation is half the point.
           </p>
-
-          <ul>
-
-            <li>
-              Built a reusable Airflow, AWS EMR, and PySpark ingestion
-              framework designed to standardize 29 economic datasets,
-              cutting vendor onboarding from weeks to 2 days.
-            </li>
-
-            <li>
-              Built automated data quality validation across 7 dimensions,
-              with HEALTHY, WARNING, and CRITICAL outcomes and automated
-              promotion or quarantine of incoming files.
-            </li>
-
-            <li>
-              Connected validated data to AWS Glue and Athena so researchers
-              could access standardized datasets without manual preparation.
-            </li>
-
-            <li>
-              Designed the EMR workflow around cost control using SPOT
-              workers and automatic cluster termination, keeping daily
-              processing costs under $2.
-            </li>
-
-            <li>
-              Built automated HTML QA reports that eliminated manual audit
-              preparation and accelerated research turnaround by 40%.
-            </li>
-
-          </ul>
-
-          <div class="timeline-note">
-            First time building infrastructure that other people's research
-            depended on. It changes how you think about edge cases when
-            someone else is relying on the result.
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <article class="timeline-item">
-
-        <div class="timeline-date">
-          JUN 2025 — SEP 2025
-        </div>
-
-        <div>
-
-          <h3 class="timeline-company">
-            SIMCERE OF AMERICA, INC.
-          </h3>
-
-          <p class="timeline-role">
-            Software Engineering Intern · Cambridge, MA
+          <p>
+            I play <strong>Valorant</strong> more than I should. Ascendant. I've been playing FPS games
+            for a long time and at this point it's just what I do to decompress. I'm not
+            going to pretend it's productive.
           </p>
-
-          <ul>
-
-            <li>
-              Unified 15+ clinical and genomic data sources through Python
-              and R ETL pipelines covering 50,000+ records.
-            </li>
-
-            <li>
-              Built a ResNet-50 computer vision pipeline using TensorFlow,
-              OpenCV, and Cellpose, reaching 91% accuracy across 10,000+
-              microscopy images and reducing batch analysis from 10+ hours
-              to 12 minutes.
-            </li>
-
-            <li>
-              Built an authenticated R Shiny dashboard on AWS EC2/RDS that
-              enabled 20+ biologists to self-serve bioassay QC workflows.
-            </li>
-
-            <li>
-              Added automated pytest integration testing to CI/CD workflows,
-              reducing release cycle time by 60%.
-            </li>
-
-          </ul>
-
-          <div class="timeline-note">
-            First time working directly alongside non-technical users.
-            A big part of the job was figuring out how to explain what
-            the system could and could not do without overcomplicating it.
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <article class="timeline-item">
-
-        <div class="timeline-date">
-          2023 — 2025
-        </div>
-
-        <div>
-
-          <h3 class="timeline-company">
-            Rutgers Chinese Student Organization
-          </h3>
-
-          <p class="timeline-role">
-            External Vice President · Program Coordinator · Intern
+          <p>
+            Sports in general: <strong>basketball</strong> is the main one, I play pickleball regularly,
+            I'm in the early stages of learning tennis and it's going okay, and I swim and
+            play volleyball when the opportunity shows up. I like being active more than I
+            like any one specific sport.
           </p>
-
-          <ul>
-
-            <li>
-              Progressed from intern to Program Coordinator to External VP,
-              eventually overseeing a 25-member executive board and $20K
-              annual programming budget.
-            </li>
-
-            <li>
-              Helped deliver 10+ cultural events annually serving 300+
-              attendees while finishing 15% under budget.
-            </li>
-
-            <li>
-              Worked with campus organizations, external partners, and
-              student leaders to coordinate events and sponsorships.
-            </li>
-
-          </ul>
-
-          <div class="timeline-note">
-            Probably the most useful non-technical experience I have had.
-            Getting a group of people to agree on something is its own kind
-            of engineering problem.
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <article class="timeline-item">
-
-        <div class="timeline-date">
-          2026
-        </div>
-
-        <div>
-
-          <h3 class="timeline-company">
-            AKIHI Bubble Tea
-          </h3>
-
-          <p class="timeline-role">
-            Barista · Part-time semester job
+          <p>
+            I'd rather be outside than not. When I travel I gravitate toward nature over
+            history, and at home the same thing applies. I also don't need much of a reason
+            to hang out, whether that's with friends or coworkers. Getting to know the people
+            around me is something I actually enjoy, and I think it makes everything else
+            work better too.
           </p>
-
-          <ul>
-
-            <li>
-              Worked solo shifts handling drink production, POS transactions,
-              inventory, and customer service during busy periods.
-            </li>
-
-            <li>
-              Tracked stock levels and expiration dates and restocked
-              ingredients to avoid shortages during shifts.
-            </li>
-
-          </ul>
-
         </div>
 
-      </article>
-
-
-      <article class="timeline-item">
-
-        <div class="timeline-date">
-          2021 — 2024
-        </div>
-
-        <div>
-
-          <h3 class="timeline-company">
-            Earlier work
-          </h3>
-
-          <p class="timeline-role">
-            ShopRite · Kumon
-          </p>
-
-          <ul>
-
-            <li>
-              Worked customer-facing roles in retail and pharmacy while
-              studying at Rutgers.
-            </li>
-
-            <li>
-              Tutored students one-on-one in math and reading, learning how
-              to explain difficult ideas in ways different people could understand.
-            </li>
-
-          </ul>
-
-        </div>
-
-      </article>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PROJECTS -->
-
-<section id="projects">
-
-  <div class="container">
-
-    <div class="section-label">Projects</div>
-
-    <div class="section-heading">
-      <h2>Things I've built.</h2>
-      <p>click a category</p>
-    </div>
-
-
-    <div class="filters">
-
-      <button class="filter active" data-filter="all">all</button>
-      <button class="filter" data-filter="data">data</button>
-      <button class="filter" data-filter="software">software</button>
-      <button class="filter" data-filter="ml">ml</button>
-      <button class="filter" data-filter="analytics">analytics</button>
-
-    </div>
-
-
-    <div class="project-grid">
-
-
-      <article class="project-card" data-category="data analytics">
-
-        <div class="project-top">
-
-          <div>
-            <div class="project-number">01</div>
-            <h3>Algorithmic Trading Backtester</h3>
+        <div class="interest-grid">
+          <div class="interest-card">
+            <div class="interest-label">Cooking</div>
+            <div class="interest-text">Whatever's on my social media feed that week. No particular cuisine, just whatever looks worth trying. The failures are informative.</div>
           </div>
-
-          <div class="complexity">
-            DATA · ANALYTICS
+          <div class="interest-card">
+            <div class="interest-label">Gaming</div>
+            <div class="interest-text"><strong>Valorant, Ascendant.</strong> FPS games have been a constant for a while. Good way to turn the brain off after a long day of staring at pipelines.</div>
           </div>
-
-        </div>
-
-        <p class="project-summary">
-          Research platform for testing trading strategies without
-          quietly introducing look-ahead bias.
-        </p>
-
-        <div class="project-details">
-          Signals execute on the next bar. Includes OHLCV validation,
-          a 15-metric risk suite, SQLite caching, and multi-provider
-          fallback that cuts external API calls by 90%.
-        </div>
-
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">pandas</span>
-          <span class="tag">NumPy</span>
-          <span class="tag">Streamlit</span>
-          <span class="tag">SQLite</span>
-          <span class="tag">Docker</span>
-        </div>
-
-      </article>
-
-
-      <article class="project-card" data-category="software ml">
-
-        <div class="project-top">
-
-          <div>
-            <div class="project-number">02</div>
-            <h3>Cell Imaging Analysis Tool</h3>
+          <div class="interest-card">
+            <div class="interest-label">Sports</div>
+            <div class="interest-text">Basketball is the main one. Also: pickleball regularly, tennis in progress, volleyball and swimming when the opportunity comes up.</div>
           </div>
-
-          <div class="complexity">
-            SOFTWARE · ML
+          <div class="interest-card">
+            <div class="interest-label">Outdoors</div>
+            <div class="interest-text">Nature over history when traveling. Happy just being outside. Not a peak-bagger, just enjoy the pace of it.</div>
           </div>
-
-        </div>
-
-        <p class="project-summary">
-          Computer vision workflow for microscopy image classification
-          and cell segmentation.
-        </p>
-
-        <div class="project-details">
-          Built around ResNet-50, TensorFlow, OpenCV, and Cellpose.
-          Reached 91% accuracy across 10,000+ images.
-        </div>
-
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">TensorFlow</span>
-          <span class="tag">OpenCV</span>
-          <span class="tag">Cellpose</span>
-        </div>
-
-      </article>
-
-
-      <article class="project-card" data-category="data ml analytics">
-
-        <div class="project-top">
-
-          <div>
-            <div class="project-number">03</div>
-            <h3>Credit Risk Prediction</h3>
+          <div class="interest-card">
+            <div class="interest-label">People</div>
+            <div class="interest-text">Generally down to hang, always curious about the people around me. I think you do better work with people you actually know, so I take that seriously.</div>
           </div>
-
-          <div class="complexity">
-            DATA · ML
+          <div class="interest-card">
+            <div class="interest-label">Currently learning</div>
+            <div class="interest-text">Tennis (actual beginner). Always something cooking-related. Whatever's interesting in the data world that week.</div>
           </div>
-
         </div>
 
-        <p class="project-summary">
-          Credit default modeling project comparing multiple classification
-          approaches under stratified validation.
-        </p>
-
-        <div class="project-details">
-          Compared logistic regression, random forest, and gradient
-          boosting while focusing on evaluation beyond simple accuracy.
-        </div>
-
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">scikit-learn</span>
-          <span class="tag">pandas</span>
-          <span class="tag">SQL</span>
-        </div>
-
-      </article>
-
-
-      <article class="project-card" data-category="software data">
-
-        <div class="project-top">
-
-          <div>
-            <div class="project-number">04</div>
-            <h3>System Monitoring Dashboard</h3>
-          </div>
-
-          <div class="complexity">
-            SOFTWARE · DATA
-          </div>
-
-        </div>
-
-        <p class="project-summary">
-          Monitoring and reporting system designed to make operational
-          problems easier to see and diagnose.
-        </p>
-
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">SQL</span>
-          <span class="tag">APIs</span>
-          <span class="tag">Data</span>
-        </div>
-
-      </article>
-
-
-      <article class="project-card" data-category="data analytics">
-
-        <div class="project-top">
-
-          <div>
-            <div class="project-number">05</div>
-            <h3>NBA Analytics Platform</h3>
-          </div>
-
-          <div class="complexity">
-            DATA · ANALYTICS
-          </div>
-
-        </div>
-
-        <p class="project-summary">
-          Personal analytics project exploring basketball data,
-          statistics, and predictive modeling.
-        </p>
-
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">SQL</span>
-          <span class="tag">Analytics</span>
-        </div>
-
-      </article>
-
-
-      <article class="project-card" data-category="software analytics">
-
-        <div class="project-top">
-
-          <div>
-            <div class="project-number">06</div>
-            <h3>R&D Lab Data Automation</h3>
-          </div>
-
-          <div class="complexity">
-            SOFTWARE · ANALYTICS
-          </div>
-
-        </div>
-
-        <p class="project-summary">
-          Automation tools for reducing repetitive data preparation
-          in research workflows.
-        </p>
-
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">R</span>
-          <span class="tag">Automation</span>
-        </div>
-
-      </article>
-
-
-      <article class="project-card" data-category="software data">
-
-        <div class="project-top">
-
-          <div>
-            <div class="project-number">07</div>
-            <h3>Servin</h3>
-          </div>
-
-          <div class="complexity">
-            SOFTWARE · DATA
-          </div>
-
-        </div>
-
-        <p class="project-summary">
-          Food recommendation application built around a serverless
-          backend and personalized recommendations.
-        </p>
-
-        <div class="project-details">
-          React and TypeScript frontend with FastAPI, AWS Lambda,
-          DynamoDB, and CDK on the backend.
-        </div>
-
-        <div class="project-tags">
-          <span class="tag">React</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">AWS</span>
-          <span class="tag">DynamoDB</span>
-        </div>
-
-      </article>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- SKILLS -->
-
-<section id="skills">
-
-  <div class="container">
-
-    <div class="section-label">Skills</div>
-
-    <div class="section-heading">
-      <h2>What I use.</h2>
-      <p>tools, not trophies</p>
-    </div>
-
-
-    <div class="skills-layout">
-
-      <div>
-        <p class="skills-intro">
-          I don't try to collect every tool. These are the technologies
-          I've actually spent time building with.
-        </p>
       </div>
+    </section>
 
+    <!-- Experience -->
+    <section id="experience" class="reveal">
+      <div class="container">
+        <div class="section-label">Experience</div>
+        <div class="section-heading">
+          <h2>Where I've built things.</h2>
+          <p>2025 — 2026</p>
+        </div>
+        <div class="timeline">
 
-      <div>
+          <article class="timeline-item">
+            <div class="timeline-date">JUN 2026 — AUG 2026</div>
+            <div>
+              <h3 class="timeline-company">Federal Reserve Bank of Philadelphia</h3>
+              <p class="timeline-role">IT Research Intern · Economic Research Division</p>
+              <ul>
+                <li>Architected a reusable vendor ingestion framework using Airflow, EMR, and PySpark, standardizing 29 datasets and cutting onboarding from weeks to 2 days, deployed to 30+ economists.</li>
+                <li>Designed a three-stage S3 QA pipeline (HEALTHY / WARNING / CRITICAL) across 7 data quality dimensions, running on SPOT-instance EMR to keep daily costs under $2.</li>
+                <li>Built an automated HTML QA reporter that eliminated manual audit prep and enabled Athena self-service, accelerating research turnaround by 40%.</li>
+              </ul>
+              <div class="timeline-note">First time building infrastructure that other people's research depended on. You think about edge cases differently when the thing going down isn't your problem alone.</div>
+            </div>
+          </article>
 
-        <div class="skill-group">
-          <h3>Languages</h3>
+          <article class="timeline-item">
+            <div class="timeline-date">JUN 2025 — SEP 2025</div>
+            <div>
+              <h3 class="timeline-company">Simcere of America Inc.</h3>
+              <p class="timeline-role">Software & Data Engineering Intern · Cambridge, MA</p>
+              <ul>
+                <li>Unified 15+ clinical and genomic sources via Python/R ETL pipelines, cutting manual processing 40% and giving 20+ researchers near-real-time data access.</li>
+                <li>Built a CV pipeline achieving 91% accuracy that compressed microscopy analysis from 10+ hours to 12 minutes per batch, the most significant workflow change for the bio team.</li>
+                <li>Launched an authenticated R Shiny dashboard on AWS EC2/RDS with row-level security, saving 20+ person-hours monthly.</li>
+              </ul>
+              <div class="timeline-note">First time working directly alongside non-technical users. Figuring out how to talk about what a system can and can't do, without overcomplicating it, took some adjustment.</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="reveal">
+      <div class="container">
+        <div class="section-label">Projects</div>
+        <div class="section-heading">
+          <h2>Things I've built.</h2>
+          <p>click a project to inspect it</p>
+        </div>
+
+        <div class="filters" id="filters">
+          <button class="filter active" data-filter="all">all</button>
+          <button class="filter" data-filter="data">data</button>
+          <button class="filter" data-filter="software">software</button>
+          <button class="filter" data-filter="ml">ml</button>
+          <button class="filter" data-filter="analytics">analytics</button>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card" data-category="data analytics" data-skills="python sql pandas numpy sqlite">
+            <div class="project-top">
+              <div><div class="project-number">01</div><h3>Algorithmic Trading Backtester</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●●○</span></div>
+            </div>
+            <p>Bias-controlled research platform for testing trading strategies and measuring risk.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">NumPy</span>
+              <span class="tag">Streamlit</span><span class="tag">SQLite</span><span class="tag">Docker</span>
+            </div>
+            <div class="project-details">
+              Signals execute on the next bar to eliminate look-ahead bias. Typed DataQualityReport with
+              10 OHLCV checks and a 15-metric risk suite covering Sharpe, Sortino, Calmar, Max Drawdown,
+              and CAGR. SQLite caching with a 7-day TTL and multi-provider fallback cuts external API
+              calls by 90%.
+            </div>
+            <button class="project-toggle" type="button">details</button>
+          </article>
+
+          <article class="project-card" data-category="software ml" data-skills="python opencv sklearn">
+            <div class="project-top">
+              <div><div class="project-number">02</div><h3>Cell Imaging Analysis Tool</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●●○</span></div>
+            </div>
+            <p>Production desktop app for automated cell segmentation and tracking across microscopy sequences.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">Cellpose</span><span class="tag">PyQt5</span>
+              <span class="tag">OpenCV</span><span class="tag">scikit-image</span>
+            </div>
+            <div class="project-details">
+              PyQt5 background worker with Cellpose segmentation. Hungarian algorithm tracking via
+              <code>linear_sum_assignment</code>, vectorized geometry via <code>bincount</code> and
+              <code>minimum.at</code>, and multi-threaded optical flow interpolation between anchor frames.
+              Per-batch analysis compressed from 10+ hours to 12 minutes.
+            </div>
+            <button class="project-toggle" type="button">details</button>
+          </article>
+
+          <article class="project-card" data-category="data ml analytics" data-skills="python sklearn pandas numpy">
+            <div class="project-top">
+              <div><div class="project-number">03</div><h3>Credit Risk Prediction</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
+            </div>
+            <p>Loan-default modeling pipeline comparing classical ML approaches on 30,000 credit accounts.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">scikit-learn</span>
+              <span class="tag">pandas</span><span class="tag">SQLite</span>
+            </div>
+            <div class="project-details">
+              StratifiedKFold (n=5) with training-set-only imputation to prevent leakage. Fourteen
+              engineered features and 0.82 ROC-AUC with Gradient Boosting. Borrowers segmented into
+              four risk tiers with observed default rates from 6.8% (Low) to 48.9% (Very High).
+            </div>
+            <button class="project-toggle" type="button">details</button>
+          </article>
+
+          <article class="project-card" data-category="software data" data-skills="python flask sqlite">
+            <div class="project-top">
+              <div><div class="project-number">04</div><h3>System Monitoring Dashboard</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
+            </div>
+            <p>Lightweight monitoring interface for system status, metrics, and alerting.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">Flask</span>
+              <span class="tag">SQLite</span><span class="tag">Chart.js</span>
+            </div>
+            <div class="project-details">
+              WebSocket room-based broadcasting for real-time multi-client updates. APScheduler background
+              job for 30-day rolling metric purge. SMTP-integrated email alerting with cooldown controls
+              to prevent alert spam.
+            </div>
+            <button class="project-toggle" type="button">details</button>
+          </article>
+
+          <article class="project-card" data-category="data analytics" data-skills="python pandas sklearn numpy">
+            <div class="project-top">
+              <div><div class="project-number">05</div><h3>NBA Analytics Platform</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
+            </div>
+            <p>Player development and performance analytics with temporally correct modeling.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">scikit-learn</span>
+            </div>
+            <div class="project-details">
+              Three-way temporal train/validation/test split by season year to prevent future-data leakage.
+              Training-set-only median imputation. Player-level metrics and exploratory analysis for
+              development pattern investigation.
+            </div>
+            <button class="project-toggle" type="button">details</button>
+          </article>
+
+          <article class="project-card" data-category="software analytics" data-skills="r shiny aws">
+            <div class="project-top">
+              <div><div class="project-number">06</div><h3>R&D Lab Data Automation</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
+            </div>
+            <p>Authenticated R Shiny platform for repeatable pharmaceutical laboratory analysis.</p>
+            <div class="project-tags">
+              <span class="tag">R</span><span class="tag">Shiny</span><span class="tag">AWS EC2/RDS</span>
+            </div>
+            <div class="project-details">
+              Role-based access control with bcrypt password hashing. Kill-rate analysis, cytokine profiling,
+              4-parameter logistic dose-response fitting, ANOVA, and Kruskal-Wallis analysis. Deployed on
+              AWS EC2 and RDS.
+            </div>
+            <button class="project-toggle" type="button">details</button>
+          </article>
+
+          <article class="project-card" data-category="software data" data-skills="react typescript fastapi aws dynamodb">
+            <div class="project-top">
+              <div><div class="project-number">07</div><h3>Servin Food Recommendation</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●●○</span></div>
+            </div>
+            <p>Serverless recommendation engine with entropy-weighted confidence scoring.</p>
+            <div class="project-tags">
+              <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">FastAPI</span>
+              <span class="tag">AWS Lambda</span><span class="tag">DynamoDB</span><span class="tag">CDK</span>
+            </div>
+            <div class="project-details">
+              Entropy-weighted confidence normalization across four preference dimensions, with graceful
+              degradation when swipe data is sparse. Full CDK infrastructure stack covering Lambda, API
+              Gateway, DynamoDB, CloudFront, and S3. Built with friends for fun.
+            </div>
+            <button class="project-toggle" type="button">details</button>
+          </article>
+        </div>
+
+        <!-- skill trace -->
+        <div style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 32px;">
+          <div class="section-label" style="margin-bottom: 14px;">Trace a skill through the projects</div>
           <div class="skill-list">
-            Python · SQL · R · TypeScript · JavaScript · Java
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h3>Data</h3>
-          <div class="skill-list">
-            PySpark · Apache Airflow · pandas · NumPy · ETL/ELT ·
-            Data Quality · Docker · SLURM/HPC
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h3>AWS</h3>
-          <div class="skill-list">
-            S3 · EMR · Glue · Athena · Lambda · DynamoDB · EC2 ·
-            RDS · CDK
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h3>ML</h3>
-          <div class="skill-list">
-            scikit-learn · TensorFlow · Cellpose · OpenCV
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h3>Application</h3>
-          <div class="skill-list">
-            R Shiny · React · FastAPI · Flask · PostgreSQL · SQLite ·
-            REST APIs · pytest · CI/CD
+            <button class="skill" data-skill="python">Python</button>
+            <button class="skill" data-skill="sql">SQL</button>
+            <button class="skill" data-skill="aws">AWS</button>
+            <button class="skill" data-skill="pandas">pandas</button>
+            <button class="skill" data-skill="numpy">NumPy</button>
+            <button class="skill" data-skill="sklearn">scikit-learn</button>
+            <button class="skill" data-skill="opencv">OpenCV</button>
+            <button class="skill" data-skill="r">R</button>
+            <button class="skill" data-skill="shiny">R Shiny</button>
+            <button class="skill" data-skill="react">React</button>
+            <button class="skill" data-skill="typescript">TypeScript</button>
+            <button class="skill" data-skill="fastapi">FastAPI</button>
+            <button class="skill" data-skill="flask">Flask</button>
+            <button class="skill" data-skill="dynamodb">DynamoDB</button>
+            <button class="skill" data-skill="sqlite">SQLite</button>
           </div>
         </div>
 
       </div>
+    </section>
 
-    </div>
+    <!-- Basketball -->
+    <section id="side-quest" class="side-quest reveal">
+      <div class="container">
+        <div class="section-label">Side Quest</div>
+        <div class="section-heading">
+          <h2>Shoot your shot.</h2>
+          <p>basketball · real physics · sink 4 to unlock the stats</p>
+        </div>
 
-  </div>
+        <div class="game-shell">
+          <div class="game-head">
+            <span class="game-title">HALF-COURT CHALLENGE</span>
+            <span class="game-status" id="gameStatus">Sink 4 to unlock the stats</span>
+          </div>
 
-</section>
+          <div class="game-area" id="gameArea" aria-label="Basketball shooting game">
+            <div class="game-sky"></div>
+            <div class="court"></div>
 
+            <div class="hoop" id="hoopEl">
+              <div class="backboard">
+                <div class="backboard-inner"></div>
+              </div>
+              <div class="rim"></div>
+              <div class="net">
+                <svg viewBox="0 0 47 40" fill="none" xmlns="http://www.w3.org/2000/svg" id="netSvg" aria-hidden="true">
+                  <line x1="4"  y1="0" x2="2"  y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="12" y1="0" x2="11" y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="20" y1="0" x2="20" y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="28" y1="0" x2="29" y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="36" y1="0" x2="38" y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="44" y1="0" x2="46" y2="40" stroke="#666" stroke-width="1"/>
+                  <line x1="0"  y1="10" x2="47" y2="10" stroke="#666" stroke-width="1"/>
+                  <line x1="0"  y1="22" x2="47" y2="22" stroke="#666" stroke-width="1"/>
+                  <line x1="3"  y1="34" x2="44" y2="34" stroke="#666" stroke-width="1"/>
+                </svg>
+              </div>
+            </div>
 
-<!-- SIDE QUEST -->
+            <div class="fire-streak" id="fireStreak"></div>
+            <div class="power-bar-wrap" aria-hidden="true">
+              <div class="power-bar-fill" id="powerFill"></div>
+            </div>
+            <div class="ball" id="ball" aria-hidden="true"></div>
+            <div class="shot-flash" id="shotFlash" aria-live="polite"></div>
 
-<section id="side-quest">
+            <div class="game-overlay" id="gameOverlay">
+              <div class="game-message">
+                <h3 id="overlayTitle">HALF-COURT CHALLENGE</h3>
+                <p id="overlayText">Move to aim. Hold to charge the power bar. Release to shoot. Sink 4 and the résumé numbers unlock.</p>
+                <button class="game-button" id="startGame" type="button">LET'S RUN IT</button>
+              </div>
+            </div>
+          </div>
 
-  <div class="container">
+          <div class="game-controls">
+            <div class="game-score">
+              <span>SCORE <strong id="gameScore">0</strong></span>
+              <span>STREAK <strong id="gameStreak">0</strong></span>
+              <span>SHOTS <strong id="gameShots">0</strong></span>
+              <span class="fg">FG% <strong id="gameFG">—</strong></span>
+            </div>
+            <div class="game-help">move to aim · hold to charge · release to shoot</div>
+          </div>
+        </div>
 
-    <div class="section-label">Outside the work</div>
+        <button class="mobile-shoot-btn" id="mobileShootBtn" type="button" aria-label="Shoot">
+          SHOOT
+        </button>
 
-    <div class="section-heading">
-      <h2>Side quests.</h2>
-      <p>because work isn't everything</p>
-    </div>
+        <div class="unlocks">
+          <div class="unlock locked" data-unlock="1">
+            <strong>LOCKED · THE FED</strong>
+            <span>29 datasets. Onboarding: weeks → 2 days.</span>
+          </div>
+          <div class="unlock locked" data-unlock="2">
+            <strong>LOCKED · COMPUTER VISION</strong>
+            <span>91% accuracy. 10hr → 12min.</span>
+          </div>
+          <div class="unlock locked" data-unlock="3">
+            <strong>LOCKED · BIOTECH ETL</strong>
+            <span>15+ sources unified. 40% faster.</span>
+          </div>
+          <div class="unlock locked" data-unlock="4">
+            <strong>LOCKED · REAL USERS</strong>
+            <span>20+ biologists. 20+ hrs/mo saved.</span>
+          </div>
+        </div>
 
-
-    <div class="side-grid">
-
-      <div class="side-card">
-        <div class="side-card-label">Gaming</div>
-        <h3>Valorant</h3>
-        <p>
-          Ascendant. Good way to turn the brain off after a long day
-          of staring at pipelines.
-        </p>
+        <div class="side-note" id="sideNote">
+          The terminal below also has some hidden commands.
+        </div>
       </div>
+    </section>
 
-
-      <div class="side-card">
-        <div class="side-card-label">Sports</div>
-        <h3>Basketball</h3>
-        <p>
-          Basketball is the main one. Also pickleball, tennis,
-          volleyball, and swimming when I get the chance.
-        </p>
+    <!-- Terminal -->
+    <section class="reveal">
+      <div class="container">
+        <div class="section-label">Terminal</div>
+        <div class="section-heading">
+          <h2>Try the terminal.</h2>
+          <p>type help</p>
+        </div>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-title">andy@portfolio:~</span>
+          </div>
+          <div class="terminal-body">
+            <div id="terminalOutput" class="terminal-output" aria-live="polite">
+              Welcome. Type "help" to see available commands.
+            </div>
+            <div class="terminal-form" id="terminalForm">
+              <span class="prompt">$</span>
+              <input id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal command">
+            </div>
+            <div class="terminal-hint">
+              Try: help · about · projects · skills · contact · hire · joke · clear &nbsp;·&nbsp; hidden ones too
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-
-      <div class="side-card">
-        <div class="side-card-label">Outdoors</div>
-        <h3>Being outside</h3>
-        <p>
-          I generally prefer being outside to being inside.
-          Nature over history when traveling.
-        </p>
+    <!-- Contact -->
+    <section id="contact" class="contact reveal">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <div class="section-label">Contact</div>
+            <h2>Let's build something useful.</h2>
+          </div>
+          <div class="contact-links">
+            <a href="mailto:andyzhu0915@gmail.com">email</a>
+            <a href="https://github.com/AndyZ0915" target="_blank" rel="noopener noreferrer">github</a>
+            <a href="https://linkedin.com/in/andyzhu04" target="_blank" rel="noopener noreferrer">linkedin</a>
+          </div>
+        </div>
+        <div class="hire-timer">
+          You've been here for <strong id="hireTimer">00:00</strong>.
+          <span id="timerMessage">Still deciding?</span>
+        </div>
       </div>
-
-
-      <div class="side-card">
-        <div class="side-card-label">Currently learning</div>
-        <h3>Tennis & cooking</h3>
-        <p>
-          Tennis is currently in the beginner phase. Cooking is
-          permanently a work in progress.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- TERMINAL -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-label">Interactive</div>
-
-    <div class="section-heading">
-      <h2>Try the terminal.</h2>
-      <p>optional, but fun</p>
-    </div>
-
-
-    <div class="terminal">
-
-      <div class="terminal-bar">
-        andy@portfolio:~$
-      </div>
-
-      <div class="terminal-body" id="terminalOutput">
-```
-
-Type "help" to see what you can do. </div>
-
-```
-      <form class="terminal-form" id="terminalForm">
-        <span class="terminal-prompt">$</span>
-        <input
-          id="terminalInput"
-          class="terminal-input"
-          autocomplete="off"
-          spellcheck="false"
-          aria-label="Terminal command"
-        >
-      </form>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section id="contact" class="contact">
-
-  <div class="container">
-
-    <div class="section-label">Contact</div>
-
-    <div class="section-heading">
-      <h2>Let's talk.</h2>
-      <p>always open to good problems</p>
-    </div>
-
-
-    <div class="contact-grid">
-
-      <div>
-        <p class="contact-copy">
-          I'm currently looking for early-career opportunities in
-          Data Engineering, Data Analytics, Analytics Engineering,
-          or technical roles where I can combine problem solving
-          with communication.
-        </p>
-      </div>
-
-
-      <div class="contact-links">
-
-        <a
-          class="contact-link"
-          href="mailto:andyzhu0915@gmail.com"
-        >
-          <span>Email</span>
-          <span>andyzhu0915@gmail.com ↗</span>
-        </a>
-
-        <a
-          class="contact-link"
-          href="https://github.com/AndyZ0915"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>GitHub</span>
-          <span>AndyZ0915 ↗</span>
-        </a>
-
-        <a
-          class="contact-link"
-          href="https://www.linkedin.com/in/andyzhu04/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>LinkedIn</span>
-          <span>andyzhu04 ↗</span>
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-```
+    </section>
 
   </main>
 
-  <footer class="container">
-
-```
-<span>Andy Zhu · New Jersey · 2026</span>
-
-<span>
-  Built because a PDF felt too boring.
-</span>
-```
-
+  <footer>
+    <div class="container footer-inner">
+      <span>Andy Zhu · 2026</span>
+      <span>No frameworks were harmed in the making of this portfolio.</span>
+    </div>
   </footer>
 
   <script>
+  /* =========================================================
+     TYPEWRITER
+  ========================================================= */
+  (() => {
+    const el = document.getElementById("heroRole");
+    if (!el) return;
+    const text = "Software · Data · Analytics · Statistics";
+    const node = document.createTextNode("");
+    const cursor = document.createElement("span");
+    cursor.className = "typewriter-cursor";
+    cursor.setAttribute("aria-hidden", "true");
+    el.append(node, cursor);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { node.nodeValue = text; return; }
+    let i = 0;
+    function type() {
+      if (i >= text.length) return;
+      node.nodeValue += text[i]; i++;
+      setTimeout(type, text[i-1] === " " ? 75 : 42);
+    }
+    setTimeout(type, 350);
+  })();
 
-    /* ---------------------------------------
-       PROJECT FILTERS
-    --------------------------------------- */
-
-    const filters = document.querySelectorAll(".filter");
-    const projects = document.querySelectorAll(".project-card");
-
-    filters.forEach(filter => {
-
-      filter.addEventListener("click", () => {
-
-        filters.forEach(item => item.classList.remove("active"));
-        filter.classList.add("active");
-
-        const category = filter.dataset.filter;
-
-        projects.forEach(project => {
-
-          if (
-            category === "all" ||
-            project.dataset.category.includes(category)
-          ) {
-            project.classList.remove("hidden");
-          } else {
-            project.classList.add("hidden");
-          }
-
-        });
-
-      });
-
+  /* =========================================================
+     PROJECT TOGGLES
+  ========================================================= */
+  document.querySelectorAll(".project-toggle").forEach(button => {
+    button.addEventListener("click", e => {
+      e.stopPropagation();
+      const card = button.closest(".project-card");
+      if (!card) return;
+      const open = card.classList.toggle("open");
+      button.textContent = open ? "hide details" : "details";
     });
+  });
 
+  /* =========================================================
+     PROJECT FILTERS
+  ========================================================= */
+  const projectCards = [...document.querySelectorAll(".project-card")];
+  function filterProjects(value) {
+    projectCards.forEach(card => {
+      const cats = card.dataset.category.split(" ");
+      card.classList.toggle("hidden", value !== "all" && !cats.includes(value));
+    });
+  }
+  document.querySelectorAll(".filter").forEach(button => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+      button.classList.add("active");
+      filterProjects(button.dataset.filter);
+    });
+  });
 
-    /* ---------------------------------------
-       TERMINAL
-    --------------------------------------- */
+  /* =========================================================
+     SKILL TRACE
+  ========================================================= */
+  document.querySelectorAll(".skill").forEach(button => {
+    button.addEventListener("click", () => {
+      const wasActive = button.classList.contains("active");
+      document.querySelectorAll(".skill").forEach(b => b.classList.remove("active"));
+      projectCards.forEach(c => c.classList.remove("skill-match"));
+      if (wasActive) return;
+      button.classList.add("active");
+      projectCards.forEach(card => {
+        if (card.dataset.skills.split(" ").includes(button.dataset.skill))
+          card.classList.add("skill-match");
+      });
+    });
+  });
 
-    const terminalForm = document.getElementById("terminalForm");
-    const terminalInput = document.getElementById("terminalInput");
-    const terminalOutput = document.getElementById("terminalOutput");
+  /* =========================================================
+     BASKETBALL — angle from mouse direction, power from hold-to-charge
+     Fully decoupled so screen size never affects difficulty
+  ========================================================= */
+  (() => {
+    const area     = document.getElementById("gameArea");
+    const ballEl   = document.getElementById("ball");
+    const overlay  = document.getElementById("gameOverlay");
+    const titleEl  = document.getElementById("overlayTitle");
+    const textEl   = document.getElementById("overlayText");
+    const startBtn = document.getElementById("startGame");
+    const scoreEl  = document.getElementById("gameScore");
+    const streakEl = document.getElementById("gameStreak");
+    const shotsEl  = document.getElementById("gameShots");
+    const fgEl     = document.getElementById("gameFG");
+    const statusEl = document.getElementById("gameStatus");
+    const noteEl   = document.getElementById("sideNote");
+    const flashEl  = document.getElementById("shotFlash");
+    const powerFill= document.getElementById("powerFill");
+    const netSvg   = document.getElementById("netSvg");
+    const fireEl   = document.getElementById("fireStreak");
+    const mobileBtn= document.getElementById("mobileShootBtn");
+
+    const BALL_R = 14;
+    const SHOOT_X = 100;
+    const G = 1750;
+
+    // ANGLE: set by mouse/touch direction — completely screen-size independent
+    let aimAngleDeg = 52;
+
+    // POWER: 0..1, driven by hold-to-charge oscillating bar
+    // Completely decoupled from pointer position
+    let power       = 0;
+    let charging    = false;
+    let chargeDir   = 1;
+    let chargeRaf   = null;
+    let chargePrev  = null;
+    const CHARGE_SPEED = 1.6; // full 0->1 sweep in ~0.6s
+
+    let playing = false, shooting = false;
+    let score = 0, streak = 0, shots = 0, unlocked = 0;
+    let trajectoryDots = [];
+
+    const makeQuips   = ["Buckets.", "Money.", "Nothing but net.", "Swish.", "That's a W.", "Pure.", "Ice in the veins."];
+    const missQuips   = ["Brick.", "Rough.", "Airball energy.", "Missed wide.", "Left it short.", "Clang.", "Not even close."];
+    const streakQuips = { 2:"Two in a row.", 3:"On fire.", 4:"Heat check.", 5:"Unconscious.", 6:"Can't miss." };
+    const UNLOCK_DATA = [
+      ["THE FED",         "29 datasets. Onboarding: weeks → 2 days."],
+      ["COMPUTER VISION", "91% accuracy. 10hr → 12min."],
+      ["BIOTECH ETL",     "15+ sources unified. 40% faster."],
+      ["REAL USERS",      "20+ biologists. 20+ hrs/mo saved."],
+    ];
+
+    const clamp = (v,lo,hi) => Math.max(lo, Math.min(hi, v));
+    const rand  = (a,b)     => a + Math.random() * (b - a);
+    const SHOOT_Y = ()      => area.clientHeight - 70;
+
+    /* Read hoop from DOM — works on every screen size, no hardcoding */
+    function rimGeo() {
+      const hoopEl   = document.getElementById("hoopEl");
+      const hoopRect = hoopEl.getBoundingClientRect();
+      const areaRect = area.getBoundingClientRect();
+      const rimRight = hoopRect.right - areaRect.left - 7;
+      const rimLeft  = rimRight - 55;
+      const rimTop   = hoopRect.top  - areaRect.top  + 48;
+      return { left: rimLeft, right: rimRight, top: rimTop, center: (rimLeft + rimRight) / 2 };
+    }
+
+    /* Compute the exact speed to arc through rim center at current angle.
+       Solved from projectile equations so any screen size is always reachable. */
+    function idealSpeed() {
+      const rim  = rimGeo();
+      const dx   = rim.center - SHOOT_X;
+      const dy   = SHOOT_Y() - rim.top; // positive = needs to go up
+      const a    = aimAngleDeg * Math.PI / 180;
+      const denom = 2 * Math.cos(a) * Math.cos(a) * (dx * Math.tan(a) - dy);
+      if (denom <= 0 || dx <= 0) return 680;
+      return Math.sqrt((G * dx * dx) / denom);
+    }
+
+    /* power 0..1 maps to 0.60..1.40 × ideal — center is always makeable */
+    function computeVelocity() {
+      const a     = aimAngleDeg * Math.PI / 180;
+      const speed = idealSpeed() * (0.60 + power * 0.80);
+      return { vx: Math.cos(a) * speed, vy: Math.sin(a) * speed };
+    }
+
+    function powerBarColor(p) {
+      if (p < 0.30) return "linear-gradient(180deg,#2563eb,#93c5fd)";
+      if (p < 0.70) return "linear-gradient(180deg,#166534,#4ade80)";
+      return "linear-gradient(180deg,#dc2626,#f87171)";
+    }
+    function trajClass(p) {
+      if (p < 0.30) return "power-low";
+      if (p < 0.70) return "power-ok";
+      return "power-high";
+    }
+
+    function updatePowerBar() {
+      powerFill.style.height     = `${Math.round(power * 100)}%`;
+      powerFill.style.background = powerBarColor(power);
+    }
+
+    function clearTrajectory() { trajectoryDots.forEach(d => d.remove()); trajectoryDots = []; }
+
+    function drawTrajectory() {
+      clearTrajectory();
+      const { vx, vy } = computeVelocity();
+      const dt = 0.018;
+      let x = SHOOT_X, y = SHOOT_Y(), vy2 = vy;
+      for (let i = 0; i < 44; i++) {
+        x += vx * dt; y -= vy2 * dt; vy2 -= G * dt;
+        if (x < 0 || x > area.clientWidth || y > area.clientHeight + 20) break;
+        if (i % 2 === 0) {
+          const d = document.createElement("div");
+          d.className    = "traj-dot " + trajClass(power);
+          d.style.left   = `${x - 2}px`;
+          d.style.top    = `${y - 2}px`;
+          d.style.opacity = String(Math.max(0.06, 0.55 - i / 75));
+          area.appendChild(d);
+          trajectoryDots.push(d);
+        }
+      }
+    }
+
+    /* ANGLE: mouse/touch direction only — no distance involved */
+    function updateAngle(clientX, clientY) {
+      if (!playing || shooting) return;
+      const rect = area.getBoundingClientRect();
+      const dx   = clientX - rect.left - SHOOT_X;
+      const dy   = SHOOT_Y() - (clientY - rect.top);
+      if (dx <= 0) return;
+      aimAngleDeg = clamp(Math.atan2(dy, dx) * 180 / Math.PI, 22, 78);
+      drawTrajectory();
+    }
+
+    /* POWER: hold-to-charge. Bar oscillates; release to shoot. */
+    function startCharge() {
+      if (!playing || shooting || charging) return;
+      charging = true; chargeDir = 1; chargePrev = null;
+      function tick(now) {
+        if (!charging) return;
+        const dt = chargePrev ? Math.min((now - chargePrev) / 1000, 0.05) : 0;
+        chargePrev = now;
+        power += chargeDir * CHARGE_SPEED * dt;
+        if (power >= 1) { power = 1; chargeDir = -1; }
+        if (power <= 0) { power = 0; chargeDir  =  1; }
+        updatePowerBar();
+        drawTrajectory();
+        chargeRaf = requestAnimationFrame(tick);
+      }
+      chargeRaf = requestAnimationFrame(tick);
+    }
+
+    function releaseCharge() {
+      if (!charging) return;
+      charging = false;
+      cancelAnimationFrame(chargeRaf);
+      shoot();
+    }
+
+    function showFlash(text, cls = "make") {
+      flashEl.textContent   = text;
+      flashEl.className     = "shot-flash " + cls;
+      flashEl.style.opacity = "1";
+      clearTimeout(flashEl._t);
+      flashEl._t = setTimeout(() => { flashEl.style.opacity = "0"; }, 1100);
+    }
+
+    function animateNet() {
+      netSvg.style.transition = "transform 0s";
+      netSvg.style.transform  = "scaleY(1.22) scaleX(0.84)";
+      setTimeout(() => {
+        netSvg.style.transition = "transform 0.45s cubic-bezier(.22,1,.36,1)";
+        netSvg.style.transform  = "scaleY(1) scaleX(1)";
+      }, 20);
+    }
+
+    function unlockNext() {
+      if (unlocked >= 4) return;
+      const el = document.querySelector(`.unlock[data-unlock="${unlocked + 1}"]`);
+      if (!el) return;
+      const [label, desc] = UNLOCK_DATA[unlocked];
+      el.querySelector("strong").textContent = label;
+      el.querySelector("span").textContent   = desc;
+      unlocked++;
+      el.classList.remove("locked"); el.classList.add("unlocked");
+      const rem = 4 - unlocked;
+      statusEl.textContent = rem > 0 ? `${unlocked}/4 unlocked · ${rem} to go` : "ALL STATS UNLOCKED";
+    }
+
+    function updateFG() {
+      fgEl.textContent = shots > 0 ? Math.round(score / shots * 100) + "%" : "—";
+    }
+
+    function resetBall() {
+      power = 0; updatePowerBar();
+      ballEl.style.left      = `${SHOOT_X - BALL_R}px`;
+      ballEl.style.top       = `${SHOOT_Y() - BALL_R}px`;
+      ballEl.style.transform = "rotate(0deg)";
+    }
+
+    function resolveShot(made) {
+      if (made) {
+        score++; streak++;
+        scoreEl.textContent = String(score); streakEl.textContent = String(streak);
+        if (streak >= 3) {
+          fireEl.classList.add("active");
+          showFlash(streakQuips[Math.min(streak, 6)] || makeQuips[~~(Math.random() * makeQuips.length)], "streak");
+        } else {
+          showFlash(makeQuips[~~(Math.random() * makeQuips.length)], "make");
+        }
+        animateNet(); unlockNext();
+      } else {
+        const prev = streak; streak = 0; streakEl.textContent = "0";
+        fireEl.classList.remove("active");
+        showFlash(prev >= 3 ? `Streak gone. (${prev} in a row.)` : missQuips[~~(Math.random() * missQuips.length)], "miss");
+      }
+      updateFG();
+    }
+
+    function shoot() {
+      if (!playing || shooting) return;
+      shooting = true;
+      shots++; shotsEl.textContent = String(shots);
+      clearTrajectory();
+
+      let { vx, vy } = computeVelocity();
+      vx += rand(-10, 10); vy += rand(-12, 12); // small skill-based spread
+
+      let x = SHOOT_X, y = SHOOT_Y(), rotation = 0;
+      const rim    = rimGeo();
+      let prevTime = performance.now();
+      let made = false, resolved = false, rimChecked = false;
+
+      function frame(now) {
+        const dt = Math.min((now - prevTime) / 1000, 0.033);
+        prevTime = now;
+        x += vx * dt; y -= vy * dt; vy -= G * dt;
+        rotation += vx * dt * 0.55;
+        ballEl.style.left      = `${x - BALL_R}px`;
+        ballEl.style.top       = `${y - BALL_R}px`;
+        ballEl.style.transform = `rotate(${rotation}deg)`;
+
+        // make: center passes through rim opening moving downward
+        if (!rimChecked && vy < 0 && y >= rim.top - 2 && y <= rim.top + 28) {
+          rimChecked = true;
+          if (x > rim.left + BALL_R + 1 && x < rim.right - BALL_R - 1) made = true;
+        }
+        // backboard
+        const bbLeft = rim.right + 7;
+        if (x + BALL_R > bbLeft && x - BALL_R < bbLeft + 5 && y > rim.top - 42 && y < rim.top + 44 && vx > 0) {
+          x = bbLeft - BALL_R; vx = -Math.abs(vx) * 0.50;
+        }
+        // rim edge deflection
+        if (!made && rimChecked && y >= rim.top - 5 && y <= rim.top + 20 && x >= rim.left - 6 && x <= rim.right + 6) {
+          vx += x < rim.center ? -rand(18, 55) : rand(18, 55);
+          vy  = Math.abs(vy) * 0.35;
+        }
+
+        const gone = y >= area.clientHeight - 20 || x > area.clientWidth + BALL_R * 2 || x < -BALL_R * 3;
+        if (!gone && !made) { requestAnimationFrame(frame); return; }
+        if (resolved) return;
+        resolved = true;
+        resolveShot(made);
+        setTimeout(() => {
+          resetBall(); shooting = false;
+          if (score >= 4)       finishGame();
+          else if (shots >= 10) endGame();
+        }, made ? 420 : 240);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function startGame() {
+      playing = true; shooting = false; charging = false;
+      cancelAnimationFrame(chargeRaf);
+      score = 0; streak = 0; shots = 0; unlocked = 0;
+      scoreEl.textContent = "0"; streakEl.textContent = "0";
+      shotsEl.textContent = "0"; fgEl.textContent = "—";
+      fireEl.classList.remove("active");
+      document.querySelectorAll(".unlock").forEach((el, i) => {
+        el.classList.remove("unlocked"); el.classList.add("locked");
+        el.querySelector("strong").textContent = `LOCKED · ${UNLOCK_DATA[i][0]}`;
+        el.querySelector("span").textContent   = UNLOCK_DATA[i][1];
+      });
+      statusEl.textContent = "Sink 4 to unlock the stats";
+      noteEl.textContent   = "The terminal below also has some hidden commands.";
+      overlay.classList.add("hidden");
+      resetBall(); clearTrajectory();
+    }
+
+    function finishGame() {
+      playing = false;
+      const pct = shots > 0 ? Math.round(score / shots * 100) : 0;
+      titleEl.textContent  = "ALL STATS UNLOCKED";
+      textEl.textContent   = `${score} for ${shots} (${pct}% FG). Stats revealed. Check the terminal for more.`;
+      startBtn.textContent = "RUN IT BACK";
+      overlay.classList.remove("hidden");
+    }
+
+    function endGame() {
+      playing = false;
+      let title, text;
+      if (score === 0)      { title = "BIG BRICK ENERGY"; text = `0 for ${shots}. Legendary brick session.`; }
+      else if (score >= 3)  { title = "CLOSE ONE"; text = `${score} for ${shots}. One bucket short of everything.`; }
+      else                  { const p = Math.round(score/shots*100); title = "GOOD RUN"; text = `${score} for ${shots} (${p}% FG). Try again for all stats.`; }
+      titleEl.textContent  = title;
+      textEl.textContent   = text;
+      startBtn.textContent = "RUN IT BACK";
+      overlay.classList.remove("hidden");
+    }
+
+    /* ── Mouse: move = aim only, hold = charge, release = shoot ── */
+    area.addEventListener("mousemove", e => updateAngle(e.clientX, e.clientY));
+    area.addEventListener("mouseleave", clearTrajectory);
+    area.addEventListener("mousedown", e => {
+      if (e.button !== 0 || e.target.closest(".game-overlay")) return;
+      startCharge();
+    });
+    window.addEventListener("mouseup", e => { if (e.button === 0) releaseCharge(); });
+
+    /* ── Touch: drag = aim, hold = charge, lift = shoot ── */
+    area.addEventListener("touchstart", e => {
+      if (e.target.closest(".game-overlay")) return;
+      updateAngle(e.touches[0].clientX, e.touches[0].clientY);
+      startCharge();
+      e.preventDefault();
+    }, { passive: false });
+    area.addEventListener("touchmove", e => {
+      updateAngle(e.touches[0].clientX, e.touches[0].clientY);
+      e.preventDefault();
+    }, { passive: false });
+    area.addEventListener("touchend", e => {
+      if (e.target.closest(".game-overlay")) return;
+      releaseCharge();
+      e.preventDefault();
+    }, { passive: false });
+
+    /* ── Mobile button ── */
+    mobileBtn.addEventListener("mousedown",  () => startCharge());
+    mobileBtn.addEventListener("touchstart", e => { startCharge(); e.preventDefault(); }, { passive: false });
+    window.addEventListener("mouseup",  () => releaseCharge());
+    mobileBtn.addEventListener("touchend", e => { releaseCharge(); e.preventDefault(); }, { passive: false });
+
+    /* ── Space: hold to charge, release to shoot ── */
+    document.addEventListener("keydown", e => {
+      if (e.code !== "Space" || e.repeat) return;
+      const r = document.getElementById("side-quest").getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) { e.preventDefault(); startCharge(); }
+    });
+    document.addEventListener("keyup", e => { if (e.code === "Space") releaseCharge(); });
+
+    startBtn.addEventListener("click", startGame);
+    resetBall();
+  })();
+
+  /* =========================================================
+     TERMINAL
+  ========================================================= */
+  (() => {
+    const form   = document.getElementById("terminalForm");
+    const input  = document.getElementById("terminalInput");
+    const output = document.getElementById("terminalOutput");
 
     const commands = {
-
       help:
 `Available commands:
 
 about       who I am
-experience  where I've worked
-projects    things I've built
-skills      technologies I use
-contact     how to reach me
-hire        why I might be useful
+ls          list portfolio sections
+projects    list projects
+skills      list technologies
+contact     contact information
+hire        why hire me
 joke        questionable developer humor
 clear       clear terminal
 
-Try "projects" or "hire".`,
+Hidden commands exist too.`,
 
       about:
 `Andy Zhu
 
 Rutgers University, Class of 2026
 B.S. Computer Science & Data Science
-Statistics Minor
+Statistics Minor | GPA: 3.5 | Dean's List x5
 
 I chose CS because I actually like to code.
+I build things that stay useful after the demo.`,
 
-Most of what I build sits somewhere between
-data infrastructure, software, and analytics.`,
-
-      experience:
-`FEDERAL RESERVE
-Data Engineering Intern
-29 datasets · onboarding weeks → 2 days
-30+ economists
-
-SIMCERE
-Software Engineering Intern
-50,000+ records
-10,000+ microscopy images
-20+ researchers
-
-RUTGERS CSO
-External Vice President
-25-person board
-$20K annual budget`,
+      ls:
+`about.txt
+experience/
+  ├── federal-reserve/
+  └── simcere/
+projects/
+side-quest/
+skills/
+contact.txt`,
 
       projects:
-`01  Algorithmic Trading Backtester
-    data · analytics
-
-02  Cell Imaging Analysis Tool
-    software · machine learning
-
-03  Credit Risk Prediction
-    data · machine learning
-
-04  System Monitoring Dashboard
-    software · data
-
-05  NBA Analytics Platform
-    data · analytics
-
-06  R&D Lab Data Automation
-    software · analytics
-
-07  Servin Food Recommendation
-    software · data`,
+`01  Algorithmic Trading Backtester     [data · analytics]
+02  Cell Imaging Analysis Tool         [software · ml]
+03  Credit Risk Prediction             [data · ml · analytics]
+04  System Monitoring Dashboard        [software · data]
+05  NBA Analytics Platform             [data · analytics]
+06  R&D Lab Data Automation            [software · analytics]
+07  Servin Food Recommendation         [software · data]`,
 
       skills:
-`LANGUAGES
-Python · SQL · R · TypeScript · JavaScript · Java
+`Python · SQL · R · TypeScript · JavaScript · Java
 
-DATA
-PySpark · Airflow · pandas · NumPy · Docker
+AWS:
+Lambda · Glue · Athena · S3 · EMR · DynamoDB · CDK · EC2 · RDS
 
-AWS
-S3 · EMR · Glue · Athena · Lambda · DynamoDB · EC2 · RDS
+Data:
+PySpark · Apache Airflow · pandas · NumPy · Docker · SLURM/HPC
 
-ML
+ML:
 scikit-learn · TensorFlow · Cellpose · OpenCV
 
-APPLICATION
+Application:
 R Shiny · React · FastAPI · Flask · PostgreSQL · SQLite`,
 
       contact:
 `Email:    andyzhu0915@gmail.com
 GitHub:   github.com/AndyZ0915
-LinkedIn: linkedin.com/in/andyzhu04/
+LinkedIn: linkedin.com/in/andyzhu04
 
 I check all three.`,
 
       hire:
-`Why Andy might be useful:
+`Reasons to hire Andy:
 
-- Gets into the problem before starting to code
+- Gets into a problem before starting to code
 - Cares whether the output is actually useful
-- Has built things used by researchers and biologists
-- Comfortable with ambiguous requirements
-- Learns quickly when dropped into unfamiliar systems
-- Doesn't automatically reach for the most complicated solution
+- Worked in environments where things had to hold up after the demo
+- Doesn't reach for a framework when a script would do
+- Fine with ambiguity, gets sharper as context builds
 
-Still early in the career.
+Not reasons to hire Andy:
 
-That's the point.`,
+- If you need 5 years of experience
+
+That is genuinely the only one.`,
 
       joke:
 `Two bugs walk into a bar.
 
-First bug:
-"I haven't shipped in months."
+First bug: "I haven't shipped in months."
+Second bug: "I am in production right now."`,
 
-Second bug:
-"I am in production right now."`,
+      whoami: `andy`,
+
+      sudo: `Permission denied.\n\nNice try though.`,
 
       nba:
 `Andy builds NBA analytics tools in his free time.
@@ -1874,87 +1664,150 @@ He is very normal about basketball.
 (He is not normal about basketball.)`,
 
       stat:
-`Correlation does not imply causation.
+`Statistics fact:
 
-In Andy's experience,
-people build dashboards assuming it does.`,
+Correlation does not imply causation.
 
-      sudo:
-`Permission denied.
+In Andy's experience, people build dashboards assuming it does.`,
 
-Nice try though.`
+      python:
+`Python 3.12.0
+portfolio-build
 
+Type "exit()" to quit.
+
+Just kidding. You are still here.`,
+
+      ping:
+`PING portfolio
+
+1 packet
+Reply: time=0ms
+
+Fast because there is no backend.`,
+
+      rutgers:
+`R-U RAH RAH, R-U RAH RAH
+Hoo-Rah, Hoo-Rah, Rutgers, Rah
+
+Class of 2026 · 3.5 GPA · Dean's List x5
+
+Scarlet Knights.`,
+
+      basketball:
+`You typed basketball into a terminal.
+
+Scroll up and actually play the game.`,
+
+      "git log":
+`commit f2a91c3 (HEAD -> main)
+Author: Andy Zhu
+Date:   recent
+
+    add touch support and fire streak to basketball game
+
+commit 88d2b41
+
+    fix look-ahead bias in backtester
+
+commit 4c21f7a
+
+    add about section — past, present, future, traits
+
+commit 1f40cc9
+
+    rm -rf node_modules
+
+commit 4e9d102
+
+    initial commit — works on my machine`,
+
+      secret:
+`Found it.
+
+The basketball uses projectile physics:
+  x(t) = x₀ + vx·t
+  y(t) = y₀ - vy·t + ½g·t²
+
+Power normalizes across screen width, not pixel distance,
+so it works the same on every screen size.
+
+Also try: whoami · sudo · nba · ping · stat · python · rutgers · git log`
     };
 
+    const history = []; let historyIndex = -1;
 
-    function runCommand(input) {
-
-      const command = input.trim().toLowerCase();
-
-      if (!command) return;
-
-      if (command === "clear") {
-        terminalOutput.textContent = "";
-        return;
-      }
-
-      if (commands[command]) {
-
-        terminalOutput.textContent =
-          "$ " + command + "\n\n" + commands[command];
-
+    form.addEventListener("keydown", e => {
+      if (e.key !== "Enter") return;
+      e.preventDefault();
+      const cmd = input.value.trim().toLowerCase();
+      if (!cmd) return;
+      history.push(cmd); historyIndex = history.length;
+      if (cmd === "clear") { output.textContent = ""; input.value = ""; return; }
+      let response;
+      if (cmd === "date") {
+        const grad = new Date("2026-05-15T00:00:00");
+        const days = Math.floor((Date.now() - grad.getTime()) / 86400000);
+        response = `${new Date().toDateString()}\n\nDays since graduation: ${days}\n\nStill looking for the right role.`;
       } else {
-
-        terminalOutput.textContent =
-          "$ " + command +
-          "\n\nCommand not found.\nTry \"help\".";
-
+        response = commands[cmd] || `Command not found: "${cmd}"\n\nType "help" for available commands.`;
       }
-
-    }
-
-
-    terminalForm.addEventListener("submit", event => {
-
-      event.preventDefault();
-
-      runCommand(terminalInput.value);
-
-      terminalInput.value = "";
-
+      const prev = output.textContent.trim();
+      output.textContent = (prev ? prev + "\n\n" : "") + "$ " + cmd + "\n" + response;
+      input.value = "";
+      setTimeout(() => { output.scrollTop = output.scrollHeight; }, 10);
     });
 
+    input.addEventListener("keydown", e => {
+      if (e.key === "ArrowUp") { e.preventDefault(); historyIndex = Math.max(0, historyIndex - 1); input.value = history[historyIndex] || ""; }
+      if (e.key === "ArrowDown") { e.preventDefault(); historyIndex = Math.min(history.length, historyIndex + 1); input.value = history[historyIndex] || ""; }
+    });
+  })();
 
-    /* ---------------------------------------
-       SIMPLE ROLE ROTATION
-    --------------------------------------- */
-
-    const roles = [
-      "Data Engineering",
-      "Data Analytics",
-      "Software",
-      "Statistics"
+  /* =========================================================
+     HIRE TIMER
+  ========================================================= */
+  (() => {
+    const timer   = document.getElementById("hireTimer");
+    const message = document.getElementById("timerMessage");
+    const start   = Date.now();
+    const milestones = [
+      [0,   "Still deciding?"],
+      [15,  "Good sign."],
+      [30,  "You're actually reading this."],
+      [60,  "Okay you're thorough. Respect."],
+      [90,  "This is longer than most first-round interviews."],
+      [120, "Andy is fully employed if you just email him."],
+      [180, "At this point you might as well reach out."],
+      [240, "Seriously though. andyzhu0915@gmail.com."],
+      [300, "Five minutes. You win. Email him."],
+      [420, "Seven minutes. Bold move."],
+      [600, "Ten minutes. He would just like a job, thanks."]
     ];
+    function updateTimer() {
+      const secs = Math.floor((Date.now() - start) / 1000);
+      const mins = Math.floor(secs / 60);
+      timer.textContent = String(mins).padStart(2,"0") + ":" + String(secs % 60).padStart(2,"0");
+      let cur = milestones[0][1];
+      for (const [t, txt] of milestones) { if (secs >= t) cur = txt; }
+      message.textContent = cur;
+    }
+    setInterval(updateTimer, 1000); updateTimer();
+  })();
 
-    const roleElement = document.querySelector(".hero-role");
-
-    let roleIndex = 0;
-
-    setInterval(() => {
-
-      roleIndex = (roleIndex + 1) % roles.length;
-
-      roleElement.style.opacity = "0";
-
-      setTimeout(() => {
-
-        roleElement.textContent = roles[roleIndex];
-        roleElement.style.opacity = "1";
-
-      }, 180);
-
-    }, 2400);
-
+  /* =========================================================
+     SCROLL REVEAL
+  ========================================================= */
+  (() => {
+    const els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) { els.forEach(e => e.classList.add("visible")); return; }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.10 });
+    els.forEach(e => observer.observe(e));
+  })();
   </script>
 
 </body>
