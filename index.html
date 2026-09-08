@@ -61,11 +61,24 @@
     .nav-inner {
       height: 64px; display: flex;
       align-items: center; justify-content: space-between;
+      position: relative;
     }
     .logo { font-family: var(--mono); font-weight: 700; font-size: 0.9rem; letter-spacing: -0.02em; }
     .nav-links { display: flex; gap: 24px; font-size: 0.86rem; color: var(--muted); }
     .nav-links a { transition: color 0.15s ease; }
     .nav-links a:hover, .nav-links a:focus-visible { color: var(--text); }
+
+    /* Mobile menu toggle */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      font-size: 1.5rem;
+      color: var(--text);
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .mobile-menu-toggle:hover { opacity: 0.7; }
 
     /* ── Hero ── */
     .hero {
@@ -92,6 +105,7 @@
     }
     @keyframes blink { 50% { opacity: 0; } }
     .hero-copy { max-width: 580px; margin-top: 30px; color: var(--muted); font-size: 1.05rem; }
+    .hero-copy strong { color: var(--text); font-weight: 500; }
     .hero-actions { display: flex; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
 
     .button {
@@ -530,7 +544,21 @@
     }
     @media (max-width: 560px) {
       .container { width: calc(100% - 28px); }
-      .nav-links { display: none; }
+      .mobile-menu-toggle { display: block !important; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        background: var(--bg);
+        padding: 20px;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        border-bottom: 1px solid var(--border);
+        z-index: 30;
+      }
+      .nav-links.open { display: flex; }
       .hero { min-height: 75vh; padding: 80px 0 65px; }
       .hero h1 { font-size: clamp(3.3rem,18vw,5rem); }
       section { padding: 70px 0; }
@@ -558,6 +586,7 @@
   <nav class="nav" aria-label="Main navigation">
     <div class="container nav-inner">
       <a class="logo" href="#" aria-label="Andy Zhu home">AZ/26</a>
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
       <div class="nav-links">
         <a href="#about">about</a>
         <a href="#outside">outside</a>
@@ -578,9 +607,9 @@
         <h1>Andy Zhu.</h1>
         <div class="hero-role" id="heroRole" aria-label="Software, Data, Analytics, Statistics"></div>
         <p class="hero-copy">
-          I picked computer science because I actually like to code. Most of what I've built
-          sits somewhere between data infrastructure and software. Pipelines, ETL work, some ML
-          on the side. New grad, looking for the right role.
+          Data Engineer with production experience shipping ETL/ELT pipelines at the Federal Reserve and a pharma-biotech firm.
+          Reduced analyst wait times by <strong>40%</strong> and pipeline costs to under <strong>$2/day</strong> on AWS.
+          New grad, looking for the right infrastructure problem.
         </p>
         <div class="hero-actions">
           <a class="button" href="#projects">View projects</a>
@@ -773,29 +802,31 @@
         </div>
         <div class="timeline">
 
+          <!-- FEDERAL RESERVE (Corrected: 28 datasets, split bullets) -->
           <article class="timeline-item">
             <div class="timeline-date">JUN 2026 — AUG 2026</div>
             <div>
               <h3 class="timeline-company">Federal Reserve Bank of Philadelphia</h3>
               <p class="timeline-role">IT Research Intern · Economic Research Division</p>
               <ul>
-                <li>Architected a reusable vendor ingestion framework using Airflow, EMR, and PySpark, standardizing 29 datasets and cutting onboarding from weeks to 2 days, deployed to 30+ economists.</li>
-                <li>Designed a three-stage S3 QA pipeline (HEALTHY / WARNING / CRITICAL) across 7 data quality dimensions, running on SPOT-instance EMR to keep daily costs under $2.</li>
-                <li>Built an automated HTML QA reporter that eliminated manual audit prep and enabled Athena self-service, accelerating research turnaround by 40%.</li>
+                <li>Cut vendor data onboarding from weeks to <strong>2 days</strong> by architecting a reusable Airflow + EMR + PySpark ingestion framework, standardizing <strong>28 datasets</strong> across <strong>30+ economists</strong>.</li>
+                <li>Slashed pipeline compute costs to under <strong>$2/day</strong> by engineering a 3-stage PySpark quality system across <strong>7 dimensions</strong> with SPOT-instance EMR, exposing real-time integrity status to researchers.</li>
+                <li>Accelerated research turnaround by <strong>40%</strong> by automating HTML QA reports via Python + Airflow SMTP and enabling direct Athena self-service, eliminating manual audit prep entirely.</li>
               </ul>
               <div class="timeline-note">First time building infrastructure that other people's research depended on. You think about edge cases differently when the thing going down isn't your problem alone.</div>
             </div>
           </article>
 
+          <!-- SIMCERE (Corrected: CV pipeline moved to #1) -->
           <article class="timeline-item">
             <div class="timeline-date">JUN 2025 — SEP 2025</div>
             <div>
               <h3 class="timeline-company">Simcere of America Inc.</h3>
               <p class="timeline-role">Software & Data Engineering Intern · Cambridge, MA</p>
               <ul>
-                <li>Unified 15+ clinical and genomic sources via Python/R ETL pipelines, cutting manual processing 40% and giving 20+ researchers near-real-time data access.</li>
-                <li>Built a CV pipeline achieving 91% accuracy that compressed microscopy analysis from 10+ hours to 12 minutes per batch, the most significant workflow change for the bio team.</li>
-                <li>Launched an authenticated R Shiny dashboard on AWS EC2/RDS with row-level security, saving 20+ person-hours monthly.</li>
+                <li>Engineered a ResNet-50 CV pipeline (TensorFlow + OpenCV) achieving <strong>91% accuracy</strong> and compressing analysis time from <strong>10+ hours to 12 minutes</strong> for <strong>20+ biologists</strong>.</li>
+                <li>Unified <strong>15+ clinical and genomic</strong> data sources via Python/R ETL pipelines, cutting manual processing by <strong>40%</strong> and enabling near-real-time access for <strong>20+ researchers</strong>.</li>
+                <li>Deployed an authenticated R Shiny dashboard on AWS EC2/RDS with row-level security, saving <strong>20+ person-hours/month</strong> and eliminating ad-hoc engineering requests from biologists.</li>
               </ul>
               <div class="timeline-note">First time working directly alongside non-technical users. Figuring out how to talk about what a system can and can't do, without overcomplicating it, took some adjustment.</div>
             </div>
@@ -1130,6 +1161,13 @@
   </footer>
 
   <script>
+  /* =========================================================
+     MOBILE MENU TOGGLE
+  ========================================================= */
+  document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.toggle('open');
+  });
+
   /* =========================================================
      TYPEWRITER
   ========================================================= */
@@ -1558,7 +1596,7 @@
   })();
 
   /* =========================================================
-     TERMINAL
+     TERMINAL (Skills updated to match resume: no JS/TS/Java)
   ========================================================= */
   (() => {
     const form   = document.getElementById("terminalForm");
@@ -1610,19 +1648,16 @@ contact.txt`,
 07  Servin Food Recommendation         [software · data]`,
 
       skills:
-`Python · SQL · R · TypeScript · JavaScript · Java
+`Python · SQL · R · PySpark · Apache Airflow
 
 AWS:
-Lambda · Glue · Athena · S3 · EMR · DynamoDB · CDK · EC2 · RDS
+S3 · EMR · Glue · Athena · Lambda · EC2 · RDS
 
 Data:
-PySpark · Apache Airflow · pandas · NumPy · Docker · SLURM/HPC
+Data Modeling · Data Quality · Pipeline Orchestration · Data Warehousing
 
-ML:
-scikit-learn · TensorFlow · Cellpose · OpenCV
-
-Application:
-R Shiny · React · FastAPI · Flask · PostgreSQL · SQLite`,
+Tools & Libs:
+Docker · CI/CD · Git · PostgreSQL · pandas · scikit-learn · TensorFlow · Streamlit`,
 
       contact:
 `Email:    andyzhu0915@gmail.com
