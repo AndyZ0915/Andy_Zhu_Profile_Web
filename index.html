@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Andy Zhu — Data engineering, software, and analytics portfolio.">
+  <meta name="description" content="Andy Zhu — Data and software engineering portfolio.">
   <meta name="author" content="Andy Zhu">
   <meta name="theme-color" content="#f7f7f4">
   <title>Andy Zhu | Data & Software Engineering</title>
@@ -607,9 +607,9 @@
         <h1>Andy Zhu.</h1>
         <div class="hero-role" id="heroRole" aria-label="Software, Data, Analytics, Statistics"></div>
         <p class="hero-copy">
-          Data Engineer with production experience shipping ETL/ELT pipelines at the Federal Reserve and a pharma-biotech firm.
-          Reduced analyst wait times by <strong>40%</strong> and pipeline costs to under <strong>$2/day</strong> on AWS.
-          New grad, looking for the right infrastructure problem.
+          Data and software engineer with production experience shipping ETL/ELT pipelines at the Federal Reserve and a pharma-biotech firm.
+          Cut research turnaround by <strong>40%</strong> and pipeline costs to under <strong>$2/day</strong> on AWS.
+          New grad, looking for the right problem to build on.
         </p>
         <div class="hero-actions">
           <a class="button" href="#projects">View projects</a>
@@ -640,25 +640,26 @@
           <div class="arc-block past">
             <div class="arc-label">How I got here</div>
             <div class="arc-text">
-              Grew up in Livingston, NJ. Started at Rutgers in pure statistics, liked the math
-              but wanted to build things, so I switched into CS and Data Science. Spent the last
-              two summers interning, first at a biotech in Cambridge, then at the Federal Reserve
-              in Philadelphia. Graduated May 2026.
+              Grew up in Livingston, NJ. Started at Rutgers undeclared, took a mix of math, stats
+              and CS, and liked building things enough that CS and Data Science became my two
+              majors, with a Statistics minor. Spent the last two summers interning, first at a
+              biotech in Cambridge, then at the Federal Reserve in Philadelphia. Graduated May 2026.
             </div>
           </div>
           <div class="arc-block present">
             <div class="arc-label">Right now</div>
             <div class="arc-text">
-              Looking for a data engineering or analyst role. I want to work somewhere with
-              real data problems, not just dashboards. 3.5 GPA, Dean's List five times, two
-              internships where I built things that stayed in use after I left.
+              Looking for a data engineering, data science, or software engineering role. I want
+              to work somewhere with real data problems, not just dashboards. 3.5 GPA, Dean's List
+              five times, two internships where I built things that stayed in use after I left.
+              Currently working on an Airflow data pipeline project.
             </div>
           </div>
           <div class="arc-block future">
             <div class="arc-label">Where I'm heading</div>
             <div class="arc-text">
               Interested in the infrastructure layer: pipelines, data quality, the systems that
-              make downstream analytics actually reliable. Still early enough in my career that
+              make downstream analytics actually reliable, plus the software around them. Still early enough in my career that
               I'm open to wherever good problems show up, but that's the direction I keep
               gravitating toward.
             </div>
@@ -686,7 +687,8 @@
               Outside of the technical work, I was External VP of the Chinese Student Organization
               at Rutgers, which was mostly an exercise in getting a large group of people to
               coordinate on things without anyone having formal authority over anyone else.
-              Useful practice, it turns out.
+              Useful practice, it turns out. I went from intern to VP in 18 months, with a
+              25-member board and a $20K budget.
             </p>
           </div>
 
@@ -802,22 +804,22 @@
         </div>
         <div class="timeline">
 
-          <!-- FEDERAL RESERVE (Corrected: 28 datasets, split bullets) -->
+          <!-- FEDERAL RESERVE -->
           <article class="timeline-item">
             <div class="timeline-date">JUN 2026 — AUG 2026</div>
             <div>
               <h3 class="timeline-company">Federal Reserve Bank of Philadelphia</h3>
               <p class="timeline-role">IT Research Intern · Economic Research Division</p>
               <ul>
-                <li>Cut vendor data onboarding from weeks to <strong>2 days</strong> by architecting a reusable Airflow + EMR + PySpark ingestion framework, standardizing <strong>28 datasets</strong> across <strong>30+ economists</strong>.</li>
-                <li>Slashed pipeline compute costs to under <strong>$2/day</strong> by engineering a 3-stage PySpark quality system across <strong>7 dimensions</strong> with SPOT-instance EMR, exposing real-time integrity status to researchers.</li>
-                <li>Accelerated research turnaround by <strong>40%</strong> by automating HTML QA reports via Python + Airflow SMTP and enabling direct Athena self-service, eliminating manual audit prep entirely.</li>
+                <li>Cut vendor data onboarding from weeks to <strong>2 days</strong> by building a reusable Airflow + EMR + PySpark ingestion framework covering <strong>29 vendor datasets</strong> and <strong>90+ variables</strong> for <strong>30+ economists</strong>, with one standardized schema replacing per-vendor file formats.</li>
+                <li>Lowered pipeline compute costs to under <strong>$2/day</strong> with EMR Spot Instances, and added a 3-stage PySpark quality check across <strong>7 dimensions</strong> that surfaces integrity issues to researchers in real time.</li>
+                <li>Cut research turnaround by <strong>40%</strong> by letting analysts query S3 data directly through Athena instead of waiting on engineering-run pulls, and automated emailed QA reports on scraped HTML sources with Python and Airflow SMTP.</li>
               </ul>
               <div class="timeline-note">First time building infrastructure that other people's research depended on. You think about edge cases differently when the thing going down isn't your problem alone.</div>
             </div>
           </article>
 
-          <!-- SIMCERE (Corrected: CV pipeline moved to #1) -->
+          <!-- SIMCERE -->
           <article class="timeline-item">
             <div class="timeline-date">JUN 2025 — SEP 2025</div>
             <div>
@@ -825,7 +827,7 @@
               <p class="timeline-role">Software & Data Engineering Intern · Cambridge, MA</p>
               <ul>
                 <li>Engineered a ResNet-50 CV pipeline (TensorFlow + OpenCV) achieving <strong>91% accuracy</strong> and compressing analysis time from <strong>10+ hours to 12 minutes</strong> for <strong>20+ biologists</strong>.</li>
-                <li>Unified <strong>15+ clinical and genomic</strong> data sources via Python/R ETL pipelines, cutting manual processing by <strong>40%</strong> and enabling near-real-time access for <strong>20+ researchers</strong>.</li>
+                <li>Unified <strong>15+ clinical and genomic</strong> data sources through Python/R ETL pipelines, replacing manual data assembly and giving a <strong>20-person</strong> research group one repeatable path to the data.</li>
                 <li>Deployed an authenticated R Shiny dashboard on AWS EC2/RDS with row-level security, saving <strong>20+ person-hours/month</strong> and eliminating ad-hoc engineering requests from biologists.</li>
               </ul>
               <div class="timeline-note">First time working directly alongside non-technical users. Figuring out how to talk about what a system can and can't do, without overcomplicating it, took some adjustment.</div>
@@ -854,9 +856,29 @@
         </div>
 
         <div class="project-grid">
+          <article class="project-card" data-category="data software" data-skills="python aws pandas r">
+            <div class="project-top">
+              <div><div class="project-number">01</div><h3>Airflow S3 Data Pipeline</h3></div>
+              <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
+            </div>
+            <p>Automated S3-to-report pipeline with a quality gate that stops bad data before it gets published.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">Apache Airflow</span><span class="tag">AWS S3</span>
+              <span class="tag">pandas</span><span class="tag">R</span><span class="tag">pytest</span><span class="tag">GitHub Actions</span>
+            </div>
+            <div class="project-details">
+              An 8-task Airflow DAG picks up raw CSVs from S3 with a reschedule-mode sensor, cleans them in
+              pandas, renders an R Markdown report, and publishes outputs back to S3. A data quality gate
+              (schema, key uniqueness, null, outlier and range checks with severity scoring) fails the run
+              on critical issues, backed by 13 pytest tests and GitHub Actions CI. Started July 2026, still
+              being worked on.
+            </div>
+            <button class="project-toggle" type="button">details</button>
+          </article>
+
           <article class="project-card" data-category="data analytics" data-skills="python sql pandas numpy sqlite">
             <div class="project-top">
-              <div><div class="project-number">01</div><h3>Algorithmic Trading Backtester</h3></div>
+              <div><div class="project-number">02</div><h3>Algorithmic Trading Backtester</h3></div>
               <div class="complexity">COMPLEXITY<br><span class="pips">●●●●○</span></div>
             </div>
             <p>Bias-controlled research platform for testing trading strategies and measuring risk.</p>
@@ -875,7 +897,7 @@
 
           <article class="project-card" data-category="software ml" data-skills="python opencv sklearn">
             <div class="project-top">
-              <div><div class="project-number">02</div><h3>Cell Imaging Analysis Tool</h3></div>
+              <div><div class="project-number">03</div><h3>Cell Imaging Analysis Tool</h3></div>
               <div class="complexity">COMPLEXITY<br><span class="pips">●●●●○</span></div>
             </div>
             <p>Production desktop app for automated cell segmentation and tracking across microscopy sequences.</p>
@@ -894,7 +916,7 @@
 
           <article class="project-card" data-category="data ml analytics" data-skills="python sklearn pandas numpy">
             <div class="project-top">
-              <div><div class="project-number">03</div><h3>Credit Risk Prediction</h3></div>
+              <div><div class="project-number">04</div><h3>Credit Risk Prediction</h3></div>
               <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
             </div>
             <p>Loan-default modeling pipeline comparing classical ML approaches on 30,000 credit accounts.</p>
@@ -912,7 +934,7 @@
 
           <article class="project-card" data-category="software data" data-skills="python flask sqlite">
             <div class="project-top">
-              <div><div class="project-number">04</div><h3>System Monitoring Dashboard</h3></div>
+              <div><div class="project-number">05</div><h3>System Monitoring Dashboard</h3></div>
               <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
             </div>
             <p>Lightweight monitoring interface for system status, metrics, and alerting.</p>
@@ -930,7 +952,7 @@
 
           <article class="project-card" data-category="data analytics" data-skills="python pandas sklearn numpy">
             <div class="project-top">
-              <div><div class="project-number">05</div><h3>NBA Analytics Platform</h3></div>
+              <div><div class="project-number">06</div><h3>NBA Analytics Platform</h3></div>
               <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
             </div>
             <p>Player development and performance analytics with temporally correct modeling.</p>
@@ -947,7 +969,7 @@
 
           <article class="project-card" data-category="software analytics" data-skills="r shiny aws">
             <div class="project-top">
-              <div><div class="project-number">06</div><h3>R&D Lab Data Automation</h3></div>
+              <div><div class="project-number">07</div><h3>R&D Lab Data Automation</h3></div>
               <div class="complexity">COMPLEXITY<br><span class="pips">●●●○○</span></div>
             </div>
             <p>Authenticated R Shiny platform for repeatable pharmaceutical laboratory analysis.</p>
@@ -962,20 +984,20 @@
             <button class="project-toggle" type="button">details</button>
           </article>
 
-          <article class="project-card" data-category="software data" data-skills="react typescript fastapi aws dynamodb">
+          <article class="project-card" data-category="software data" data-skills="react typescript flask aws dynamodb">
             <div class="project-top">
-              <div><div class="project-number">07</div><h3>Servin Food Recommendation</h3></div>
+              <div><div class="project-number">08</div><h3>Servin Food Recommendation</h3></div>
               <div class="complexity">COMPLEXITY<br><span class="pips">●●●●○</span></div>
             </div>
             <p>Serverless recommendation engine with entropy-weighted confidence scoring.</p>
             <div class="project-tags">
-              <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">FastAPI</span>
+              <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Flask</span>
               <span class="tag">AWS Lambda</span><span class="tag">DynamoDB</span><span class="tag">CDK</span>
             </div>
             <div class="project-details">
               Entropy-weighted confidence normalization across four preference dimensions, with graceful
               degradation when swipe data is sparse. Full CDK infrastructure stack covering Lambda, API
-              Gateway, DynamoDB, CloudFront, and S3. Built with friends for fun.
+              Gateway, DynamoDB, CloudFront, and S3. Built with friends for fun, started April 2026.
             </div>
             <button class="project-toggle" type="button">details</button>
           </article>
@@ -996,7 +1018,6 @@
             <button class="skill" data-skill="shiny">R Shiny</button>
             <button class="skill" data-skill="react">React</button>
             <button class="skill" data-skill="typescript">TypeScript</button>
-            <button class="skill" data-skill="fastapi">FastAPI</button>
             <button class="skill" data-skill="flask">Flask</button>
             <button class="skill" data-skill="dynamodb">DynamoDB</button>
             <button class="skill" data-skill="sqlite">SQLite</button>
@@ -1087,7 +1108,7 @@
           </div>
           <div class="unlock locked" data-unlock="3">
             <strong>LOCKED · BIOTECH ETL</strong>
-            <span>15+ sources unified. 40% faster.</span>
+            <span>15+ sources unified. One repeatable path.</span>
           </div>
           <div class="unlock locked" data-unlock="4">
             <strong>LOCKED · REAL USERS</strong>
@@ -1287,7 +1308,7 @@
     const UNLOCK_DATA = [
       ["THE FED",         "29 datasets. Onboarding: weeks → 2 days."],
       ["COMPUTER VISION", "91% accuracy. 10hr → 12min."],
-      ["BIOTECH ETL",     "15+ sources unified. 40% faster."],
+      ["BIOTECH ETL",     "15+ sources unified. One repeatable path."],
       ["REAL USERS",      "20+ biologists. 20+ hrs/mo saved."],
     ];
 
@@ -1596,7 +1617,7 @@
   })();
 
   /* =========================================================
-     TERMINAL (Skills updated to match resume: no JS/TS/Java)
+     TERMINAL
   ========================================================= */
   (() => {
     const form   = document.getElementById("terminalForm");
@@ -1639,25 +1660,26 @@ skills/
 contact.txt`,
 
       projects:
-`01  Algorithmic Trading Backtester     [data · analytics]
-02  Cell Imaging Analysis Tool         [software · ml]
-03  Credit Risk Prediction             [data · ml · analytics]
-04  System Monitoring Dashboard        [software · data]
-05  NBA Analytics Platform             [data · analytics]
-06  R&D Lab Data Automation            [software · analytics]
-07  Servin Food Recommendation         [software · data]`,
+`01  Airflow S3 Data Pipeline           [data · software]
+02  Algorithmic Trading Backtester     [data · analytics]
+03  Cell Imaging Analysis Tool         [software · ml]
+04  Credit Risk Prediction             [data · ml · analytics]
+05  System Monitoring Dashboard        [software · data]
+06  NBA Analytics Platform             [data · analytics]
+07  R&D Lab Data Automation            [software · analytics]
+08  Servin Food Recommendation         [software · data]`,
 
       skills:
-`Python · SQL · R · PySpark · Apache Airflow
+`Python · SQL · R · TypeScript · JavaScript · PySpark · Apache Airflow
 
 AWS:
-S3 · EMR · Glue · Athena · Lambda · EC2 · RDS
+S3 · EMR · Glue · Athena · Lambda · EC2 · RDS · DynamoDB · CDK
 
 Data:
-Data Modeling · Data Quality · Pipeline Orchestration · Data Warehousing
+Data Modeling · Data Quality · Pipeline Orchestration · ETL/ELT
 
 Tools & Libs:
-Docker · CI/CD · Git · PostgreSQL · pandas · scikit-learn · TensorFlow · Streamlit`,
+Docker · Git · GitHub Actions · pytest · pandas · NumPy · scikit-learn · TensorFlow · OpenCV · Streamlit · R Shiny · Tableau`,
 
       contact:
 `Email:    andyzhu0915@gmail.com
