@@ -864,14 +864,14 @@
             <p>Automated S3-to-report pipeline with a quality gate that stops bad data before it gets published.</p>
             <div class="project-tags">
               <span class="tag">Python</span><span class="tag">Apache Airflow</span><span class="tag">AWS S3</span>
-              <span class="tag">pandas</span><span class="tag">R</span><span class="tag">pytest</span><span class="tag">GitHub Actions</span>
+              <span class="tag">AWS Lambda</span><span class="tag">pandas</span><span class="tag">R</span><span class="tag">pytest</span>
             </div>
             <div class="project-details">
-              An 8-task Airflow DAG picks up raw CSVs from S3 with a reschedule-mode sensor, cleans them in
-              pandas, renders an R Markdown report, and publishes outputs back to S3. A data quality gate
-              (schema, key uniqueness, null, outlier and range checks with severity scoring) fails the run
-              on critical issues, backed by 13 pytest tests and GitHub Actions CI. Started July 2026, still
-              being worked on.
+              An 8-task Airflow 3 DAG with a reschedule-mode S3 sensor, pandas cleaning, an R Markdown
+              report, and S3 upload, plus an optional S3-event Lambda trigger. A data quality gate (schema,
+              key uniqueness, null, IQR outlier, and range checks with CRITICAL/INFO severity) fails the
+              run on critical issues, covered by 13 pytest tests. Built on the Titanic dataset to exercise
+              the pipeline; live S3, Lambda, and R-report paths have not been tested end to end.
             </div>
             <button class="project-toggle" type="button">details</button>
           </article>
@@ -1679,7 +1679,7 @@ Data:
 Data Modeling · Data Quality · Pipeline Orchestration · ETL/ELT
 
 Tools & Libs:
-Docker · Git · GitHub Actions · pytest · pandas · NumPy · scikit-learn · TensorFlow · OpenCV · Streamlit · R Shiny · Tableau`,
+Docker · Git · pytest · pandas · NumPy · scikit-learn · TensorFlow · OpenCV · Streamlit · R Shiny · Tableau`,
 
       contact:
 `Email:    andyzhu0915@gmail.com
