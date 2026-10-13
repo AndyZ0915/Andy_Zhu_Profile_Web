@@ -608,7 +608,7 @@
         <div class="hero-role" id="heroRole" aria-label="Software, Data, Analytics, Statistics"></div>
         <p class="hero-copy">
           Data and software engineer with production experience shipping ETL/ELT pipelines at the Federal Reserve and a pharma-biotech firm.
-          Cut research turnaround by <strong>40%</strong> and pipeline costs to under <strong>$2/day</strong> on AWS.
+          Cut new-vendor data onboarding from weeks to about <strong>two days</strong> and kept pipeline compute under <strong>$2/day</strong> on AWS.
           New grad, looking for the right problem to build on.
         </p>
         <div class="hero-actions">
@@ -811,9 +811,9 @@
               <h3 class="timeline-company">Federal Reserve Bank of Philadelphia</h3>
               <p class="timeline-role">IT Research Intern · Economic Research Division</p>
               <ul>
-                <li>Cut vendor data onboarding from weeks to <strong>2 days</strong> by building a reusable Airflow + EMR + PySpark ingestion framework covering <strong>29 vendor datasets</strong> and <strong>90+ variables</strong> for <strong>30+ economists</strong>, with one standardized schema replacing per-vendor file formats.</li>
-                <li>Lowered pipeline compute costs to under <strong>$2/day</strong> with EMR Spot Instances, and added a 3-stage PySpark quality check across <strong>7 dimensions</strong> that surfaces integrity issues to researchers in real time.</li>
-                <li>Cut research turnaround by <strong>40%</strong> by letting analysts query S3 data directly through Athena instead of waiting on engineering-run pulls, and automated emailed QA reports on scraped HTML sources with Python and Airflow SMTP.</li>
+                <li>Cut new-vendor onboarding from weeks to about <strong>2 days</strong> by building a reusable Airflow + EMR + PySpark ingestion framework for <strong>29 vendor datasets</strong> (<strong>90+ variables</strong>) available to <strong>30+ economists</strong>, on a common schema instead of per-vendor file formats.</li>
+                <li>Kept pipeline compute under <strong>$2/day</strong> by running EMR on Spot Instances, and added a 3-stage PySpark quality check across <strong>7 dimensions</strong> with automated emailed QA reports (Python, Airflow SMTP) that flag integrity issues to researchers after each run.</li>
+                <li>Cut research turnaround by an estimated <strong>40%</strong> by letting analysts query S3 data directly through Athena instead of requesting engineering-run pulls.</li>
               </ul>
               <div class="timeline-note">First time building infrastructure that other people's research depended on. You think about edge cases differently when the thing going down isn't your problem alone.</div>
             </div>
@@ -881,16 +881,16 @@
               <div><div class="project-number">02</div><h3>Algorithmic Trading Backtester</h3></div>
               <div class="complexity">COMPLEXITY<br><span class="pips">●●●●○</span></div>
             </div>
-            <p>Bias-controlled research platform for testing trading strategies and measuring risk.</p>
+            <p>Research platform for backtesting trading strategies, with next-bar execution and data-quality checks.</p>
             <div class="project-tags">
               <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">NumPy</span>
               <span class="tag">Streamlit</span><span class="tag">SQLite</span><span class="tag">Docker</span>
             </div>
             <div class="project-details">
-              Signals execute on the next bar to eliminate look-ahead bias. Typed DataQualityReport with
-              10 OHLCV checks and a 15-metric risk suite covering Sharpe, Sortino, Calmar, Max Drawdown,
-              and CAGR. SQLite caching with a 7-day TTL and multi-provider fallback cuts external API
-              calls by 90%.
+              Signals execute on the next bar to avoid look-ahead bias. A typed DataQualityReport runs
+              10 OHLCV checks, and results report 15 performance and risk metrics including Sharpe,
+              Sortino, Calmar, and max drawdown. Market data is cached in SQLite with Yahoo and Alpha
+              Vantage provider fallback, cutting repeat external API calls by an estimated 90%.
             </div>
             <button class="project-toggle" type="button">details</button>
           </article>
